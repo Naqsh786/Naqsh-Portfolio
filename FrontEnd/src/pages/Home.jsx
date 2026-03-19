@@ -20,7 +20,7 @@ const Home = () => {
           <div className="relative flex-shrink-0 animate-fade-in group">
             <div className="w-48 h-48 md:w-56 md:h-56 rounded-full overflow-hidden border-2 border-neon-green/30 animate-pulse-glow hover:border-neon-green/80 transition-all duration-500 bg-dark-surface">
               <img 
-                src={profile?.imageUrl || "/profile_premium.png"} 
+                src={profile?.imageUrl || "/12006.png"} 
                 alt={`${profile?.name || "Naqsh"} Profile`} 
                 className="w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-500"
               />
