@@ -1,38 +1,34 @@
+import dotenv from "dotenv";
+// Load Env IMMEDIATELY before other imports
+dotenv.config();
+
 import express from "express";
 import cors from "cors";
-import dotenv from "dotenv";
 import connectDB from "./DB.js";
 import projectRoutes from "./routes/projectRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
 import profileRoutes from "./routes/profileRoutes.js";
 
-// Load Env
-dotenv.config();
-
 const app = express();
 
-// Regular Middleware - MUST BE FIRST
-const corsOptions = {
-  origin: true, // Auto-reflect origin to diagnose if it's an origin mismatch
-  methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+// 1. CORS - Standard loose configuration for debugging
+app.use(cors({
+  origin: function (origin, callback) {
+    // Allow all origins including localhost, vercel deployments, etc.
+    // In production, you'd want to restrict this more.
+    callback(null, true);
+  },
   credentials: true,
-  allowedHeaders: ["Content-Type", "Authorization", "Accept"],
-  optionsSuccessStatus: 204,
-};
-app.use(cors(corsOptions));
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+  allowedHeaders: ["Content-Type", "Authorization", "Accept", "X-Requested-With"]
+}));
 
+// 2. Parse JSON
 app.use(express.json());
 
-// Top-level connection for instant feedback (similar to Events project)
-try {
-  await connectDB();
-} catch {
-  console.error("🚀 Initial DB connection effort started...");
-}
-
-// Middleware to ensure DB is connected for every request (essential for Vercel/Serverless cold starts)
+// 3. Database Connection Middleware (Lazy Connection)
 app.use(async (req, res, next) => {
-  // Skip database check for preflight/OPTIONS requests
+  // Always skip heavy DB logic for preflight
   if (req.method === "OPTIONS") {
     return next();
   }
@@ -40,20 +36,20 @@ app.use(async (req, res, next) => {
   try {
     const mongoUri = process.env.DATABASE || process.env.MONGO_URI;
     if (!mongoUri) {
-      console.error("FATAL: DATABASE or MONGO_URI environment variable is missing!");
-      return res.status(500).json({ success: false, message: "Database config missing" });
+      console.error("FATAL: DATABASE or MONGO_URI env var is missing!");
+      return res.status(500).json({ success: false, message: "Server Configuration Error: DB URI Missing" });
     }
 
     await connectDB();
     next();
   } catch (err) {
-    console.error("Critical Database Connection Error in Middleware:", {
-      message: err.message,
-    });
-    res.status(500).json({
+    console.error("DB Connection Error in Middleware:", err.message);
+    // Don't kill the request, but log it clearly
+    // If it's a persistent error, return 500
+    return res.status(500).json({
       success: false,
-      message: "Internal Server Error: Database initialization failed",
-      error: err.message,
+      message: "Database initialization failed",
+      error: err.message
     });
   }
 });
