@@ -11,6 +11,19 @@ dotenv.config();
 
 const app = express();
 
+// Regular Middleware - MUST BE FIRST
+const corsOptions = {
+  origin: ["https://naqsh-protfolio-f.vercel.app", "http://localhost:5173", "http://localhost:5174", "http://localhost:3000"],
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+  credentials: true,
+  allowedHeaders: ["Content-Type", "Authorization", "Accept"],
+  optionsSuccessStatus: 204, // Some legacy browsers crash on 200
+};
+app.use(cors(corsOptions));
+app.options("*", cors(corsOptions)); // Enable preflight for all routes
+
+app.use(express.json());
+
 // Top-level connection for instant feedback (similar to Events project)
 try {
   await connectDB();
@@ -20,6 +33,11 @@ try {
 
 // Middleware to ensure DB is connected for every request (essential for Vercel/Serverless cold starts)
 app.use(async (req, res, next) => {
+  // Skip database check for preflight/OPTIONS requests
+  if (req.method === "OPTIONS") {
+    return next();
+  }
+
   try {
     const mongoUri = process.env.DATABASE || process.env.MONGO_URI;
     if (!mongoUri) {
@@ -40,18 +58,6 @@ app.use(async (req, res, next) => {
     });
   }
 });
-
-// Regular Middleware
-const corsOptions = {
-  origin: ["https://naqsh-protfolio-f.vercel.app", "http://localhost:5173", "http://localhost:5174", "http://localhost:3000"],
-  methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
-  credentials: true,
-  allowedHeaders: ["Content-Type", "Authorization"],
-};
-app.use(cors(corsOptions));
-// Handle OPTIONS preflight for all routes
-app.options("*", cors(corsOptions));
-app.use(express.json());
 
 // Root Route
 app.get("/", (req, res) => {
