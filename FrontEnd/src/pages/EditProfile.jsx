@@ -156,9 +156,8 @@ const EditProfile = () => {
                 <label className="block text-gray-400 text-sm font-medium mb-2">
                   Profile Image
                 </label>
-                <div
-                  onClick={() => fileInputRef.current?.click()}
-                  className="w-full aspect-square border-2 border-dashed border-gray-700 rounded-2xl p-2 flex flex-col items-center justify-center gap-3 cursor-pointer hover:border-neon-green/50 hover:bg-neon-green/5 transition-all duration-300 overflow-hidden relative group"
+                <label
+                  className="block w-full aspect-square border-2 border-dashed border-gray-700 rounded-2xl p-2 flex flex-col items-center justify-center gap-3 cursor-pointer hover:border-neon-green/50 hover:bg-neon-green/5 transition-all duration-300 overflow-hidden relative group"
                 >
                   {imagePreview ? (
                     <>
@@ -167,7 +166,7 @@ const EditProfile = () => {
                         alt="Profile Preview"
                         className="w-full h-full object-cover rounded-xl group-hover:opacity-50 transition-all"
                       />
-                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
                         <span className="bg-dark-bg/80 text-white px-3 py-1.5 rounded-lg text-sm font-medium backdrop-blur-sm">
                           Change Image
                         </span>
@@ -182,14 +181,14 @@ const EditProfile = () => {
                       </p>
                     </>
                   )}
-                </div>
-                <input
-                  ref={fileInputRef}
-                  type="file"
-                  accept="image/*"
-                  onChange={handleImageChange}
-                  className="hidden"
-                />
+                  <input
+                    ref={fileInputRef}
+                    type="file"
+                    accept="image/*"
+                    onChange={handleImageChange}
+                    className="hidden"
+                  />
+                </label>
               </div>
 
               {/* Text Fields */}

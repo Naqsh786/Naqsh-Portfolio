@@ -3,10 +3,13 @@
  * Yeh code automatically check karega ke aap local pe hain ya live.
  */
 const getApiBaseUrl = () => {
-  // 1. Check if we're on localhost for local development
-  const isLocalhost = 
-    window.location.hostname === "localhost" || 
-    window.location.hostname === "127.0.0.1";
+  const hostname = window.location.hostname;
+
+  // 1. Check if we're on localhost or a local IP (for mobile testing)
+  const isLocal = 
+    hostname === "localhost" || 
+    hostname === "127.0.0.1" || 
+    /^(\d{1,3}\.){3}\d{1,3}$/.test(hostname); // Regex for IP addresses
 
   // 2. Priority: VITE_API_URL ENV variable
   if (import.meta.env.VITE_API_URL) {
@@ -14,8 +17,9 @@ const getApiBaseUrl = () => {
   }
 
   // 3. Fallback for Local vs Production
-  if (isLocalhost) {
-    return "http://localhost:7000"; // Local Backend
+  if (isLocal) {
+    // Dynamically use the same hostname as the frontend for local testing
+    return `http://${hostname}:7000`; 
   }
 
   // Production/Vercel Backend
