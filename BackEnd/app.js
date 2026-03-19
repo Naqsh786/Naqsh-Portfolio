@@ -13,11 +13,11 @@ const app = express();
 
 // Regular Middleware - MUST BE FIRST
 const corsOptions = {
-  origin: ["https://naqsh-protfolio-f.vercel.app", "http://localhost:5173", "http://localhost:5174", "http://localhost:3000"],
+  origin: true, // Auto-reflect origin to diagnose if it's an origin mismatch
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
   credentials: true,
   allowedHeaders: ["Content-Type", "Authorization", "Accept"],
-  optionsSuccessStatus: 204, // Some legacy browsers crash on 200
+  optionsSuccessStatus: 204,
 };
 app.use(cors(corsOptions));
 app.options("*", cors(corsOptions)); // Enable preflight for all routes
