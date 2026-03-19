@@ -1,0 +1,108 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Inter", system-ui, sans-serif;
+  background-color: #121212;
+  color: #e0e0e0;
+  overflow-x: hidden;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #121212;
+}
+::-webkit-scrollbar-thumb {
+  background: #39ff14;
+  border-radius: 10px;
+}
+
+/* Glow effects */
+.glow-border {
+  border: 1px solid #39ff1440;
+  transition: all 0.3s ease;
+}
+.glow-border:hover {
+  border-color: #39ff14;
+  box-shadow: 0 0 15px #39ff1430, 0 0 30px #39ff1415;
+}
+
+.text-glow {
+  text-shadow: 0 0 10px #39ff1480, 0 0 20px #39ff1440;
+}
+
+/* Gradient text */
+.gradient-text {
+  background: linear-gradient(135deg, #39ff14, #00ff88, #39ff14);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Glass morphism */
+.glass {
+  background: rgba(30, 30, 30, 0.6);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(57, 255, 20, 0.1);
+}
+
+/* Background grid */
+.bg-grid {
+  background-image: linear-gradient(
+      rgba(57, 255, 20, 0.03) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba(57, 255, 20, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* Animated gradient border */
+.animated-border {
+  position: relative;
+  overflow: hidden;
+}
+.animated-border::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  background: conic-gradient(
+    from 0deg,
+    #39ff14,
+    transparent,
+    #39ff14,
+    transparent,
+    #39ff14
+  );
+  animation: rotateBorder 4s linear infinite;
+  border-radius: inherit;
+  z-index: -1;
+}
+@keyframes rotateBorder {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Stagger children animations */
+.stagger-children > *:nth-child(1) { animation-delay: 0.1s; }
+.stagger-children > *:nth-child(2) { animation-delay: 0.2s; }
+.stagger-children > *:nth-child(3) { animation-delay: 0.3s; }
+.stagger-children > *:nth-child(4) { animation-delay: 0.4s; }
+.stagger-children > *:nth-child(5) { animation-delay: 0.5s; }
+.stagger-children > *:nth-child(6) { animation-delay: 0.6s; }
