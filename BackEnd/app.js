@@ -42,7 +42,15 @@ app.use(async (req, res, next) => {
 });
 
 // Regular Middleware
-app.use(cors());
+const corsOptions = {
+  origin: ["https://naqsh-protfolio-f.vercel.app", "http://localhost:5173", "http://localhost:3000"],
+  methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
+  credentials: true,
+  allowedHeaders: ["Content-Type", "Authorization"],
+};
+app.use(cors(corsOptions));
+// Handle OPTIONS preflight for all routes
+app.options("*", cors(corsOptions));
 app.use(express.json());
 
 // Root Route

@@ -4,13 +4,17 @@
  * - Development: uses localhost
  */
 const getApiBaseUrl = () => {
+  let url = "";
   if (import.meta.env.PROD) {
     // Set VITE_API_URL in Vercel Frontend environment variables
-    return import.meta.env.VITE_API_URL || "https://naqsh-protfolio-b.vercel.app";
+    url = import.meta.env.VITE_API_URL || "https://naqsh-protfolio-b.vercel.app";
+  } else {
+    // Local development
+    url = import.meta.env.VITE_API_URL || "http://localhost:7000";
   }
 
-  // Local development
-  return import.meta.env.VITE_API_URL || "http://localhost:7000";
+  // Sanitize: ensure no trailing slash
+  return url.replace(/\/$/, "");
 };
 
 export const API_BASE_URL = getApiBaseUrl();
