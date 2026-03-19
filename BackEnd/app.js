@@ -43,7 +43,7 @@ app.use(async (req, res, next) => {
 
 // Regular Middleware
 const corsOptions = {
-  origin: ["https://naqsh-protfolio-f.vercel.app", "http://localhost:5173", "http://localhost:3000"],
+  origin: ["https://naqsh-protfolio-f.vercel.app", "http://localhost:5173", "http://localhost:5174", "http://localhost:3000"],
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
   credentials: true,
   allowedHeaders: ["Content-Type", "Authorization"],
