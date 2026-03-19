@@ -6,7 +6,7 @@
 const getApiBaseUrl = () => {
   if (import.meta.env.PROD) {
     // Set VITE_API_URL in Vercel Frontend environment variables
-    return import.meta.env.VITE_API_URL || "https://my-portfolio-b-green.vercel.app";
+    return import.meta.env.VITE_API_URL || "https://naqsh-protfolio-b.vercel.app";
   }
 
   // Local development
