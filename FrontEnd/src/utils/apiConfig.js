@@ -1,20 +1,16 @@
 /**
  * Smart API Base URL Detection
- * - Production: uses VITE_API_URL env variable (set on Vercel)
- * - Development: uses localhost
+ * Yeh code automatically check karega ke aap local pe hain ya live.
  */
 const getApiBaseUrl = () => {
-  let url = "";
-  if (import.meta.env.PROD) {
-    // Set VITE_API_URL in Vercel Frontend environment variables
-    url = import.meta.env.VITE_API_URL || "https://naqsh-protfolio-b.vercel.app";
-  } else {
-    // Local development
-    url = import.meta.env.VITE_API_URL || "http://localhost:7000";
+  // 1. Pehle check karega ke kya Vercel/Environment variable mein URL set hai?
+  if (import.meta.env.VITE_API_URL) {
+    // Automatically remove trailing slash if present
+    return import.meta.env.VITE_API_URL.replace(/\/$/, "");
   }
 
-  // Sanitize: ensure no trailing slash
-  return url.replace(/\/$/, "");
+  // 2. Agar variable nahi milta (Development mode), toh fallback URL:
+  return "https://naqsh-protfolio-b.vercel.app".replace(/\/$/, "");
 };
 
 export const API_BASE_URL = getApiBaseUrl();
