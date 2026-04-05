@@ -64,7 +64,7 @@ const TechCrystal = () => {
 
 export default function Hero3D() {
   return (
-    <div className="absolute inset-0 z-0 mix-blend-screen opacity-95" style={{ pointerEvents: "none" }}>
+    <div className="fixed inset-0 z-0 mix-blend-screen opacity-95" style={{ pointerEvents: "none" }}>
       <Canvas 
         camera={{ position: [0, 0, 10], fov: 45 }}
         eventSource={document.getElementById('root')}
