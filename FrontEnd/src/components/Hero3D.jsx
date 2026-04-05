@@ -31,42 +31,42 @@ const TechCrystal = () => {
 
   return (
     <>
-      {/* Inner Solid Crystal - Downscaled for elegance */}
+      {/* Inner Solid Crystal - Minimized for subtitle background effect */}
       <Float speed={2} rotationIntensity={0.1} floatIntensity={0.5}>
-        <Icosahedron ref={innerRef} args={[1.1, 0]}>
+        <Icosahedron ref={innerRef} args={[0.5, 0]}>
           <meshStandardMaterial 
             color="#ff003c" 
             emissive="#990024" 
-            emissiveIntensity={0.6} 
+            emissiveIntensity={0.8} 
             roughness={0.2} 
             metalness={0.8} 
           />
         </Icosahedron>
       </Float>
 
-      {/* Outer Rotating Wireframe Shell - Downscaled */}
+      {/* Outer Rotating Wireframe Shell - Minimized */}
       <Float speed={2.5} rotationIntensity={0.1} floatIntensity={0.5}>
-        <Icosahedron ref={outerRef} args={[1.5, 0]}>
+        <Icosahedron ref={outerRef} args={[0.8, 0]}>
           <meshStandardMaterial 
             color="#ff003c" 
             emissive="#ff003c" 
-            emissiveIntensity={1.5} 
+            emissiveIntensity={2} 
             wireframe 
           />
         </Icosahedron>
       </Float>
       
       {/* Floating abstract tech particles reduced for extreme performance */}
-      <Sparkles count={80} scale={12} size={6} speed={0.2} opacity={0.4} color="#ff003c" />
+      <Sparkles count={60} scale={10} size={4} speed={0.2} opacity={0.3} color="#ff003c" />
     </>
   );
 };
 
 export default function Hero3D() {
   return (
-    <div className="fixed inset-0 z-0 mix-blend-screen opacity-90" style={{ pointerEvents: "none", willChange: "transform" }}>
+    <div className="fixed inset-0 z-0 opacity-40" style={{ pointerEvents: "none", backgroundColor: "transparent" }}>
       <Canvas 
-        camera={{ position: [0, 0, 9], fov: 45 }}
+        camera={{ position: [0, 0, 12], fov: 45 }}
         eventSource={document.getElementById('root')}
         eventPrefix="client"
         dpr={[1, 1]} 
