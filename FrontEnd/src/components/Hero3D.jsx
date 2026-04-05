@@ -33,7 +33,7 @@ const TechCrystal = () => {
     <>
       {/* Inner Solid Crystal - Downscaled for subtle background prominence */}
       <Float speed={2} rotationIntensity={0.1} floatIntensity={0.5}>
-        <Icosahedron ref={innerRef} args={[0.6, 0]}>
+        <Icosahedron ref={innerRef} args={[0.9, 0]}>
           <meshStandardMaterial 
             color="#ff003c" 
             emissive="#990024" 
@@ -44,9 +44,9 @@ const TechCrystal = () => {
         </Icosahedron>
       </Float>
 
-      {/* Outer Rotating Wireframe Shell - Downscaled */}
+      {/* Outer Rotating Wireframe Shell - Adjusted for user's inner scale change */}
       <Float speed={2.5} rotationIntensity={0.1} floatIntensity={0.5}>
-        <Icosahedron ref={outerRef} args={[0.9, 0]}>
+        <Icosahedron ref={outerRef} args={[1.0, 0]}>
           <meshStandardMaterial 
             color="#ff003c" 
             emissive="#ff003c" 
@@ -64,7 +64,7 @@ const TechCrystal = () => {
 
 export default function Hero3D() {
   return (
-    <div className="absolute inset-0 z-0 mix-blend-screen opacity-95" style={{ pointerEvents: "none" }}>
+    <div className="fixed inset-0 z-0 mix-blend-screen opacity-95" style={{ pointerEvents: "none" }}>
       <Canvas 
         camera={{ position: [0, 0, 10], fov: 45 }}
         eventSource={document.getElementById('root')}
