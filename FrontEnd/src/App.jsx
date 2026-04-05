@@ -3,7 +3,6 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Preloader from "./components/Preloader";
-import GlowCursor from "./components/GlowCursor";
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -14,7 +13,6 @@ function App() {
         <Preloader onComplete={() => setLoading(false)} />
       ) : (
         <div className="min-h-screen bg-transparent animate-fade-in">
-          <GlowCursor />
           <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />

@@ -10,15 +10,15 @@ const TechCrystal = () => {
   const target = new THREE.Vector3();
 
   useFrame(({ mouse, clock }) => {
-    // Smooth dampening to target cursor
+    // Smooth dampening to target cursor - INCREASED intensity
     const x = (mouse.x * viewport.width) / 2;
     const y = (mouse.y * viewport.height) / 2;
     
-    target.set(x * 0.3, y * 0.3, 0); 
+    target.set(x * 0.8, y * 0.8, 0); 
     
-    // Lerp both shapes smoothly to track mouse
-    innerRef.current.position.lerp(target, 0.05);
-    outerRef.current.position.lerp(target, 0.05);
+    // Lerp both shapes smoothly to track mouse - FASTER snap
+    innerRef.current.position.lerp(target, 0.08);
+    outerRef.current.position.lerp(target, 0.08);
 
     // Give them independent counter-rotations
     const t = clock.getElapsedTime();
@@ -31,40 +31,40 @@ const TechCrystal = () => {
 
   return (
     <>
-      {/* Inner Solid Crystal - Restored to 'Normal' premium scale */}
+      {/* Inner Solid Crystal - Resized bigger for prominence */}
       <Float speed={2} rotationIntensity={0.1} floatIntensity={0.5}>
-        <Icosahedron ref={innerRef} args={[0.8, 0]}>
+        <Icosahedron ref={innerRef} args={[1.1, 0]}>
           <meshStandardMaterial 
             color="#ff003c" 
             emissive="#990024" 
-            emissiveIntensity={1} 
+            emissiveIntensity={1.2} 
             roughness={0.2} 
-            metalness={0.8} 
+            metalness={0.9} 
           />
         </Icosahedron>
       </Float>
 
-      {/* Outer Rotating Wireframe Shell - Normal size */}
+      {/* Outer Rotating Wireframe Shell - Resized bigger */}
       <Float speed={2.5} rotationIntensity={0.1} floatIntensity={0.5}>
-        <Icosahedron ref={outerRef} args={[1.2, 0]}>
+        <Icosahedron ref={outerRef} args={[1.6, 0]}>
           <meshStandardMaterial 
             color="#ff003c" 
             emissive="#ff003c" 
-            emissiveIntensity={2.5} 
+            emissiveIntensity={3} 
             wireframe 
           />
         </Icosahedron>
       </Float>
       
       {/* Floating abstract tech particles */}
-      <Sparkles count={100} scale={10} size={5} speed={0.2} opacity={0.5} color="#ff003c" />
+      <Sparkles count={100} scale={10} size={5} speed={0.2} opacity={0.6} color="#ff003c" />
     </>
   );
 };
 
 export default function Hero3D() {
   return (
-    <div className="absolute inset-0 z-0 mix-blend-screen opacity-90" style={{ pointerEvents: "none" }}>
+    <div className="absolute inset-0 z-0 mix-blend-screen opacity-95" style={{ pointerEvents: "none" }}>
       <Canvas 
         camera={{ position: [0, 0, 10], fov: 45 }}
         eventSource={document.getElementById('root')}
@@ -72,9 +72,9 @@ export default function Hero3D() {
         dpr={[1, 1]} 
         performance={{ min: 0.5 }}
       >
-        <ambientLight intensity={0.1} />
-        <directionalLight position={[10, 10, 5]} intensity={2} color="#ffffff" />
-        <spotLight position={[-10, 10, -5]} intensity={4} color="#ff003c" penumbra={1} />
+        <ambientLight intensity={0.2} />
+        <directionalLight position={[10, 10, 5]} intensity={3} color="#ffffff" />
+        <spotLight position={[-10, 10, -5]} intensity={5} color="#ff003c" penumbra={1} />
         
         <TechCrystal />
       </Canvas>
