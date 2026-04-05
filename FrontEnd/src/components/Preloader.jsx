@@ -31,10 +31,10 @@ const Preloader = ({ onComplete }) => {
           <span className="text-neon-red text-4xl md:text-5xl ml-2">%</span>
         </div>
 
-        {/* Cinematic Progress Bar Container */}
-        <div className="w-64 h-[2px] bg-white/5 rounded-full overflow-hidden relative border border-white/5">
+        {/* Cinematic Progress Bar Container - Enhanced Visibility */}
+        <div className="w-80 h-[3px] bg-white/10 rounded-full overflow-hidden relative border border-white/5 shadow-inner">
           <div 
-            className="absolute inset-y-0 left-0 bg-neon-red shadow-[0_0_15px_rgba(255,0,60,0.8)] transition-all duration-300 ease-out"
+            className="absolute inset-y-0 left-0 bg-neon-red shadow-[0_0_20px_rgba(255,0,60,1)] transition-all duration-300 ease-out"
             style={{ width: `${progress}%` }}
           />
         </div>

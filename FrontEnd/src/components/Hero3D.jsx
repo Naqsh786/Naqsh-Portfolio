@@ -31,42 +31,42 @@ const TechCrystal = () => {
 
   return (
     <>
-      {/* Inner Solid Crystal - Minimized for subtitle background effect */}
+      {/* Inner Solid Crystal - Restored to 'Normal' premium scale */}
       <Float speed={2} rotationIntensity={0.1} floatIntensity={0.5}>
-        <Icosahedron ref={innerRef} args={[0.5, 0]}>
+        <Icosahedron ref={innerRef} args={[0.8, 0]}>
           <meshStandardMaterial 
             color="#ff003c" 
             emissive="#990024" 
-            emissiveIntensity={0.8} 
+            emissiveIntensity={1} 
             roughness={0.2} 
             metalness={0.8} 
           />
         </Icosahedron>
       </Float>
 
-      {/* Outer Rotating Wireframe Shell - Minimized */}
+      {/* Outer Rotating Wireframe Shell - Normal size */}
       <Float speed={2.5} rotationIntensity={0.1} floatIntensity={0.5}>
-        <Icosahedron ref={outerRef} args={[0.8, 0]}>
+        <Icosahedron ref={outerRef} args={[1.2, 0]}>
           <meshStandardMaterial 
             color="#ff003c" 
             emissive="#ff003c" 
-            emissiveIntensity={2} 
+            emissiveIntensity={2.5} 
             wireframe 
           />
         </Icosahedron>
       </Float>
       
-      {/* Floating abstract tech particles reduced for extreme performance */}
-      <Sparkles count={60} scale={10} size={4} speed={0.2} opacity={0.3} color="#ff003c" />
+      {/* Floating abstract tech particles */}
+      <Sparkles count={100} scale={10} size={5} speed={0.2} opacity={0.5} color="#ff003c" />
     </>
   );
 };
 
 export default function Hero3D() {
   return (
-    <div className="fixed inset-0 z-0 opacity-40" style={{ pointerEvents: "none", backgroundColor: "transparent" }}>
+    <div className="fixed inset-0 z-0 mix-blend-screen opacity-90" style={{ pointerEvents: "none" }}>
       <Canvas 
-        camera={{ position: [0, 0, 12], fov: 45 }}
+        camera={{ position: [0, 0, 10], fov: 45 }}
         eventSource={document.getElementById('root')}
         eventPrefix="client"
         dpr={[1, 1]} 
