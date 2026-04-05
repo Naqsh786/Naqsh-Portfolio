@@ -56,25 +56,25 @@ const TechCrystal = () => {
         </Icosahedron>
       </Float>
       
-      {/* Floating abstract tech particles */}
-      <Sparkles count={250} scale={12} size={5} speed={0.4} opacity={0.6} color="#ff003c" />
+      {/* Floating abstract tech particles reduced for extreme performance */}
+      <Sparkles count={80} scale={12} size={6} speed={0.2} opacity={0.4} color="#ff003c" />
     </>
   );
 };
 
 export default function Hero3D() {
   return (
-    <div className="fixed inset-0 z-0 mix-blend-screen opacity-90" style={{ pointerEvents: "none" }}>
+    <div className="fixed inset-0 z-0 mix-blend-screen opacity-90" style={{ pointerEvents: "none", willChange: "transform" }}>
       <Canvas 
         camera={{ position: [0, 0, 9], fov: 45 }}
         eventSource={document.getElementById('root')}
         eventPrefix="client"
-        dpr={[1, 2]} 
+        dpr={[1, 1]} 
+        performance={{ min: 0.5 }}
       >
-        <ambientLight intensity={0.2} />
-        <directionalLight position={[10, 10, 5]} intensity={3} color="#ffffff" />
-        <spotLight position={[-10, 10, -5]} intensity={5} color="#ff003c" penumbra={1} />
-        <pointLight position={[0, -10, 0]} intensity={4} color="#990024" />
+        <ambientLight intensity={0.1} />
+        <directionalLight position={[10, 10, 5]} intensity={2} color="#ffffff" />
+        <spotLight position={[-10, 10, -5]} intensity={4} color="#ff003c" penumbra={1} />
         
         <TechCrystal />
       </Canvas>
