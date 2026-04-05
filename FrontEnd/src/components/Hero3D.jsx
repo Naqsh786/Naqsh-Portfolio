@@ -31,9 +31,9 @@ const TechCrystal = () => {
 
   return (
     <>
-      {/* Inner Solid Crystal */}
+      {/* Inner Solid Crystal - Downscaled for elegance */}
       <Float speed={2} rotationIntensity={0.1} floatIntensity={0.5}>
-        <Icosahedron ref={innerRef} args={[1.8, 0]}>
+        <Icosahedron ref={innerRef} args={[1.1, 0]}>
           <meshStandardMaterial 
             color="#ff003c" 
             emissive="#990024" 
@@ -44,9 +44,9 @@ const TechCrystal = () => {
         </Icosahedron>
       </Float>
 
-      {/* Outer Rotating Wireframe Shell */}
+      {/* Outer Rotating Wireframe Shell - Downscaled */}
       <Float speed={2.5} rotationIntensity={0.1} floatIntensity={0.5}>
-        <Icosahedron ref={outerRef} args={[2.4, 0]}>
+        <Icosahedron ref={outerRef} args={[1.5, 0]}>
           <meshStandardMaterial 
             color="#ff003c" 
             emissive="#ff003c" 

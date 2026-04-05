@@ -4,17 +4,17 @@ const Preloader = ({ onComplete }) => {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    // 3 seconds = 3000ms. 3000 / 100 = 30ms per increment.
+    // 2 seconds = 2000ms. 2000 / 100 = 20ms per increment.
     const interval = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
           clearInterval(interval);
-          setTimeout(onComplete, 500); // 500ms delay after hitting 100 for smoothness
+          setTimeout(onComplete, 400); // Slight delay for smoothness
           return 100;
         }
         return prev + 1;
       });
-    }, 30);
+    }, 20);
 
     return () => clearInterval(interval);
   }, [onComplete]);
