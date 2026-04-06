@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, Suspense, lazy } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import Home from "./pages/Home";
 import Preloader from "./components/Preloader";
+
+// Lazy load the Home component
+const Home = lazy(() => import("./pages/Home"));
 
 function App() {
   const [loading, setLoading] = useState(true);
@@ -15,7 +17,14 @@ function App() {
         <div className="min-h-screen bg-transparent animate-fade-in">
           <Navbar />
           <Routes>
-            <Route path="/" element={<Home />} />
+            <Route 
+              path="/" 
+              element={
+                <Suspense fallback={<div className="min-h-screen bg-[#050001]" />}>
+                  <Home />
+                </Suspense>
+              } 
+            />
           </Routes>
         </div>
       )}

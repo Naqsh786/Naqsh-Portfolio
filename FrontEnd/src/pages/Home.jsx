@@ -8,31 +8,39 @@ const Home = () => {
   return (
     <div className="bg-grid min-h-screen">
       {/* ── HERO SECTION ── */}
-      <section className="min-h-screen flex items-center justify-center px-6 relative overflow-hidden">
+      <section className="min-h-screen flex items-center justify-center px-6 pt-28 md:pt-0 relative overflow-hidden">
         {/* 3D Background */}
         <Hero3D />
 
         <div className="absolute top-20 left-10 w-72 h-72 bg-neon-red/5 rounded-full blur-3xl animate-float pointer-events-none" />
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-neon-red/3 rounded-full blur-3xl animate-float pointer-events-none" style={{ animationDelay: "1.5s" }} />
 
-        <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center gap-12 lg:gap-20 relative z-10">
-          {/* Profile Image Portrait */}
-          <div className="relative flex-shrink-0 animate-fade-in group">
-            {/* Outer Frame */}
-            <div className="w-60 h-60 md:w-72 md:h-72 lg:w-[22rem] lg:h-[22rem] p-3 md:p-4 rounded-full glass border border-neon-red/40 shadow-[0_0_30px_rgba(255,0,60,0.15)] group-hover:border-neon-red/80 transition-all duration-500 group-hover:shadow-[0_0_40px_rgba(255,0,60,0.4)] bg-[#110004]/80">
-              {/* Inner Image Mask */}
-              <div className="w-full h-full rounded-full overflow-hidden border border-neon-red/20 relative group/pic bg-[#110004]">
-                <img 
-                  src={profile?.imageUrl || "/12006.png"} 
-                  alt={`${profile?.name || "Naqsh"} Profile`} 
-                  className="w-full h-full object-cover object-center scale-110"
-                  style={{ imageRendering: "high-quality" }}
-                />
+          <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center gap-10 md:gap-12 lg:gap-20 relative z-10">
+            {/* Profile Image Portrait */}
+            <div className="relative flex-shrink-0 animate-fade-in group">
+              {/* Outer Frame */}
+              <div className="w-60 h-60 md:w-72 md:h-72 lg:w-[22rem] lg:h-[22rem] p-3 md:p-4 rounded-full glass border border-neon-red/40 shadow-[0_0_30px_rgba(255,0,60,0.15)] group-hover:border-neon-red/80 transition-all duration-500 group-hover:shadow-[0_0_40px_rgba(255,0,60,0.4)] bg-[#110004]/80">
+                {/* Inner Image Mask */}
+                <div className="w-full h-full rounded-full overflow-hidden border border-neon-red/20 relative group/pic bg-[#110004]">
+                  <picture>
+                    <source srcSet="/12006.avif" type="image/avif" />
+                    <source srcSet="/12006.webp" type="image/webp" />
+                    <img 
+                      src="/12006.png" 
+                      alt={`${profile?.name || "Naqsh"} Profile`} 
+                      className="w-full h-full object-cover object-center scale-110"
+                      width="288"
+                      height="288"
+                      fetchpriority="high"
+                      loading="eager"
+                      style={{ imageRendering: "high-quality" }}
+                    />
+                  </picture>
+                </div>
               </div>
+              {/* Status indicator */}
+              <div className="absolute bottom-5 right-5 lg:bottom-8 lg:right-8 w-6 h-6 bg-neon-red rounded-full border-4 border-[#050001] animate-pulse shadow-[0_0_20px_rgba(255,0,60,0.8)] z-20" title="Available for work" />
             </div>
-            {/* Status indicator */}
-            <div className="absolute bottom-5 right-5 lg:bottom-8 lg:right-8 w-8 h-8 bg-neon-red rounded-full border-4 border-[#050001] animate-pulse shadow-[0_0_20px_rgba(255,0,60,0.8)] z-20" title="Available for work" />
-          </div>
 
           {/* Hero Text */}
           <div className="text-center md:text-left animate-slide-up opacity-0 flex-grow" style={{ animationDelay: "0.2s" }}>

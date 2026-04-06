@@ -6,11 +6,23 @@ const ProjectCard = ({ project }) => {
       {/* Image */}
       <div className="relative h-56 overflow-hidden">
         {project.imageUrl ? (
-          <img
-            src={project.imageUrl}
-            alt={project.title}
-            className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
-          />
+          <picture>
+            {project.imageUrl && project.imageUrl.startsWith('/') && (
+              <>
+                <source srcSet={project.imageUrl.replace('.png', '.avif')} type="image/avif" />
+                <source srcSet={project.imageUrl.replace('.png', '.webp')} type="image/webp" />
+              </>
+            )}
+            <img
+              src={project.imageUrl}
+              alt={project.title}
+              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+              loading="lazy"
+              width="400"
+              height="224"
+              fetchpriority="low"
+            />
+          </picture>
         ) : (
           <div className="w-full h-full relative flex items-center justify-center bg-gradient-to-br from-neon-red/30 via-[#33000b] to-[#000000] group-hover:scale-105 transition-transform duration-700">
              <div className="absolute inset-0 bg-grid opacity-30"></div>
