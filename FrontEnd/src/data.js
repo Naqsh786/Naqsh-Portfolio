@@ -25,9 +25,9 @@ export const profile = {
 export const projects = [
   {
     _id: "1",
-    title: "Naqsh Events – Full-Stack Event Management Portal",
-    description: "A robust and scalable Event Management System designed to streamline event planning and booking. This project features a dynamic dashboard for real-time tracking, secure user authentication, and a responsive UI. Built with a focus on performance and seamless user experience using a modern MERN-style architecture.",
-    technologies: ["React Vite", "Node.js Express.js", "MongoDB", "Redux"],
+    title: "Majestic Events – Full-Stack Event Planning & Booking Platform",
+    description: "A feature-rich event management platform where users can explore and book premium events like Weddings, Birthdays, Mehendi, and Valima ceremonies. Includes a powerful admin panel with category management, slide management, real-time chat system, user management, and review moderation. Features secure Google & OTP-based authentication, responsive glassmorphism UI, and a fully deployed serverless backend.",
+    technologies: ["React.js", "Vite", "Redux Toolkit", "Node.js", "Express.js", "MongoDB", "JWT Auth", "Cloudinary"],
     imageUrl: "/events.png",
     liveDemo: "https://event-managment-f.vercel.app/",
     gitFrontend: "https://github.com/Naqsh786/Event-Managment/tree/main/FrontEnd/web",
@@ -39,7 +39,7 @@ export const projects = [
     description: "An advanced hotel management and room booking application featuring role-based dashboards (Admin, Staff, and Guest). Includes real-time booking, interactive room filters, Stripe checkout integration, food ordering inventory, and dynamic business charts. Fully optimized for cold starts on serverless hosting with Cloudinary asset management.",
     technologies: ["React.js", "Redux Toolkit", "Node.js", "Express.js", "MongoDB", "Stripe API", "Cloudinary"],
     imageUrl: "/hotel.png",
-    liveDemo: "https://hotel-managment-system-f.vercel.app/",
+    liveDemo: "https://hotel-managment-system-wheat.vercel.app/",
     gitFrontend: "https://github.com/Naqsh786/Hotel-Managment-System/tree/main/client",
     gitBackend: "https://github.com/Naqsh786/Hotel-Managment-System/tree/main/server",
   }
