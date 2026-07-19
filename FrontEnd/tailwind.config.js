@@ -5,14 +5,14 @@ export default {
     extend: {
       colors: {
         dark: {
-          bg: "#050001",
-          card: "#0f0003",
-          surface: "#1a0005",
+          bg: "#050814",
+          card: "#0b1120",
+          surface: "#111827",
         },
         neon: {
-          red: "#ff003c",
-          glow: "#ff003cba",
-          crimson: "#990024"
+          primary: "#8b5cf6",
+          glow: "#8b5cf6ba",
+          secondary: "#3b82f6"
         },
       },
       fontFamily: {
@@ -27,8 +27,8 @@ export default {
       },
       keyframes: {
         pulseGlow: {
-          "0%, 100%": { boxShadow: "0 0 10px #ff003c60, 0 0 20px #ff003c30" },
-          "50%": { boxShadow: "0 0 25px #ff003c, 0 0 50px #ff003c80" },
+          "0%, 100%": { boxShadow: "0 0 10px #8b5cf660, 0 0 20px #8b5cf630" },
+          "50%": { boxShadow: "0 0 25px #8b5cf6, 0 0 50px #8b5cf680" },
         },
         fadeIn: {
           from: { opacity: "0", filter: "blur(4px)" },

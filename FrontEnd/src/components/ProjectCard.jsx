@@ -2,7 +2,7 @@ import { FiExternalLink, FiGithub, FiServer, FiMonitor } from "react-icons/fi";
 
 const ProjectCard = ({ project }) => {
   return (
-    <div className="w-full max-w-[400px] mx-auto group rounded-2xl overflow-hidden animate-fade-in opacity-0 hover:translate-y-[-8px] hover:shadow-[0_15px_40px_rgba(255,0,60,0.4)] transition-all duration-500 flex flex-col h-full bg-gradient-to-b from-[#660018] via-[#1a0005] to-[#050001] border border-[#ff003c30]">
+    <div className="w-full max-w-[400px] mx-auto group rounded-2xl overflow-hidden animate-fade-in opacity-0 hover:translate-y-[-8px] hover:shadow-[0_15px_40px_rgba(139, 92, 246,0.4)] transition-all duration-500 flex flex-col h-full bg-gradient-to-b from-[#1e1b4b] via-[#0b1120] to-[#050814] border border-[#8b5cf630]">
       {/* Image */}
       <div className="relative h-56 overflow-hidden">
         {project.imageUrl ? (
@@ -24,20 +24,20 @@ const ProjectCard = ({ project }) => {
             />
           </picture>
         ) : (
-          <div className="w-full h-full relative flex items-center justify-center bg-gradient-to-br from-neon-red/30 via-[#33000b] to-[#000000] group-hover:scale-105 transition-transform duration-700">
+          <div className="w-full h-full relative flex items-center justify-center bg-gradient-to-br from-neon-primary/30 via-[#151e32] to-[#000000] group-hover:scale-105 transition-transform duration-700">
              <div className="absolute inset-0 bg-grid opacity-30"></div>
-            <span className="relative z-20 text-6xl font-bold text-neon-red/60 drop-shadow-[0_0_15px_rgba(255,0,60,0.5)] font-mono group-hover:text-neon-red/90 transition-colors duration-500">
+            <span className="relative z-20 text-6xl font-bold text-neon-primary/60 drop-shadow-[0_0_15px_rgba(139, 92, 246,0.5)] font-mono group-hover:text-neon-primary/90 transition-colors duration-500">
               {"</>"}
             </span>
           </div>
         )}
         {/* Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#050001] via-transparent to-transparent opacity-90 z-10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#050814] via-transparent to-transparent opacity-90 z-10" />
       </div>
 
       {/* Content */}
       <div className="p-5 flex-grow flex flex-col z-20 relative">
-        <h3 className="text-xl md:text-2xl font-bold text-white mb-2 group-hover:text-neon-red transition-colors duration-300 break-all">
+        <h3 className="text-xl md:text-2xl font-bold text-white mb-2 group-hover:text-neon-primary transition-colors duration-300 break-all">
           {project.title}
         </h3>
         <p className="text-gray-300 text-sm leading-relaxed mb-4 flex-grow opacity-80 group-hover:opacity-100 transition-opacity">
@@ -50,7 +50,7 @@ const ProjectCard = ({ project }) => {
             {project.technologies.map((tech, index) => (
               <span
                 key={index}
-                className="px-2.5 py-1 text-[11px] font-mono font-bold rounded-lg bg-neon-red/10 text-neon-red border border-neon-red/20 shadow-[0_0_10px_rgba(255,0,60,0.1)] group-hover:bg-neon-red/20 transition-all cursor-default"
+                className="px-2.5 py-1 text-[11px] font-mono font-bold rounded-lg bg-neon-primary/10 text-neon-primary border border-neon-primary/20 shadow-[0_0_10px_rgba(139, 92, 246,0.1)] group-hover:bg-neon-primary/20 transition-all cursor-default"
               >
                 {tech}
               </span>
@@ -59,13 +59,13 @@ const ProjectCard = ({ project }) => {
         )}
 
         {/* Links */}
-        <div className="grid grid-cols-3 gap-1.5 md:gap-2 pt-4 border-t border-neon-red/10 mt-auto w-full">
+        <div className="grid grid-cols-3 gap-1.5 md:gap-2 pt-4 border-t border-neon-primary/10 mt-auto w-full">
           {project.liveDemo && (
             <a
               href={project.liveDemo}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-1 w-full py-2 px-1 rounded-lg bg-neon-red border border-neon-red/20 text-white text-[11px] md:text-xs font-bold shadow-[0_0_10px_rgba(255,0,60,0.3)] hover:shadow-[0_0_20px_rgba(255,0,60,0.8)] hover:scale-[1.02] transition-all duration-300"
+              className="flex items-center justify-center gap-1 w-full py-2 px-1 rounded-lg bg-neon-primary border border-neon-primary/20 text-white text-[11px] md:text-xs font-bold shadow-[0_0_10px_rgba(139, 92, 246,0.3)] hover:shadow-[0_0_20px_rgba(139, 92, 246,0.8)] hover:scale-[1.02] transition-all duration-300"
             >
               <FiExternalLink className="text-xs md:text-sm shrink-0" />
               <span className="truncate">Demo</span>
@@ -76,7 +76,7 @@ const ProjectCard = ({ project }) => {
               href={project.gitFrontend}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-1 w-full py-2 px-1 rounded-lg bg-dark-bg/80 border border-gray-700/50 text-gray-300 text-[11px] md:text-xs hover:text-white hover:border-neon-red/80 hover:bg-neon-red/10 hover:shadow-[0_0_15px_rgba(255,0,60,0.4)] transition-all duration-300"
+              className="flex items-center justify-center gap-1 w-full py-2 px-1 rounded-lg bg-dark-bg/80 border border-gray-700/50 text-gray-300 text-[11px] md:text-xs hover:text-white hover:border-neon-primary/80 hover:bg-neon-primary/10 hover:shadow-[0_0_15px_rgba(139, 92, 246,0.4)] transition-all duration-300"
             >
               <FiGithub className="text-xs md:text-sm shrink-0" />
               <span className="truncate">Frontend</span>
@@ -87,7 +87,7 @@ const ProjectCard = ({ project }) => {
               href={project.gitBackend}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-1 w-full py-2 px-1 rounded-lg bg-dark-bg/80 border border-gray-700/50 text-gray-300 text-[11px] md:text-xs hover:text-white hover:border-neon-red/80 hover:bg-neon-red/10 hover:shadow-[0_0_15px_rgba(255,0,60,0.4)] transition-all duration-300"
+              className="flex items-center justify-center gap-1 w-full py-2 px-1 rounded-lg bg-dark-bg/80 border border-gray-700/50 text-gray-300 text-[11px] md:text-xs hover:text-white hover:border-neon-primary/80 hover:bg-neon-primary/10 hover:shadow-[0_0_15px_rgba(139, 92, 246,0.4)] transition-all duration-300"
             >
               <FiGithub className="text-xs md:text-sm shrink-0" />
               <span className="truncate">Backend</span>

@@ -12,18 +12,9 @@
 
 body {
   font-family: "Outfit", system-ui, sans-serif;
-  background: linear-gradient(-45deg, #180006, #080002, #33000b, #0f0003);
-  background-size: 400% 400%;
-  animation: gradientBG 15s ease infinite;
-  background-attachment: fixed;
+  background: #000000;
   color: #e0e0e0;
   overflow-x: hidden;
-}
-
-@keyframes gradientBG {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
 }
 
 /* Scrollbar */
@@ -31,31 +22,31 @@ body {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #050001;
+  background: #050814;
 }
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(to bottom, #ff003c, #990024);
+  background: linear-gradient(to bottom, #8b5cf6, #3b82f6);
   border-radius: 10px;
 }
 
 /* Glow effects */
 .glow-border {
-  border: 1px solid rgba(255, 0, 60, 0.15);
+  border: 1px solid rgba(139, 92, 246, 0.15);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 .glow-border:hover {
-  border-color: #ff003c;
-  box-shadow: 0 0 20px rgba(255, 0, 60, 0.4), inset 0 0 15px rgba(255, 0, 60, 0.1);
+  border-color: #8b5cf6;
+  box-shadow: 0 0 20px rgba(139, 92, 246, 0.4), inset 0 0 15px rgba(139, 92, 246, 0.1);
   transform: translateY(-8px);
 }
 
 .text-glow {
-  text-shadow: 0 0 15px rgba(255, 0, 60, 0.9), 0 0 30px rgba(255, 0, 60, 0.5);
+  text-shadow: 0 0 15px rgba(139, 92, 246, 0.9), 0 0 30px rgba(139, 92, 246, 0.5);
 }
 
 /* Gradient text */
 .gradient-text {
-  background: linear-gradient(135deg, #ffffff 0%, #ff003c 50%, #990024 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #8b5cf6 50%, #3b82f6 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -63,11 +54,11 @@ body {
 
 /* Glass morphism Premium */
 .glass {
-  background: rgba(40, 0, 10, 0.45);
+  background: rgba(10, 15, 35, 0.45);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 0, 60, 0.25);
-  box-shadow: 0 10px 40px 0 rgba(80, 0, 20, 0.4), inset 0 1px 0 rgba(255, 100, 150, 0.15);
+  border: 1px solid rgba(139, 92, 246, 0.25);
+  box-shadow: 0 10px 40px 0 rgba(15, 25, 55, 0.4), inset 0 1px 0 rgba(139, 92, 246, 0.15);
 }
 
 /* Background grid Premium */
@@ -79,8 +70,8 @@ body {
   position: absolute;
   inset: 0;
   background-image: 
-    linear-gradient(rgba(255, 0, 60, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 0, 60, 0.05) 1px, transparent 1px);
+    linear-gradient(rgba(139, 92, 246, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(139, 92, 246, 0.05) 1px, transparent 1px);
   background-size: 60px 60px;
   background-position: center center;
   z-index: 0;
@@ -114,6 +105,6 @@ body {
 
 /* Custom selection */
 ::selection {
-  background: #ff003c;
+  background: #8b5cf6;
   color: #fff;
 }

@@ -33,24 +33,14 @@ export const projects = [
     gitFrontend: "https://github.com/Naqsh786/Event-Managment/tree/main/FrontEnd/web",
     gitBackend: "https://github.com/Naqsh786/Event-Managment/tree/main/Backend",
   },
-  // {
-  //   _id: "2",
-  //   title: "Admin Dashboard",
-  //   description: "A comprehensive admin dashboard with charts, data tables, and real-time updates.",
-  //   technologies: ["React", "Vite", "Tailwind CSS", "Recharts"],
-  //   imageUrl: "",
-  //   liveDemo: "https://example.com/demo2",
-  //   gitFrontend: "https://github.com/naqsh/project2-front",
-  //   gitBackend: "https://github.com/naqsh/project2-back",
-  // },
-  // {
-  //   _id: "3",
-  //   title: "Portfolio V2",
-  //   description: "My personal portfolio featuring an interactive 3D red neon theme and smooth animations.",
-  //   technologies: ["React", "Three.js", "Tailwind CSS", "Vite"],
-  //   imageUrl: "",
-  //   liveDemo: "https://example.com/demo3",
-  //   gitFrontend: "https://github.com/naqsh/portfolio-front",
-  //   gitBackend: "https://github.com/naqsh/portfolio-back",
-  // }
+  {
+    _id: "2",
+    title: "Sona Hotel – Luxury Hotel Management & Booking System",
+    description: "An advanced hotel management and room booking application featuring role-based dashboards (Admin, Staff, and Guest). Includes real-time booking, interactive room filters, Stripe checkout integration, food ordering inventory, and dynamic business charts. Fully optimized for cold starts on serverless hosting with Cloudinary asset management.",
+    technologies: ["React.js", "Redux Toolkit", "Node.js", "Express.js", "MongoDB", "Stripe API", "Cloudinary"],
+    imageUrl: "/hotel.png",
+    liveDemo: "https://hotel-managment-system-f.vercel.app/",
+    gitFrontend: "https://github.com/Naqsh786/Hotel-Managment-System/tree/main/client",
+    gitBackend: "https://github.com/Naqsh786/Hotel-Managment-System/tree/main/server",
+  }
 ];

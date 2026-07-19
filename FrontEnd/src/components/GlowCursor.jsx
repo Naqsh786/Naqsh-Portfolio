@@ -23,11 +23,11 @@ const CursorBody = () => {
       {/* A very tiny subtle core orb */}
       <mesh>
         <sphereGeometry args={[0.05, 16, 16]} />
-        <meshStandardMaterial color="#ff003c" emissive="#ff003c" emissiveIntensity={5} />
+        <meshStandardMaterial color="#8b5cf6" emissive="#8b5cf6" emissiveIntensity={5} />
       </mesh>
       
       {/* Tiny localized sparkles around the cursor */}
-      <Sparkles count={15} scale={1.5} size={3} speed={0.5} color="#ff003c" opacity={0.6} />
+      <Sparkles count={15} scale={1.5} size={3} speed={0.5} color="#8b5cf6" opacity={0.6} />
     </group>
   );
 };

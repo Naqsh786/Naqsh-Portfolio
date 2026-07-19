@@ -20,28 +20,28 @@ const Preloader = ({ onComplete }) => {
   }, [onComplete]);
 
   return (
-    <div className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#050001]">
+    <div className="fixed inset-0 z-[100] flex flex-col items-center justify-center bg-[#050814]">
       {/* Background Glow */}
-      <div className="absolute w-96 h-96 bg-neon-red/10 rounded-full blur-[120px] animate-pulse" />
+      <div className="absolute w-96 h-96 bg-neon-primary/10 rounded-full blur-[120px] animate-pulse" />
       
       <div className="relative flex flex-col items-center">
         {/* Animated Counter */}
         <div className="text-8xl md:text-9xl font-black text-white mb-4 tracking-tighter tabular-nums selection:bg-transparent">
           <span className="gradient-text text-glow">{progress}</span>
-          <span className="text-neon-red text-4xl md:text-5xl ml-2">%</span>
+          <span className="text-neon-primary text-4xl md:text-5xl ml-2">%</span>
         </div>
 
         {/* Cinematic Progress Bar Container - Enhanced Visibility */}
         <div className="w-80 h-[3px] bg-white/10 rounded-full overflow-hidden relative border border-white/5 shadow-inner">
           <div 
-            className="absolute inset-y-0 left-0 bg-neon-red shadow-[0_0_20px_rgba(255,0,60,1)] transition-all duration-300 ease-out"
+            className="absolute inset-y-0 left-0 bg-neon-primary shadow-[0_0_20px_rgba(139, 92, 246,1)] transition-all duration-300 ease-out"
             style={{ width: `${progress}%` }}
           />
         </div>
 
         {/* Loading Text */}
         <div className="mt-6 flex items-center gap-3">
-          <div className="w-2 h-2 rounded-full bg-neon-red animate-ping" />
+          <div className="w-2 h-2 rounded-full bg-neon-primary animate-ping" />
           <span className="text-gray-500 font-mono text-xs uppercase tracking-[0.3em] font-medium">
             Initializing System Core
           </span>

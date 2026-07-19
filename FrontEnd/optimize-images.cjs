@@ -8,7 +8,8 @@ const images = [
   'events.png',
   'profile.png',
   'profile1.jpg',
-  'profile_premium.png'
+  'profile_premium.png',
+  'hotel.png'
 ];
 
 async function optimize() {

@@ -48,7 +48,7 @@ const Navbar = () => {
     <nav
       className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ease-in-out border-b ${
         scrolled
-          ? "glass border-neon-red/30 shadow-2xl py-3"
+          ? "glass border-neon-primary/30 shadow-2xl py-3"
           : "bg-transparent border-transparent py-6"
       }`}
     >
@@ -58,11 +58,11 @@ const Navbar = () => {
           to="/"
           className="flex items-center gap-2 group"
         >
-          <div className="w-10 h-10 rounded-lg bg-neon-red/10 border border-neon-red/30 flex items-center justify-center group-hover:bg-neon-red/20 group-hover:border-neon-red transition-all duration-300">
-            <FaCode className="text-neon-red text-lg" />
+          <div className="w-10 h-10 rounded-lg bg-neon-primary/10 border border-neon-primary/30 flex items-center justify-center group-hover:bg-neon-primary/20 group-hover:border-neon-primary transition-all duration-300">
+            <FaCode className="text-neon-primary text-lg" />
           </div>
-          <span className="text-xl font-bold text-white group-hover:text-neon-red transition-colors duration-300">
-            Naqsh<span className="text-neon-red">.</span>
+          <span className="text-xl font-bold text-white group-hover:text-neon-primary transition-colors duration-300">
+            Naqsh<span className="text-neon-primary">.</span>
           </span>
         </Link>
 
@@ -72,14 +72,14 @@ const Navbar = () => {
             <button
               key={link.name}
               onClick={() => handleNavClick(link.path)}
-              className={`relative text-sm font-medium tracking-wide uppercase transition-colors duration-300 hover:text-neon-red ${
+              className={`relative text-sm font-medium tracking-wide uppercase transition-colors duration-300 hover:text-neon-primary ${
                 location.pathname === link.path || location.hash === link.path.replace('/', '')
-                  ? "text-neon-red"
+                  ? "text-neon-primary"
                   : "text-gray-400"
               }`}
             >
               {link.name}
-              <span className={`absolute -bottom-1 left-0 h-[2px] bg-neon-red transition-all duration-300 ${location.pathname === link.path || location.hash === link.path.replace('/', '') ? "w-full" : "w-0 group-hover:w-full hover:w-full"}`} />
+              <span className={`absolute -bottom-1 left-0 h-[2px] bg-neon-primary transition-all duration-300 ${location.pathname === link.path || location.hash === link.path.replace('/', '') ? "w-full" : "w-0 group-hover:w-full hover:w-full"}`} />
             </button>
           ))}
         </div>
@@ -87,7 +87,7 @@ const Navbar = () => {
         {/* Mobile Toggle */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden text-2xl text-neon-red z-50"
+          className="md:hidden text-2xl text-neon-primary z-50"
         >
           {isOpen ? <HiX /> : <HiMenuAlt3 />}
         </button>
@@ -99,13 +99,13 @@ const Navbar = () => {
           isOpen ? "max-h-[400px] opacity-100" : "max-h-0 opacity-0"
         }`}
       >
-        <div className="mx-6 my-4 glass rounded-2xl border border-neon-red/10 shadow-2xl overflow-hidden animate-slide-up">
+        <div className="mx-6 my-4 glass rounded-2xl border border-neon-primary/10 shadow-2xl overflow-hidden animate-slide-up">
           <div className="flex flex-col p-4 gap-2">
             {navLinks.map((link, i) => (
               <button
                 key={link.name}
                 onClick={() => handleNavClick(link.path)}
-                className={`flex items-center justify-between px-4 py-3 rounded-xl hover:bg-neon-red/5 transition-all duration-300 group ${location.pathname === link.path || location.hash === link.path.replace('/', '') ? "text-neon-red bg-neon-red/5" : "text-gray-400 hover:text-neon-red"}`}
+                className={`flex items-center justify-between px-4 py-3 rounded-xl hover:bg-neon-primary/5 transition-all duration-300 group ${location.pathname === link.path || location.hash === link.path.replace('/', '') ? "text-neon-primary bg-neon-primary/5" : "text-gray-400 hover:text-neon-primary"}`}
                 style={{ animationDelay: `${i * 50}ms` }}
               >
                 <span className="text-sm font-bold uppercase tracking-widest">{link.name}</span>

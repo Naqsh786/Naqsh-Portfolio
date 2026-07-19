@@ -20,7 +20,7 @@ function App() {
             <Route 
               path="/" 
               element={
-                <Suspense fallback={<div className="min-h-screen bg-[#050001]" />}>
+                <Suspense fallback={<div className="min-h-screen bg-[#050814]" />}>
                   <Home />
                 </Suspense>
               } 
