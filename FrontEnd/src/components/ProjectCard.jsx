@@ -1,8 +1,8 @@
-import { FiExternalLink, FiGithub, FiServer, FiMonitor } from "react-icons/fi";
+import { FiExternalLink, FiGithub } from "react-icons/fi";
 
 const ProjectCard = ({ project }) => {
   return (
-    <div className="w-full max-w-[400px] mx-auto group rounded-2xl overflow-hidden animate-fade-in opacity-0 hover:translate-y-[-8px] hover:shadow-[0_15px_40px_rgba(139, 92, 246,0.4)] transition-all duration-500 flex flex-col h-full bg-gradient-to-b from-[#1e1b4b] via-[#0b1120] to-[#050814] border border-[#8b5cf630]">
+    <div className="w-full max-w-[400px] mx-auto group rounded-2xl overflow-hidden animate-fade-in opacity-0 hover:translate-y-[-8px] hover:shadow-[0_15px_40px_rgba(var(--color-neon-primary),0.35)] transition-all duration-500 flex flex-col h-full bg-gradient-to-b from-dark-card via-black/20 to-dark-bg/40 border border-neon-primary/20">
       {/* Image */}
       <div className="relative h-56 overflow-hidden">
         {project.imageUrl ? (
@@ -20,19 +20,19 @@ const ProjectCard = ({ project }) => {
               loading="lazy"
               width="400"
               height="224"
-              fetchpriority="low"
+              fetchPriority="low"
             />
           </picture>
         ) : (
-          <div className="w-full h-full relative flex items-center justify-center bg-gradient-to-br from-neon-primary/30 via-[#151e32] to-[#000000] group-hover:scale-105 transition-transform duration-700">
+          <div className="w-full h-full relative flex items-center justify-center bg-gradient-to-br from-neon-primary/30 via-slate-900/50 to-black group-hover:scale-105 transition-transform duration-700">
              <div className="absolute inset-0 bg-grid opacity-30"></div>
-            <span className="relative z-20 text-6xl font-bold text-neon-primary/60 drop-shadow-[0_0_15px_rgba(139, 92, 246,0.5)] font-mono group-hover:text-neon-primary/90 transition-colors duration-500">
+            <span className="relative z-20 text-6xl font-bold text-neon-primary/60 drop-shadow-[0_0_15px_rgba(var(--color-neon-primary),0.5)] font-mono group-hover:text-neon-primary/90 transition-colors duration-500">
               {"</>"}
             </span>
           </div>
         )}
         {/* Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#050814] via-transparent to-transparent opacity-90 z-10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-dark-bg via-transparent to-transparent opacity-90 z-10" />
       </div>
 
       {/* Content */}
@@ -50,7 +50,7 @@ const ProjectCard = ({ project }) => {
             {project.technologies.map((tech, index) => (
               <span
                 key={index}
-                className="px-2.5 py-1 text-[11px] font-mono font-bold rounded-lg bg-neon-primary/10 text-neon-primary border border-neon-primary/20 shadow-[0_0_10px_rgba(139, 92, 246,0.1)] group-hover:bg-neon-primary/20 transition-all cursor-default"
+                className="px-2.5 py-1 text-[11px] font-mono font-bold rounded-lg bg-neon-primary/10 text-neon-primary border border-neon-primary/20 shadow-[0_0_10px_rgba(var(--color-neon-primary),0.1)] group-hover:bg-neon-primary/20 transition-all cursor-default"
               >
                 {tech}
               </span>
@@ -65,7 +65,7 @@ const ProjectCard = ({ project }) => {
               href={project.liveDemo}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-1 w-full py-2 px-1 rounded-lg bg-neon-primary border border-neon-primary/20 text-white text-[11px] md:text-xs font-bold shadow-[0_0_10px_rgba(139, 92, 246,0.3)] hover:shadow-[0_0_20px_rgba(139, 92, 246,0.8)] hover:scale-[1.02] transition-all duration-300"
+              className="flex items-center justify-center gap-1 w-full py-2 px-1 rounded-lg bg-neon-primary border border-neon-primary/20 text-white text-[11px] md:text-xs font-bold shadow-[0_0_10px_rgba(var(--color-neon-primary),0.3)] hover:shadow-[0_0_20px_rgba(var(--color-neon-primary),0.8)] hover:scale-[1.02] transition-all duration-300"
             >
               <FiExternalLink className="text-xs md:text-sm shrink-0" />
               <span className="truncate">Demo</span>
@@ -76,7 +76,7 @@ const ProjectCard = ({ project }) => {
               href={project.gitFrontend}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-1 w-full py-2 px-1 rounded-lg bg-dark-bg/80 border border-gray-700/50 text-gray-300 text-[11px] md:text-xs hover:text-white hover:border-neon-primary/80 hover:bg-neon-primary/10 hover:shadow-[0_0_15px_rgba(139, 92, 246,0.4)] transition-all duration-300"
+              className="flex items-center justify-center gap-1 w-full py-2 px-1 rounded-lg bg-dark-card border border-white/5 text-gray-300 text-[11px] md:text-xs hover:text-white hover:border-neon-primary/80 hover:bg-neon-primary/10 hover:shadow-[0_0_15px_rgba(var(--color-neon-primary),0.4)] transition-all duration-300"
             >
               <FiGithub className="text-xs md:text-sm shrink-0" />
               <span className="truncate">Frontend</span>
@@ -87,7 +87,7 @@ const ProjectCard = ({ project }) => {
               href={project.gitBackend}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-1 w-full py-2 px-1 rounded-lg bg-dark-bg/80 border border-gray-700/50 text-gray-300 text-[11px] md:text-xs hover:text-white hover:border-neon-primary/80 hover:bg-neon-primary/10 hover:shadow-[0_0_15px_rgba(139, 92, 246,0.4)] transition-all duration-300"
+              className="flex items-center justify-center gap-1 w-full py-2 px-1 rounded-lg bg-dark-card border border-white/5 text-gray-300 text-[11px] md:text-xs hover:text-white hover:border-neon-primary/80 hover:bg-neon-primary/10 hover:shadow-[0_0_15px_rgba(var(--color-neon-primary),0.4)] transition-all duration-300"
             >
               <FiGithub className="text-xs md:text-sm shrink-0" />
               <span className="truncate">Backend</span>

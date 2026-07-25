@@ -1,51 +1,193 @@
+import React, { useState } from "react";
 import ProjectCard from "../components/ProjectCard";
 import Hero3D from "../components/Hero3D"; // New 3D component
-import { FaLinkedin, FaEnvelope, FaArrowDown, FaTerminal, FaGithub } from "react-icons/fa";
+import { FaLinkedin, FaEnvelope, FaArrowDown, FaTerminal, FaGithub, FaPaperPlane } from "react-icons/fa";
 import { HiSparkles } from "react-icons/hi";
 import { profile, projects } from "../data"; // Hardcoded data
 
-const Home = () => {
+const ContactForm = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    subject: "",
+    message: ""
+  });
+  const [loading, setLoading] = useState(false);
+  const [status, setStatus] = useState(null);
+
+  const handleChange = (e) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    setStatus(null);
+
+    try {
+      const res = await fetch("http://localhost:5000/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData)
+      });
+
+      const data = await res.json();
+      if (res.ok && data.success) {
+        setStatus({
+          type: "success",
+          text: "Message sent successfully! Naqsh will get back to you soon."
+        });
+        setFormData({ name: "", email: "", subject: "", message: "" });
+      } else {
+        setStatus({
+          type: "error",
+          text: data.message || "Failed to send message. Please try again."
+        });
+      }
+    } catch (err) {
+      setStatus({
+        type: "error",
+        text: "Cannot connect to server. Please verify backend is running on port 5000."
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  return (
+    <div className="glass p-8 md:p-10 rounded-3xl border border-neon-primary/20 max-w-2xl mx-auto shadow-[0_0_40px_rgba(var(--color-neon-primary),0.08)] text-left">
+      {status && (
+        <div
+          className={`mb-6 p-4 rounded-xl border font-mono text-xs md:text-sm font-semibold ${
+            status.type === "success"
+              ? "bg-emerald-500/10 border-emerald-500/40 text-emerald-300"
+              : "bg-red-500/10 border-red-500/40 text-red-300"
+          }`}
+        >
+          {status.text}
+        </div>
+      )}
+
+      <form onSubmit={handleSubmit} className="space-y-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div>
+            <label className="block text-xs font-mono text-gray-300 mb-2 uppercase tracking-wider">
+              Your Name *
+            </label>
+            <input
+              type="text"
+              name="name"
+              required
+              value={formData.name}
+              onChange={handleChange}
+              placeholder="Alex Rivers"
+              className="w-full bg-slate-950/80 border border-gray-800 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-neon-primary font-sans transition-all"
+            />
+          </div>
+
+          <div>
+            <label className="block text-xs font-mono text-gray-300 mb-2 uppercase tracking-wider">
+              Your Email *
+            </label>
+            <input
+              type="email"
+              name="email"
+              required
+              value={formData.email}
+              onChange={handleChange}
+              placeholder="alex@example.com"
+              className="w-full bg-slate-950/80 border border-gray-800 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-neon-primary font-sans transition-all"
+            />
+          </div>
+        </div>
+
+        <div>
+          <label className="block text-xs font-mono text-gray-300 mb-2 uppercase tracking-wider">
+            Subject
+          </label>
+          <input
+            type="text"
+            name="subject"
+            value={formData.subject}
+            onChange={handleChange}
+            placeholder="Project Discussion / Inquiry"
+            className="w-full bg-slate-950/80 border border-gray-800 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-neon-primary font-sans transition-all"
+          />
+        </div>
+
+        <div>
+          <label className="block text-xs font-mono text-gray-300 mb-2 uppercase tracking-wider">
+            Message *
+          </label>
+          <textarea
+            name="message"
+            rows="4"
+            required
+            value={formData.message}
+            onChange={handleChange}
+            placeholder="Hi Naqsh, I would like to build..."
+            className="w-full bg-slate-950/80 border border-gray-800 rounded-xl px-4 py-3 text-white text-sm focus:outline-none focus:border-neon-primary font-sans transition-all resize-none"
+          ></textarea>
+        </div>
+
+        <button
+          type="submit"
+          disabled={loading}
+          className="w-full py-4 rounded-xl bg-neon-primary text-white font-bold tracking-wide shadow-[0_0_20px_rgba(var(--color-neon-primary),0.35)] hover:shadow-[0_0_30px_rgba(var(--color-neon-primary),0.65)] hover:scale-[1.01] active:scale-[0.99] transition-all duration-300 disabled:opacity-50 font-mono text-sm flex items-center justify-center gap-2"
+        >
+          {loading ? (
+            "Sending Message..."
+          ) : (
+            <>
+              <FaPaperPlane className="text-xs" /> Send Message
+            </>
+          )}
+        </button>
+      </form>
+    </div>
+  );
+};
+
+const Home = ({ theme }) => {
   return (
     <div className="bg-grid min-h-screen">
       {/* ── HERO SECTION ── */}
       <section className="min-h-screen flex items-center justify-center px-6 pt-28 md:pt-0 relative overflow-hidden">
-        {/* 3D Background */}
-        <Hero3D />
 
         <div className="absolute top-20 left-10 w-72 h-72 bg-neon-primary/5 rounded-full blur-3xl animate-float pointer-events-none" />
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-neon-primary/3 rounded-full blur-3xl animate-float pointer-events-none" style={{ animationDelay: "1.5s" }} />
 
-          <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center gap-10 md:gap-12 lg:gap-20 relative z-10">
-            {/* Profile Image Portrait */}
-            <div className="relative flex-shrink-0 animate-fade-in group">
-              {/* Outer Frame */}
-              <div className="w-60 h-60 md:w-72 md:h-72 lg:w-[22rem] lg:h-[22rem] p-3 md:p-4 rounded-full glass border border-neon-primary/40 shadow-[0_0_30px_rgba(139, 92, 246,0.15)] group-hover:border-neon-primary/80 transition-all duration-500 group-hover:shadow-[0_0_40px_rgba(139, 92, 246,0.4)] bg-[#080c16]/80">
-                {/* Inner Image Mask */}
-                <div className="w-full h-full rounded-full overflow-hidden border border-neon-primary/20 relative group/pic bg-[#080c16]">
-                  <picture>
-                    <source srcSet="/12006.avif" type="image/avif" />
-                    <source srcSet="/12006.webp" type="image/webp" />
-                    <img 
-                      src="/12006.png" 
-                      alt={`${profile?.name || "Naqsh"} Profile`} 
-                      className="w-full h-full object-cover object-center scale-110"
-                      width="288"
-                      height="288"
-                      fetchpriority="high"
-                      loading="eager"
-                      style={{ imageRendering: "high-quality" }}
-                    />
-                  </picture>
-                </div>
+        <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center gap-10 md:gap-12 lg:gap-20 relative z-10">
+          {/* Profile Image Portrait */}
+          <div className="relative flex-shrink-0 animate-fade-in group">
+            {/* Outer Frame */}
+            <div className="w-60 h-60 md:w-72 md:h-72 lg:w-[22rem] lg:h-[22rem] p-3 md:p-4 rounded-full glass border border-neon-primary/40 shadow-[0_0_30px_rgba(var(--color-neon-primary),0.15)] group-hover:border-neon-primary/80 transition-all duration-500 group-hover:shadow-[0_0_40px_rgba(var(--color-neon-primary),0.45)] bg-dark-bg/80">
+              {/* Inner Image Mask */}
+              <div className="w-full h-full rounded-full overflow-hidden border border-neon-primary/20 relative group/pic bg-dark-bg">
+                <picture>
+                  <source srcSet="/12006.avif" type="image/avif" />
+                  <source srcSet="/12006.webp" type="image/webp" />
+                  <img
+                    src="/12006.png"
+                    alt={`${profile?.name || "Naqsh"} Profile`}
+                    className="w-full h-full object-cover object-center scale-110"
+                    width="288"
+                    height="288"
+                    fetchPriority="high"
+                    loading="eager"
+                    style={{ imageRendering: "high-quality" }}
+                  />
+                </picture>
               </div>
-              {/* Status indicator */}
-              <div className="absolute bottom-5 right-5 lg:bottom-8 lg:right-8 w-6 h-6 bg-neon-primary rounded-full border-4 border-[#050814] animate-pulse shadow-[0_0_20px_rgba(139, 92, 246,0.8)] z-20" title="Available for work" />
             </div>
+            {/* Status indicator */}
+            <div className="absolute bottom-5 right-5 lg:bottom-8 lg:right-8 w-6 h-6 bg-neon-primary rounded-full border-4 border-dark-bg animate-pulse shadow-[0_0_20px_rgba(var(--color-neon-primary),0.8)] z-20" title="Available for work" />
+          </div>
 
           {/* Hero Text */}
           <div className="text-center md:text-left animate-slide-up opacity-0 flex-grow" style={{ animationDelay: "0.2s" }}>
             {(profile?.availableForWork ?? true) && (
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#111827]/80 backdrop-blur-sm border border-neon-primary/20 rounded-full mb-6 shadow-[0_0_15px_rgba(139, 92, 246,0.1)]">
+              <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-dark-card border border-neon-primary/20 rounded-full mb-6 shadow-[0_0_15px_rgba(var(--color-neon-primary),0.1)]">
                 <span className="relative flex h-2.5 w-2.5 ml-1">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-neon-primary opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-neon-primary"></span>
@@ -78,14 +220,14 @@ const Home = () => {
             <div className="flex flex-wrap gap-4 justify-center md:justify-start">
               <a
                 href="#projects"
-                className="group inline-flex items-center gap-3 px-7 py-3.5 bg-neon-primary text-white font-bold rounded-lg hover:shadow-[0_0_20px_rgba(139, 92, 246,0.5)] transition-all duration-300 hover:translate-y-[-2px]"
+                className="group inline-flex items-center gap-3 px-7 py-3.5 bg-neon-primary text-white font-bold rounded-lg hover:shadow-[0_0_20px_rgba(var(--color-neon-primary),0.5)] transition-all duration-300 hover:translate-y-[-2px]"
               >
                 View Projects
                 <FaArrowDown className="text-sm group-hover:translate-y-1 transition-transform duration-300" />
               </a>
               <a
                 href="#contact"
-                className="inline-flex items-center gap-2 px-7 py-3.5 glass border-neon-primary/40 text-neon-primary font-semibold rounded-lg hover:bg-neon-primary/10 hover:border-neon-primary hover:shadow-[0_0_15px_rgba(139, 92, 246,0.3)] transition-all duration-300"
+                className="inline-flex items-center gap-2 px-7 py-3.5 glass border-neon-primary/45 text-neon-primary font-semibold rounded-lg hover:bg-neon-primary/10 hover:border-neon-primary hover:shadow-[0_0_15px_rgba(var(--color-neon-primary),0.3)] transition-all duration-300"
               >
                 Contact Me
               </a>
@@ -116,7 +258,7 @@ const Home = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto text-left">
             {/* Frontend Skills Card */}
-            <div className="glass p-8 rounded-3xl border border-neon-primary/20 group hover:border-neon-primary/50 transition-all shadow-[0_0_20px_rgba(139, 92, 246,0.05)] hover:shadow-[0_0_30px_rgba(139, 92, 246,0.2)] hover:-translate-y-2">
+            <div className="glass p-8 rounded-3xl border border-neon-primary/20 group hover:border-neon-primary/50 transition-all shadow-[0_0_20px_rgba(var(--color-neon-primary),0.03)] hover:shadow-[0_0_30px_rgba(var(--color-neon-primary),0.18)] hover:-translate-y-2">
               <div className="flex items-center gap-4 mb-6 border-b border-gray-800/80 pb-4">
                 <div className="w-12 h-12 rounded-xl bg-neon-primary/10 border border-neon-primary/30 flex items-center justify-center text-neon-primary font-bold text-xl group-hover:bg-neon-primary group-hover:text-white transition-all shadow-inner">
                   FE
@@ -135,7 +277,7 @@ const Home = () => {
             </div>
 
             {/* Backend Skills Card */}
-            <div className="glass p-8 rounded-3xl border border-neon-primary/20 group hover:border-neon-primary/50 transition-all shadow-[0_0_20px_rgba(139, 92, 246,0.05)] hover:shadow-[0_0_30px_rgba(139, 92, 246,0.2)] hover:-translate-y-2">
+            <div className="glass p-8 rounded-3xl border border-neon-primary/20 group hover:border-neon-primary/50 transition-all shadow-[0_0_20px_rgba(var(--color-neon-primary),0.03)] hover:shadow-[0_0_30px_rgba(var(--color-neon-primary),0.18)] hover:-translate-y-2">
               <div className="flex items-center gap-4 mb-6 border-b border-gray-800/80 pb-4">
                 <div className="w-12 h-12 rounded-xl bg-neon-primary/10 border border-neon-primary/30 flex items-center justify-center text-neon-primary font-bold text-xl group-hover:bg-neon-primary group-hover:text-white transition-all shadow-inner">
                   BE
@@ -198,17 +340,19 @@ const Home = () => {
           <h2 className="text-3xl md:text-5xl font-black text-white mt-3 mb-6">
             Let&apos;s <span className="gradient-text">Connect</span>
           </h2>
-          <p className="text-gray-500 mb-10 text-lg">
-            Have a project in mind? Let&apos;s discuss and build something
-            amazing together.
+          <p className="text-gray-400 mb-10 text-base md:text-lg">
+            Have a project in mind or want to collaborate? Send a message directly to my inbox!
           </p>
 
-          <div className="flex justify-center gap-6">
+          <ContactForm />
+
+          <div className="flex justify-center gap-6 mt-12">
             <a
               href="https://github.com/"
               target="_blank"
               rel="noopener noreferrer"
               className="w-14 h-14 rounded-xl bg-dark-card border border-gray-800 flex items-center justify-center text-gray-400 hover:text-neon-primary hover:border-neon-primary/50 hover:shadow-lg hover:shadow-neon-primary/10 transition-all duration-300 hover:translate-y-[-4px]"
+              title="GitHub Profile"
             >
               <FaGithub className="text-2xl" />
             </a>
@@ -217,12 +361,14 @@ const Home = () => {
               target="_blank"
               rel="noopener noreferrer"
               className="w-14 h-14 rounded-xl bg-dark-card border border-gray-800 flex items-center justify-center text-gray-400 hover:text-neon-primary hover:border-neon-primary/50 hover:shadow-lg hover:shadow-neon-primary/10 transition-all duration-300 hover:translate-y-[-4px]"
+              title="LinkedIn Profile"
             >
               <FaLinkedin className="text-2xl" />
             </a>
             <a
               href="mailto:naqsh@example.com"
               className="w-14 h-14 rounded-xl bg-dark-card border border-gray-800 flex items-center justify-center text-gray-400 hover:text-neon-primary hover:border-neon-primary/50 hover:shadow-lg hover:shadow-neon-primary/10 transition-all duration-300 hover:translate-y-[-4px]"
+              title="Direct Email"
             >
               <FaEnvelope className="text-2xl" />
             </a>

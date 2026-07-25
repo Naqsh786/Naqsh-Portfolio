@@ -1,114 +1,194 @@
 import { useRef, useMemo } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { Icosahedron, Float, Sparkles } from "@react-three/drei";
+import { Torus, Icosahedron, Box, Cone, Float, Sparkles } from "@react-three/drei";
 import * as THREE from "three";
 
-const Crystal = ({ position = [0, 0, 0], scale = 1, trackMouse = false, rotationSpeed = 1 }) => {
-  const innerRef = useRef();
-  const outerRef = useRef();
-  const { viewport } = useThree();
-  const target = new THREE.Vector3();
-  const initialPosition = useMemo(() => new THREE.Vector3(...position), [position]);
-
-  useFrame(({ pointer, clock }) => {
-    const t = clock.getElapsedTime() * rotationSpeed;
-    
-    if (trackMouse) {
-      // Smooth dampening to target cursor
-      const x = (pointer.x * viewport.width) / 2;
-      const y = (pointer.y * viewport.height) / 2;
-      
-      target.set(x * 0.8, y * 0.8, 0); 
-      
-      innerRef.current.position.lerp(target, 0.08);
-      outerRef.current.position.lerp(target, 0.08);
-    } else {
-      // Gentle floating for background crystals
-      innerRef.current.position.y = initialPosition.y + Math.sin(t + initialPosition.x) * 0.3;
-      outerRef.current.position.y = initialPosition.y + Math.sin(t + initialPosition.x) * 0.3;
+// Suppress internal R3F / Three.js THREE.Clock deprecation warning
+if (typeof window !== "undefined" && !window.__THREE_CLOCK_WARNED__) {
+  window.__THREE_CLOCK_WARNED__ = true;
+  const origWarn = console.warn;
+  console.warn = (...args) => {
+    if (args[0] && typeof args[0] === "string" && args[0].includes("THREE.Clock")) {
+      return;
     }
+    origWarn.apply(console, args);
+  };
+}
 
-    // Give them independent counter-rotations
-    innerRef.current.rotation.x = t * 0.2;
-    innerRef.current.rotation.y = t * 0.3;
-    
-    outerRef.current.rotation.x = t * -0.15;
-    outerRef.current.rotation.y = t * -0.2;
+const themeColors = {
+  cyberpunk: {
+    primary: "#8b5cf6",
+    secondary: "#06b6d4",
+    accent: "#ec4899",
+    emissive: "#4c1d95"
+  },
+  matrix: {
+    primary: "#10b981",
+    secondary: "#14b8a6",
+    accent: "#84cc16",
+    emissive: "#064e3b"
+  },
+  sunset: {
+    primary: "#f97316",
+    secondary: "#ef4444",
+    accent: "#eab308",
+    emissive: "#7c2d12"
+  }
+};
+
+const FloatingElements = ({ colors }) => {
+  const groupRef = useRef();
+  const timeRef = useRef(0);
+
+  useFrame((_, delta) => {
+    timeRef.current += delta;
+    const t = timeRef.current;
+    if (groupRef.current) {
+      groupRef.current.children.forEach((child, index) => {
+        const speed = 0.4 + index * 0.08;
+        const offset = index * 8;
+        child.position.z = Math.sin(t * speed + offset) * 1.5;
+        child.position.x = Math.cos(t * (speed * 0.7) + offset) * 0.8;
+        child.position.y = Math.sin(t * (speed * 1.1) + offset) * 0.8;
+
+        child.rotation.x = t * (0.15 + index * 0.05);
+        child.rotation.y = t * (0.1 + index * 0.05);
+      });
+    }
   });
 
   return (
-    <group position={!trackMouse ? position : [0, 0, 0]} scale={scale}>
-      {/* Inner Solid Crystal */}
-      <Float speed={2} rotationIntensity={0.1} floatIntensity={0.5}>
-        <Icosahedron ref={innerRef} args={[0.8, 0]}>
-          <meshStandardMaterial 
-            color="#8b5cf6" 
-            emissive="#3b82f6" 
-            emissiveIntensity={1.2} 
-            roughness={0.2} 
-            metalness={0.9} 
-          />
-        </Icosahedron>
-      </Float>
-
-      {/* Outer Rotating Wireframe Shell */}
-      <Float speed={2.5} rotationIntensity={0.1} floatIntensity={0.5}>
-        <Icosahedron ref={outerRef} args={[1.05, 0]}>
-          <meshStandardMaterial 
-            color="#8b5cf6" 
-            emissive="#8b5cf6" 
-            emissiveIntensity={3} 
-            wireframe 
-          />
-        </Icosahedron>
-      </Float>
+    <group ref={groupRef}>
+      {/* 3D Box */}
+      <Box args={[0.2, 0.2, 0.2]}>
+        <meshStandardMaterial color={colors.primary} emissive={colors.primary} emissiveIntensity={1} roughness={0.2} />
+      </Box>
+      {/* 3D Icosahedron */}
+      <Icosahedron args={[0.16, 0]}>
+        <meshStandardMaterial color={colors.secondary} emissive={colors.secondary} emissiveIntensity={1.5} wireframe />
+      </Icosahedron>
+      {/* 3D Cone */}
+      <Cone args={[0.12, 0.24, 4]}>
+        <meshStandardMaterial color={colors.accent} emissive={colors.accent} emissiveIntensity={1} />
+      </Cone>
+      {/* 3D Small Torus */}
+      <Torus args={[0.13, 0.03, 16, 32]}>
+        <meshStandardMaterial color={colors.primary} emissive={colors.primary} emissiveIntensity={1.2} />
+      </Torus>
     </group>
   );
 };
 
-export default function Hero3D() {
-  // Generate random background crystals
-  const bgCrystals = useMemo(() => {
-    const crystals = [];
-    for (let i = 0; i < 20; i++) {
-      crystals.push({
-        id: i,
-        position: [
-          (Math.random() - 0.5) * 25, // Spread across width
-          (Math.random() - 0.5) * 15, // Spread across height
-          (Math.random() - 0.5) * 15 - 5, // Push back in Z
-        ],
-        scale: Math.random() * 0.25 + 0.05, // Random small scales
-        rotationSpeed: Math.random() * 0.6 + 0.2
-      });
+const HolographicPortal = ({ colors }) => {
+  const outerRingRef = useRef();
+  const midRingRef = useRef();
+  const innerRingRef = useRef();
+  const timeRef = useRef(0);
+  const { viewport } = useThree();
+  const isDesktop = viewport.width > 7;
+
+  useFrame((_, delta) => {
+    timeRef.current += delta;
+    const t = timeRef.current;
+
+    if (innerRingRef.current) {
+      innerRingRef.current.rotation.y = t * 0.3;
+      innerRingRef.current.rotation.z = t * 0.15;
     }
-    return crystals;
-  }, []);
+    if (midRingRef.current) {
+      midRingRef.current.rotation.x = t * 0.2;
+      midRingRef.current.rotation.y = -t * 0.25;
+    }
+    if (outerRingRef.current) {
+      outerRingRef.current.rotation.x = -t * 0.12;
+      outerRingRef.current.rotation.z = t * 0.18;
+    }
+  });
+
+  const posX = 0;
+  const posY = 0;
+  const scale = isDesktop ? 1.35 : 0.95;
 
   return (
-    <div className="fixed inset-0 z-0 mix-blend-screen opacity-95" style={{ pointerEvents: "none" }}>
-      <Canvas 
-        camera={{ position: [0, 0, 10], fov: 45 }}
-        eventSource={document.getElementById('root')}
-        eventPrefix="client"
-        dpr={[1, 1]} 
+    <group position={[posX, posY, 0]} scale={scale}>
+      {/* Central Inner Portal Ring */}
+      <Float speed={2} rotationIntensity={0.3} floatIntensity={0.5}>
+        <Torus ref={innerRingRef} args={[1.2, 0.08, 16, 100]}>
+          <meshPhysicalMaterial
+            color={colors.primary}
+            emissive={colors.emissive}
+            emissiveIntensity={1.5}
+            roughness={0.1}
+            metalness={0.9}
+            clearcoat={1.0}
+            clearcoatRoughness={0.1}
+          />
+        </Torus>
+      </Float>
+
+      {/* Middle Dynamic Accent Ring */}
+      <Float speed={2.5} rotationIntensity={0.4} floatIntensity={0.6}>
+        <Torus ref={midRingRef} args={[1.6, 0.025, 16, 100]}>
+          <meshStandardMaterial
+            color={colors.accent}
+            emissive={colors.accent}
+            emissiveIntensity={1.2}
+            wireframe
+            transparent
+            opacity={0.5}
+          />
+        </Torus>
+      </Float>
+
+      {/* Outer Rotating Wireframe Cage Ring */}
+      <Float speed={1.8} rotationIntensity={0.5} floatIntensity={0.4}>
+        <Torus ref={outerRingRef} args={[2.0, 0.02, 8, 100]}>
+          <meshStandardMaterial
+            color={colors.secondary}
+            emissive={colors.secondary}
+            emissiveIntensity={1.5}
+            wireframe
+            transparent
+            opacity={0.4}
+          />
+        </Torus>
+      </Float>
+
+      {/* Floating Geometric Data Elements */}
+      <FloatingElements colors={colors} />
+
+      {/* Glowing Starfield Particles */}
+      <Sparkles count={120} scale={4} size={3} speed={0.4} opacity={0.6} color={colors.primary} />
+      <Sparkles count={80} scale={5} size={4} speed={0.6} opacity={0.4} color={colors.secondary} />
+      <Sparkles count={40} scale={4} size={2} speed={0.8} opacity={0.5} color={colors.accent} />
+    </group>
+  );
+};
+
+export default function Hero3D({ theme = "cyberpunk" }) {
+  const colors = useMemo(() => {
+    return themeColors[theme] || themeColors.cyberpunk;
+  }, [theme]);
+
+  return (
+    <div className="fixed inset-0 z-0 opacity-85 pointer-events-none">
+      <Canvas
+        camera={{ position: [0, 0, 8], fov: 50 }}
+        dpr={[1, 2]}
         performance={{ min: 0.5 }}
       >
-        <ambientLight intensity={0.2} />
-        <directionalLight position={[10, 10, 5]} intensity={3} color="#ffffff" />
-        <spotLight position={[-10, 10, -5]} intensity={5} color="#8b5cf6" penumbra={1} />
+        <ambientLight intensity={0.4} />
+        <directionalLight position={[10, 10, 10]} intensity={2.5} color="#ffffff" />
+        <pointLight position={[-10, -10, -5]} intensity={4} color={colors.accent} />
+        <spotLight position={[0, 15, 10]} intensity={3} color={colors.primary} penumbra={1} />
         
-        {/* Main Crystal Tracking Mouse */}
-        <Crystal trackMouse={true} scale={1} />
+        <HolographicPortal colors={colors} />
 
-        {/* Background Crystals */}
-        {bgCrystals.map((props) => (
-          <Crystal key={props.id} {...props} />
-        ))}
-        
-        {/* Floating abstract tech particles */}
-        <Sparkles count={300} scale={20} size={5} speed={0.2} opacity={0.6} color="#8b5cf6" />
+        {/* Global Ambient Background Particles */}
+        <Sparkles count={80} scale={18} size={2} speed={0.2} opacity={0.4} color={colors.primary} />
+        <Sparkles count={50} scale={15} size={3} speed={0.3} opacity={0.3} color={colors.secondary} />
       </Canvas>
     </div>
   );
 }
+
