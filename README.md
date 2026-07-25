@@ -67,7 +67,7 @@ Naqsh-Portfolio/
 │   │   └── Message.js            # Mongoose Message Schema
 │   ├── routes/
 │   │   ├── adminRoutes.js        # Admin API Routes
-│   │   └── contactRoutes.js      # Contact API Routes
+│   ├── .env.example              # Environment Variables Template
 │   ├── app.js                    # Express App Setup
 │   ├── server.js                 # Server Entry Point
 │   └── package.json
@@ -114,12 +114,16 @@ cd Naqsh-Protfolio
    ```bash
    npm install
    ```
-3. Create a `.env` file in the `Backend` folder:
+3. Create a `.env` file by copying `.env.example`:
+   ```bash
+   cp .env.example .env
+   ```
+   Or create a `.env` file in the `Backend` folder with placeholder variables:
    ```env
    PORT=5000
-   MONGO_URI=mongodb://localhost:27017/naqsh_portfolio
-   ADMIN_PASSWORD=your_admin_password_here
-   JWT_SECRET=supersecretkey_naqsh_portfolio_2026
+   MONGO_URI=your_mongodb_uri_here
+   ADMIN_PASSWORD=your_secure_admin_password
+   JWT_SECRET=your_jwt_secret_key_here
    ```
 4. Start the backend server:
    ```bash
