@@ -59,11 +59,10 @@ const ContactForm = () => {
     <div className="glass p-8 md:p-10 rounded-3xl border border-neon-primary/20 max-w-2xl mx-auto shadow-[0_0_40px_rgba(var(--color-neon-primary),0.08)] text-left">
       {status && (
         <div
-          className={`mb-6 p-4 rounded-xl border font-mono text-xs md:text-sm font-semibold ${
-            status.type === "success"
-              ? "bg-emerald-500/10 border-emerald-500/40 text-emerald-300"
-              : "bg-red-500/10 border-red-500/40 text-red-300"
-          }`}
+          className={`mb-6 p-4 rounded-xl border font-mono text-xs md:text-sm font-semibold ${status.type === "success"
+            ? "bg-emerald-500/10 border-emerald-500/40 text-emerald-300"
+            : "bg-red-500/10 border-red-500/40 text-red-300"
+            }`}
         >
           {status.text}
         </div>
@@ -349,7 +348,7 @@ const Home = ({ theme }) => {
 
           <div className="flex justify-center gap-6 mt-12">
             <a
-              href="https://github.com/"
+              href="https://github.com/Naqsh786/"
               target="_blank"
               rel="noopener noreferrer"
               className="w-14 h-14 rounded-xl bg-dark-card border border-gray-800 flex items-center justify-center text-gray-400 hover:text-neon-primary hover:border-neon-primary/50 hover:shadow-lg hover:shadow-neon-primary/10 transition-all duration-300 hover:translate-y-[-4px]"
@@ -358,7 +357,7 @@ const Home = ({ theme }) => {
               <FaGithub className="text-2xl" />
             </a>
             <a
-              href="https://linkedin.com/"
+              href="https://www.linkedin.com/in/muhammad-naqsh-369347425/"
               target="_blank"
               rel="noopener noreferrer"
               className="w-14 h-14 rounded-xl bg-dark-card border border-gray-800 flex items-center justify-center text-gray-400 hover:text-neon-primary hover:border-neon-primary/50 hover:shadow-lg hover:shadow-neon-primary/10 transition-all duration-300 hover:translate-y-[-4px]"
@@ -367,7 +366,7 @@ const Home = ({ theme }) => {
               <FaLinkedin className="text-2xl" />
             </a>
             <a
-              href="mailto:naqsh@example.com"
+              href="mailto:naqshcc916@gmail.com"
               className="w-14 h-14 rounded-xl bg-dark-card border border-gray-800 flex items-center justify-center text-gray-400 hover:text-neon-primary hover:border-neon-primary/50 hover:shadow-lg hover:shadow-neon-primary/10 transition-all duration-300 hover:translate-y-[-4px]"
               title="Direct Email"
             >
