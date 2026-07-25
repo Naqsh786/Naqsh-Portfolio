@@ -366,7 +366,9 @@ const Home = ({ theme }) => {
               <FaLinkedin className="text-2xl" />
             </a>
             <a
-              href="mailto:naqshcc916@gmail.com"
+              href="mailto:naqshcc916@gmail.com?subject=Project%20Inquiry%20-%20Naqsh%20Portfolio"
+              target="_blank"
+              rel="noopener noreferrer"
               className="w-14 h-14 rounded-xl bg-dark-card border border-gray-800 flex items-center justify-center text-gray-400 hover:text-neon-primary hover:border-neon-primary/50 hover:shadow-lg hover:shadow-neon-primary/10 transition-all duration-300 hover:translate-y-[-4px]"
               title="Direct Email"
             >
