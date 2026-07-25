@@ -116,7 +116,7 @@ cd Naqsh-Protfolio
    ```
 3. Create a `.env` file by copying `.env.example`:
    ```bash
-   cp .env.example .env
+   copy .env.example .env
    ```
    Or create a `.env` file in the `Backend` folder with placeholder variables:
    ```env
