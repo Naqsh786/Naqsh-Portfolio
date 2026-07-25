@@ -4,6 +4,7 @@ import Hero3D from "../components/Hero3D"; // New 3D component
 import { FaLinkedin, FaEnvelope, FaArrowDown, FaTerminal, FaGithub, FaPaperPlane } from "react-icons/fa";
 import { HiSparkles } from "react-icons/hi";
 import { profile, projects } from "../data"; // Hardcoded data
+import { API_BASE_URL } from "../utils/apiConfig";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -25,7 +26,7 @@ const ContactForm = () => {
     setStatus(null);
 
     try {
-      const res = await fetch("http://localhost:5000/api/contact", {
+      const res = await fetch(`${API_BASE_URL}/contact`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData)

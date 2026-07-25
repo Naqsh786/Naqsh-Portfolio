@@ -14,8 +14,7 @@ import {
   FaEye,
   FaEyeSlash
 } from "react-icons/fa";
-
-const API_BASE = "http://localhost:5000/api";
+import { API_BASE_URL as API_BASE } from "../utils/apiConfig";
 
 export default function AdminDashboard({ theme }) {
   const [token, setToken] = useState(() => localStorage.getItem("portfolio_admin_token") || "");
