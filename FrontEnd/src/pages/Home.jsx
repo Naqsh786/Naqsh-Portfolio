@@ -149,6 +149,19 @@ const ContactForm = () => {
 };
 
 const Home = ({ theme }) => {
+  const [emailCopied, setEmailCopied] = useState(false);
+
+  const handleEmailClick = (e) => {
+    e.preventDefault();
+    const email = "naqshcc916@gmail.com";
+    navigator.clipboard.writeText(email).catch(() => {});
+    setEmailCopied(true);
+    setTimeout(() => setEmailCopied(false), 4000);
+    
+    // Open Gmail web compose in new tab
+    window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=Project%20Inquiry%20-%20Naqsh%20Portfolio`, "_blank", "noopener,noreferrer");
+  };
+
   return (
     <div className="bg-grid min-h-screen">
       {/* ── HERO SECTION ── */}
@@ -367,6 +380,7 @@ const Home = ({ theme }) => {
             </a>
             <a
               href="https://mail.google.com/mail/?view=cm&fs=1&to=naqshcc916@gmail.com&su=Project%20Inquiry%20-%20Naqsh%20Portfolio"
+              onClick={handleEmailClick}
               target="_blank"
               rel="noopener noreferrer"
               className="w-14 h-14 rounded-xl bg-dark-card border border-gray-800 flex items-center justify-center text-gray-400 hover:text-neon-primary hover:border-neon-primary/50 hover:shadow-lg hover:shadow-neon-primary/10 transition-all duration-300 hover:translate-y-[-4px]"
@@ -375,6 +389,12 @@ const Home = ({ theme }) => {
               <FaEnvelope className="text-2xl" />
             </a>
           </div>
+
+          {emailCopied && (
+            <div className="mt-4 inline-block px-4 py-2 rounded-xl bg-neon-primary/10 border border-neon-primary/40 text-neon-primary font-mono text-xs animate-bounce">
+              ✓ Email copied to clipboard! (naqshcc916@gmail.com)
+            </div>
+          )}
         </div>
       </section>
 
