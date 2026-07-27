@@ -258,10 +258,7 @@ const Home = ({ theme }) => {
       <section id="skills" className="py-24 px-6 relative z-10 border-t border-gray-800/30">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 px-4 animate-fade-in opacity-0">
-            <span className="text-neon-primary font-mono text-sm uppercase tracking-widest">
-              Expertise
-            </span>
-            <h2 className="text-3xl md:text-5xl font-black text-white mt-3 mb-4">
+            <h2 className="text-3xl md:text-5xl font-black text-white mb-4">
               My <span className="gradient-text">Skills</span>
             </h2>
             <p className="text-gray-500 max-w-xl mx-auto">
@@ -315,10 +312,7 @@ const Home = ({ theme }) => {
       <section id="projects" className="py-24 px-6 relative z-10">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 animate-fade-in opacity-0">
-            <span className="text-neon-primary font-mono text-sm uppercase tracking-widest">
-              Portfolio
-            </span>
-            <h2 className="text-3xl md:text-5xl font-black text-white mt-3 mb-4">
+            <h2 className="text-3xl md:text-5xl font-black text-white mb-4">
               Featured <span className="gradient-text">Projects</span>
             </h2>
             <p className="text-gray-500 max-w-xl mx-auto">
@@ -347,10 +341,7 @@ const Home = ({ theme }) => {
       {/* ── CONTACT SECTION ── */}
       <section id="contact" className="py-24 px-6 relative z-10 border-t border-gray-800/30">
         <div className="max-w-3xl mx-auto text-center">
-          <span className="text-neon-primary font-mono text-sm uppercase tracking-widest">
-            Get in Touch
-          </span>
-          <h2 className="text-3xl md:text-5xl font-black text-white mt-3 mb-6">
+          <h2 className="text-3xl md:text-5xl font-black text-white mb-6">
             Let&apos;s <span className="gradient-text">Connect</span>
           </h2>
           <p className="text-gray-400 mb-10 text-base md:text-lg">
