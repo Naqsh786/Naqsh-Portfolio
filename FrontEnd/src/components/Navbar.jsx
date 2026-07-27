@@ -151,19 +151,32 @@ const Navbar = ({ theme, onThemeChange }) => {
           </button>
         </div>
 
-        {/* Mobile Toggle */}
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden text-2xl text-neon-primary p-2 focus:outline-none"
-        >
-          {isOpen ? <HiX /> : <HiMenuAlt3 />}
-        </button>
+        {/* Mobile Toggle & Quick Actions */}
+        <div className="md:hidden flex items-center gap-2">
+          <Link
+            to="/admin"
+            className={`p-2 rounded-xl bg-slate-950/90 border transition-all ${
+              location.pathname === "/admin"
+                ? "border-neon-primary text-neon-primary shadow-[0_0_12px_rgba(var(--color-neon-primary),0.4)]"
+                : "border-white/10 text-gray-400 hover:text-neon-primary hover:border-neon-primary/40"
+            }`}
+            title="Admin Dashboard"
+          >
+            <FaLock className="text-xs" />
+          </Link>
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="text-2xl text-neon-primary p-2 focus:outline-none"
+          >
+            {isOpen ? <HiX /> : <HiMenuAlt3 />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
       <div
         className={`md:hidden overflow-hidden transition-all duration-500 ${
-          isOpen ? "max-h-[30rem] opacity-100 mt-2" : "max-h-0 opacity-0"
+          isOpen ? "max-h-[35rem] opacity-100 mt-2" : "max-h-0 opacity-0"
         }`}
       >
         <div className="max-w-6xl mx-auto glass rounded-2xl border border-neon-primary/30 p-4 shadow-2xl flex flex-col gap-2 bg-slate-950/95 backdrop-blur-xl">
@@ -185,8 +198,24 @@ const Navbar = ({ theme, onThemeChange }) => {
             );
           })}
 
+          {/* Mobile Admin Link */}
+          <Link
+            to="/admin"
+            onClick={() => setIsOpen(false)}
+            className={`flex items-center justify-between px-4 py-3 rounded-xl text-xs sm:text-sm font-mono uppercase tracking-widest transition-all ${
+              location.pathname === "/admin"
+                ? "bg-neon-primary/20 text-white border border-neon-primary/40 font-bold"
+                : "text-gray-300 hover:bg-neon-primary/10 hover:text-white"
+            }`}
+          >
+            <span className="flex items-center gap-2">
+              <FaLock className="text-neon-primary text-xs" /> Admin Portal
+            </span>
+            <FiChevronRight className="text-neon-primary" />
+          </Link>
+
           {/* Mobile Theme Selector */}
-          <div className="flex items-center justify-between px-4 py-3 border-t border-neon-primary/20 mt-2 pt-4">
+          <div className="flex items-center justify-between px-4 py-3 border-t border-neon-primary/20 mt-2 pt-3">
             <span className="text-xs font-mono text-gray-400 uppercase tracking-widest">Theme</span>
             <div className="flex items-center gap-2">
               <button 
@@ -209,6 +238,14 @@ const Navbar = ({ theme, onThemeChange }) => {
               </button>
             </div>
           </div>
+
+          {/* Mobile Hire Me Button */}
+          <button
+            onClick={() => handleNavClick({ id: "contact", path: "/#contact" })}
+            className="w-full py-3 mt-1 rounded-xl bg-gradient-to-r from-neon-primary to-neon-secondary text-white text-xs font-bold uppercase tracking-widest hover:opacity-95 transition-all shadow-[0_0_20px_rgba(var(--color-neon-primary),0.35)] active:scale-95"
+          >
+            Hire Me
+          </button>
         </div>
       </div>
     </nav>
