@@ -198,22 +198,6 @@ const Navbar = ({ theme, onThemeChange }) => {
             );
           })}
 
-          {/* Mobile Admin Link */}
-          <Link
-            to="/admin"
-            onClick={() => setIsOpen(false)}
-            className={`flex items-center justify-between px-4 py-3 rounded-xl text-xs sm:text-sm font-mono uppercase tracking-widest transition-all ${
-              location.pathname === "/admin"
-                ? "bg-neon-primary/20 text-white border border-neon-primary/40 font-bold"
-                : "text-gray-300 hover:bg-neon-primary/10 hover:text-white"
-            }`}
-          >
-            <span className="flex items-center gap-2">
-              <FaLock className="text-neon-primary text-xs" /> Admin Portal
-            </span>
-            <FiChevronRight className="text-neon-primary" />
-          </Link>
-
           {/* Mobile Theme Selector */}
           <div className="flex items-center justify-between px-4 py-3 border-t border-neon-primary/20 mt-2 pt-3">
             <span className="text-xs font-mono text-gray-400 uppercase tracking-widest">Theme</span>
