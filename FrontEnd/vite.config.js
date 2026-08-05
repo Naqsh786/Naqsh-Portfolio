@@ -32,14 +32,21 @@ export default defineConfig({
       output: {
         manualChunks(id) {
           if (id.includes('node_modules')) {
+            // Heavy 3D engine in its own chunk (lazy loaded)
             if (id.includes('three') || id.includes('@react-three')) {
               return 'three-vendor';
             }
+            // React icons in their own chunk
+            if (id.includes('react-icons')) {
+              return 'icons-vendor';
+            }
+            // React core + router + redux in main vendor
             return 'vendor';
           }
         },
       },
     },
     minify: "esbuild",
+    cssMinify: true,
   },
 });

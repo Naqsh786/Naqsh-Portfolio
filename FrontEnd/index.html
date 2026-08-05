@@ -2,26 +2,65 @@
 <html lang="en" class="dark scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <title>Naqsh | Full-Stack & 3D Web Developer Portfolio</title>
     
     <!-- Preconnect to external domains -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     
-    <!-- Preload LCP Image -->
+    <!-- Non-blocking asynchronous font loading -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" media="print" onload="this.media='all'">
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap">
+    </noscript>
+    
+    <!-- Preload critical LCP image -->
     <link rel="preload" as="image" href="/12006.avif" type="image/avif" fetchpriority="high">
     
-    <meta name="description" content="Naqsh - Full-Stack Developer & 3D Interactive Web Specialist Portfolio." />
-    <meta name="keywords" content="portfolio, developer, full-stack, MERN, React, Three.js, WebGL, Tailwind" />
-    <meta name="author" content="Naqsh" />
+    <!-- SEO & Metadata -->
+    <meta name="description" content="Muhammad Naqsh - Full-Stack Developer & 3D Web Specialist crafting modern, performant web applications with React, Three.js, Node.js, and Tailwind CSS." />
+    <meta name="keywords" content="Naqsh, portfolio, full-stack developer, MERN stack, React developer, Three.js, WebGL, 3D web development, Node.js, JavaScript" />
+    <meta name="author" content="Muhammad Naqsh" />
     <meta name="theme-color" content="#030712" />
-    <title>Naqsh | Full-Stack & 3D Web Developer</title>
+    <link rel="canonical" href="https://naqsh-portfolio.vercel.app/" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://naqsh-portfolio.vercel.app/" />
+    <meta property="og:title" content="Naqsh | Full-Stack & 3D Web Developer" />
+    <meta property="og:description" content="Specialized in creating modern, responsive, and performance-first web applications powered by clean architecture and immersive 3D experiences." />
+    <meta property="og:image" content="https://naqsh-portfolio.vercel.app/12006.avif" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://naqsh-portfolio.vercel.app/" />
+    <meta name="twitter:title" content="Naqsh | Full-Stack & 3D Web Developer" />
+    <meta name="twitter:description" content="Specialized in creating modern, responsive, and performance-first web applications powered by clean architecture and immersive 3D experiences." />
+    <meta name="twitter:image" content="https://naqsh-portfolio.vercel.app/12006.avif" />
+
+    <!-- Structured Data (JSON-LD) for SEO -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Muhammad Naqsh",
+        "url": "https://naqsh-portfolio.vercel.app/",
+        "image": "https://naqsh-portfolio.vercel.app/12006.avif",
+        "jobTitle": "Full-Stack & 3D Web Developer",
+        "sameAs": [
+          "https://github.com/Naqsh786/",
+          "https://www.linkedin.com/in/muhammad-naqsh-369347425/"
+        ],
+        "knowsAbout": ["React.js", "Node.js", "Express.js", "MongoDB", "Three.js", "Tailwind CSS", "Full-Stack Web Development"]
+      }
+    </script>
   </head>
   <body class="bg-[#030712] text-gray-100 antialiased selection:bg-purple-600 selection:text-white">
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
-

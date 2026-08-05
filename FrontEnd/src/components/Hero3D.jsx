@@ -1,7 +1,6 @@
 import { useRef, useMemo } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Torus, Icosahedron, Box, Cone, Float, Sparkles } from "@react-three/drei";
-import * as THREE from "three";
 
 // Suppress internal R3F / Three.js THREE.Clock deprecation warning
 if (typeof window !== "undefined" && !window.__THREE_CLOCK_WARNED__) {
@@ -72,14 +71,14 @@ const FloatingElements = ({ colors }) => {
         <meshStandardMaterial color={colors.accent} emissive={colors.accent} emissiveIntensity={1} />
       </Cone>
       {/* 3D Small Torus */}
-      <Torus args={[0.13, 0.03, 16, 32]}>
+      <Torus args={[0.13, 0.03, 12, 24]}>
         <meshStandardMaterial color={colors.primary} emissive={colors.primary} emissiveIntensity={1.2} />
       </Torus>
     </group>
   );
 };
 
-const HolographicPortal = ({ colors }) => {
+const HolographicPortal = ({ colors, isMobile }) => {
   const outerRingRef = useRef();
   const midRingRef = useRef();
   const innerRingRef = useRef();
@@ -113,7 +112,7 @@ const HolographicPortal = ({ colors }) => {
     <group position={[posX, posY, 0]} scale={scale}>
       {/* Central Inner Portal Ring */}
       <Float speed={2} rotationIntensity={0.3} floatIntensity={0.5}>
-        <Torus ref={innerRingRef} args={[1.2, 0.08, 16, 100]}>
+        <Torus ref={innerRingRef} args={[1.2, 0.08, 12, isMobile ? 48 : 80]}>
           <meshPhysicalMaterial
             color={colors.primary}
             emissive={colors.emissive}
@@ -128,7 +127,7 @@ const HolographicPortal = ({ colors }) => {
 
       {/* Middle Dynamic Accent Ring */}
       <Float speed={2.5} rotationIntensity={0.4} floatIntensity={0.6}>
-        <Torus ref={midRingRef} args={[1.6, 0.025, 16, 100]}>
+        <Torus ref={midRingRef} args={[1.6, 0.025, 12, isMobile ? 48 : 80]}>
           <meshStandardMaterial
             color={colors.accent}
             emissive={colors.accent}
@@ -142,7 +141,7 @@ const HolographicPortal = ({ colors }) => {
 
       {/* Outer Rotating Wireframe Cage Ring */}
       <Float speed={1.8} rotationIntensity={0.5} floatIntensity={0.4}>
-        <Torus ref={outerRingRef} args={[2.0, 0.02, 8, 100]}>
+        <Torus ref={outerRingRef} args={[2.0, 0.02, 8, isMobile ? 48 : 80]}>
           <meshStandardMaterial
             color={colors.secondary}
             emissive={colors.secondary}
@@ -157,10 +156,10 @@ const HolographicPortal = ({ colors }) => {
       {/* Floating Geometric Data Elements */}
       <FloatingElements colors={colors} />
 
-      {/* Glowing Starfield Particles */}
-      <Sparkles count={120} scale={4} size={3} speed={0.4} opacity={0.6} color={colors.primary} />
-      <Sparkles count={80} scale={5} size={4} speed={0.6} opacity={0.4} color={colors.secondary} />
-      <Sparkles count={40} scale={4} size={2} speed={0.8} opacity={0.5} color={colors.accent} />
+      {/* Glowing Starfield Particles (Scaled for Device Performance) */}
+      <Sparkles count={isMobile ? 30 : 100} scale={4} size={3} speed={0.4} opacity={0.6} color={colors.primary} />
+      <Sparkles count={isMobile ? 20 : 60} scale={5} size={4} speed={0.6} opacity={0.4} color={colors.secondary} />
+      <Sparkles count={isMobile ? 10 : 30} scale={4} size={2} speed={0.8} opacity={0.5} color={colors.accent} />
     </group>
   );
 };
@@ -170,11 +169,13 @@ export default function Hero3D({ theme = "cyberpunk" }) {
     return themeColors[theme] || themeColors.cyberpunk;
   }, [theme]);
 
+  const isMobile = typeof window !== "undefined" && window.innerWidth < 768;
+
   return (
     <div className="fixed inset-0 z-0 opacity-85 pointer-events-none">
       <Canvas
         camera={{ position: [0, 0, 8], fov: 50 }}
-        dpr={[1, 2]}
+        dpr={isMobile ? [1, 1.25] : [1, 2]}
         performance={{ min: 0.5 }}
       >
         <ambientLight intensity={0.4} />
@@ -182,13 +183,12 @@ export default function Hero3D({ theme = "cyberpunk" }) {
         <pointLight position={[-10, -10, -5]} intensity={4} color={colors.accent} />
         <spotLight position={[0, 15, 10]} intensity={3} color={colors.primary} penumbra={1} />
         
-        <HolographicPortal colors={colors} />
+        <HolographicPortal colors={colors} isMobile={isMobile} />
 
         {/* Global Ambient Background Particles */}
-        <Sparkles count={80} scale={18} size={2} speed={0.2} opacity={0.4} color={colors.primary} />
-        <Sparkles count={50} scale={15} size={3} speed={0.3} opacity={0.3} color={colors.secondary} />
+        <Sparkles count={isMobile ? 25 : 60} scale={18} size={2} speed={0.2} opacity={0.4} color={colors.primary} />
+        <Sparkles count={isMobile ? 15 : 40} scale={15} size={3} speed={0.3} opacity={0.3} color={colors.secondary} />
       </Canvas>
     </div>
   );
 }
-

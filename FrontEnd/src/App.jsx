@@ -2,9 +2,9 @@ import React, { useState, useEffect, Suspense, lazy } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Preloader from "./components/Preloader";
-import Hero3D from "./components/Hero3D";
 
-// Lazy load components
+// Lazy load heavy 3D engine and page routes
+const Hero3D = lazy(() => import("./components/Hero3D"));
 const Home = lazy(() => import("./pages/Home"));
 const AdminDashboard = lazy(() => import("./pages/AdminDashboard"));
 
@@ -29,7 +29,9 @@ function App() {
         <Preloader onComplete={() => setLoading(false)} />
       ) : (
         <div className="min-h-screen bg-transparent animate-fade-in relative">
-          <Hero3D theme={theme} />
+          <Suspense fallback={null}>
+            <Hero3D theme={theme} />
+          </Suspense>
           <Navbar theme={theme} onThemeChange={toggleTheme} />
           <Routes>
             <Route 

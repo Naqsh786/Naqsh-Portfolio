@@ -118,16 +118,19 @@ const Navbar = ({ theme, onThemeChange }) => {
               onClick={() => onThemeChange("cyberpunk")} 
               className={`w-3.5 h-3.5 rounded-full bg-purple-500 border border-purple-400 transition-all duration-300 ${theme === 'cyberpunk' ? 'ring-2 ring-white scale-110 shadow-[0_0_10px_#8b5cf6]' : 'opacity-50 hover:opacity-100'}`}
               title="Cyberpunk Theme"
+              aria-label="Switch to Cyberpunk theme"
             />
             <button 
               onClick={() => onThemeChange("matrix")} 
               className={`w-3.5 h-3.5 rounded-full bg-emerald-500 border border-emerald-400 transition-all duration-300 ${theme === 'matrix' ? 'ring-2 ring-white scale-110 shadow-[0_0_10px_#10b981]' : 'opacity-50 hover:opacity-100'}`}
               title="Matrix Theme"
+              aria-label="Switch to Matrix theme"
             />
             <button 
               onClick={() => onThemeChange("sunset")} 
               className={`w-3.5 h-3.5 rounded-full bg-orange-500 border border-orange-400 transition-all duration-300 ${theme === 'sunset' ? 'ring-2 ring-white scale-110 shadow-[0_0_10px_#f97316]' : 'opacity-50 hover:opacity-100'}`}
               title="Sunset Theme"
+              aria-label="Switch to Sunset theme"
             />
           </div>
 
@@ -139,8 +142,9 @@ const Navbar = ({ theme, onThemeChange }) => {
                 : "border-white/10 text-gray-400 hover:text-neon-primary hover:border-neon-primary/40"
             }`}
             title="Admin Dashboard"
+            aria-label="Admin Dashboard"
           >
-            <FaLock className="text-xs" />
+            <FaLock className="text-xs" aria-hidden="true" />
           </Link>
 
           <button
@@ -161,14 +165,17 @@ const Navbar = ({ theme, onThemeChange }) => {
                 : "border-white/10 text-gray-400 hover:text-neon-primary hover:border-neon-primary/40"
             }`}
             title="Admin Dashboard"
+            aria-label="Admin Dashboard"
           >
-            <FaLock className="text-xs" />
+            <FaLock className="text-xs" aria-hidden="true" />
           </Link>
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="text-2xl text-neon-primary p-2 focus:outline-none"
+            aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-expanded={isOpen}
           >
-            {isOpen ? <HiX /> : <HiMenuAlt3 />}
+            {isOpen ? <HiX aria-hidden="true" /> : <HiMenuAlt3 aria-hidden="true" />}
           </button>
         </div>
       </div>
@@ -205,18 +212,21 @@ const Navbar = ({ theme, onThemeChange }) => {
               <button 
                 onClick={() => onThemeChange("cyberpunk")} 
                 className={`px-3 py-1 rounded-md text-[10px] font-mono font-bold uppercase transition-all ${theme === 'cyberpunk' ? 'bg-purple-600/30 text-purple-300 border border-purple-500/50' : 'text-gray-400 border border-transparent'}`}
+                aria-label="Switch to Cyberpunk theme"
               >
                 Cyber
               </button>
               <button 
                 onClick={() => onThemeChange("matrix")} 
                 className={`px-3 py-1 rounded-md text-[10px] font-mono font-bold uppercase transition-all ${theme === 'matrix' ? 'bg-emerald-600/30 text-emerald-300 border border-emerald-500/50' : 'text-gray-400 border border-transparent'}`}
+                aria-label="Switch to Matrix theme"
               >
                 Matrix
               </button>
               <button 
                 onClick={() => onThemeChange("sunset")} 
                 className={`px-3 py-1 rounded-md text-[10px] font-mono font-bold uppercase transition-all ${theme === 'sunset' ? 'bg-orange-600/30 text-orange-300 border border-orange-500/50' : 'text-gray-400 border border-transparent'}`}
+                aria-label="Switch to Sunset theme"
               >
                 Sunset
               </button>

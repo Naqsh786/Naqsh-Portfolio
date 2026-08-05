@@ -21,21 +21,23 @@ async function optimize() {
     }
 
     const { name } = path.parse(img);
+    const isLcp = name === '12006';
+    const maxWidth = isLcp ? 600 : 800;
     
     // Generate WebP
-    console.log(`Optimizing ${img} to WebP...`);
+    console.log(`Optimizing ${img} to WebP (max ${maxWidth}px)...`);
     await sharp(inputPath)
-      .webp({ quality: 80 })
+      .resize({ width: maxWidth, withoutEnlargement: true })
+      .webp({ quality: 78 })
       .toFile(path.join(publicDir, `${name}.webp`));
 
     // Generate AVIF
-    console.log(`Optimizing ${img} to AVIF...`);
+    console.log(`Optimizing ${img} to AVIF (max ${maxWidth}px)...`);
     await sharp(inputPath)
-      .avif({ quality: 65 })
+      .resize({ width: maxWidth, withoutEnlargement: true })
+      .avif({ quality: 60 })
       .toFile(path.join(publicDir, `${name}.avif`));
 
-    // Also compress the original if it's large (overwrite or create -opt version)
-    // For now, let's just keep the original and use the modern formats in code.
     console.log(`Done with ${img}`);
   }
 }

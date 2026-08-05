@@ -71,10 +71,11 @@ const ContactForm = () => {
       <form onSubmit={handleSubmit} className="space-y-5">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
           <div>
-            <label className="block text-xs font-mono text-gray-300 mb-2 uppercase tracking-wider">
+            <label htmlFor="contact-name" className="block text-xs font-mono text-gray-300 mb-2 uppercase tracking-wider">
               Your Name *
             </label>
             <input
+              id="contact-name"
               type="text"
               name="name"
               required
@@ -86,10 +87,11 @@ const ContactForm = () => {
           </div>
 
           <div>
-            <label className="block text-xs font-mono text-gray-300 mb-2 uppercase tracking-wider">
+            <label htmlFor="contact-email" className="block text-xs font-mono text-gray-300 mb-2 uppercase tracking-wider">
               Your Email *
             </label>
             <input
+              id="contact-email"
               type="email"
               name="email"
               required
@@ -102,10 +104,11 @@ const ContactForm = () => {
         </div>
 
         <div>
-          <label className="block text-xs font-mono text-gray-300 mb-2 uppercase tracking-wider">
+          <label htmlFor="contact-subject" className="block text-xs font-mono text-gray-300 mb-2 uppercase tracking-wider">
             Subject
           </label>
           <input
+            id="contact-subject"
             type="text"
             name="subject"
             value={formData.subject}
@@ -116,10 +119,11 @@ const ContactForm = () => {
         </div>
 
         <div>
-          <label className="block text-xs font-mono text-gray-300 mb-2 uppercase tracking-wider">
+          <label htmlFor="contact-message" className="block text-xs font-mono text-gray-300 mb-2 uppercase tracking-wider">
             Message *
           </label>
           <textarea
+            id="contact-message"
             name="message"
             rows="4"
             required
@@ -250,7 +254,7 @@ const Home = ({ theme }) => {
 
         {/* Scroll indicator */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce z-10">
-          <FaArrowDown className="text-neon-primary/40 text-xl" />
+          <FaArrowDown className="text-neon-primary/40 text-xl" aria-hidden="true" />
         </div>
       </section>
 
@@ -357,8 +361,9 @@ const Home = ({ theme }) => {
               rel="noopener noreferrer"
               className="w-14 h-14 rounded-xl bg-dark-card border border-gray-800 flex items-center justify-center text-gray-400 hover:text-neon-primary hover:border-neon-primary/50 hover:shadow-lg hover:shadow-neon-primary/10 transition-all duration-300 hover:translate-y-[-4px]"
               title="GitHub Profile"
+              aria-label="Visit GitHub Profile"
             >
-              <FaGithub className="text-2xl" />
+              <FaGithub className="text-2xl" aria-hidden="true" />
             </a>
             <a
               href="https://www.linkedin.com/in/muhammad-naqsh-369347425/"
@@ -366,8 +371,9 @@ const Home = ({ theme }) => {
               rel="noopener noreferrer"
               className="w-14 h-14 rounded-xl bg-dark-card border border-gray-800 flex items-center justify-center text-gray-400 hover:text-neon-primary hover:border-neon-primary/50 hover:shadow-lg hover:shadow-neon-primary/10 transition-all duration-300 hover:translate-y-[-4px]"
               title="LinkedIn Profile"
+              aria-label="Visit LinkedIn Profile"
             >
-              <FaLinkedin className="text-2xl" />
+              <FaLinkedin className="text-2xl" aria-hidden="true" />
             </a>
             <a
               href="https://mail.google.com/mail/?view=cm&fs=1&to=naqshcc916@gmail.com&su=Project%20Inquiry%20-%20Naqsh%20Portfolio"
@@ -375,9 +381,10 @@ const Home = ({ theme }) => {
               target="_blank"
               rel="noopener noreferrer"
               className="w-14 h-14 rounded-xl bg-dark-card border border-gray-800 flex items-center justify-center text-gray-400 hover:text-neon-primary hover:border-neon-primary/50 hover:shadow-lg hover:shadow-neon-primary/10 transition-all duration-300 hover:translate-y-[-4px]"
-              title="Direct Email (Gmail)"
+              title="Send Email via Gmail"
+              aria-label="Send Email via Gmail"
             >
-              <FaEnvelope className="text-2xl" />
+              <FaEnvelope className="text-2xl" aria-hidden="true" />
             </a>
           </div>
 
