@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ProjectCard from "../components/ProjectCard";
 import Hero3D from "../components/Hero3D"; // New 3D component
-import { FaLinkedin, FaEnvelope, FaArrowDown, FaTerminal, FaGithub, FaPaperPlane } from "react-icons/fa";
+import { FaLinkedin, FaEnvelope, FaArrowDown, FaTerminal, FaGithub, FaPaperPlane, FaRedo } from "react-icons/fa";
 import { HiSparkles } from "react-icons/hi";
 import { profile, projects } from "../data"; // Hardcoded data
 import { API_BASE_URL } from "../utils/apiConfig";
@@ -56,7 +56,7 @@ const ContactForm = () => {
   };
 
   return (
-    <div className="glass p-8 md:p-10 rounded-3xl border border-neon-primary/20 max-w-2xl mx-auto shadow-[0_0_40px_rgba(var(--color-neon-primary),0.08)] text-left">
+    <div className="glass p-8 md:p-10 rounded-3xl border border-neon-primary/20 max-w-3xl mx-auto shadow-[0_0_40px_rgba(var(--color-neon-primary),0.08)] text-left">
       {status && (
         <div
           className={`mb-6 p-4 rounded-xl border font-mono text-xs md:text-sm font-semibold ${status.type === "success"
@@ -166,8 +166,14 @@ const Home = ({ theme }) => {
     window.open(`https://mail.google.com/mail/?view=cm&fs=1&to=${email}&su=Project%20Inquiry%20-%20Naqsh%20Portfolio`, "_blank", "noopener,noreferrer");
   };
 
+  const handleReplayIntro = (e) => {
+    e.preventDefault();
+    localStorage.removeItem("portfolio_intro_seen");
+    window.location.reload();
+  };
+
   return (
-    <div className="bg-grid min-h-screen">
+    <div className="bg-grid min-h-screen relative z-10 bg-slate-950/50">
       {/* ── HERO SECTION ── */}
       <section className="min-h-screen flex items-center justify-center px-6 pt-28 md:pt-0 relative overflow-hidden">
 
@@ -224,12 +230,15 @@ const Home = ({ theme }) => {
 
             <div className="flex items-center gap-4 mb-6 justify-center md:justify-start">
               <div className="h-[2px] w-12 bg-neon-primary/80 hidden md:block"></div>
-              <p className="text-xl md:text-2xl text-neon-primary font-medium tracking-wide">
+              <p className="text-xl md:text-2xl text-white font-medium tracking-wide">
                 {profile?.role || "Full-Stack Developer"}
               </p>
             </div>
 
-            <p className="text-gray-300 max-w-xl mx-auto md:mx-0 text-lg leading-relaxed mb-8 whitespace-pre-wrap glass p-5 rounded-r-xl rounded-bl-xl border-l-4 border-neon-primary/80">
+            <p
+              className="text-gray-300 font-sans max-w-65ch mx-auto md:mx-0 text-lg leading-relaxed mb-8 whitespace-pre-wrap glass p-5 rounded-r-xl rounded-bl-xl border-l-4 border-neon-primary/80"
+              style={{ background: "rgba(15, 23, 42, 0.9)" }}
+            >
               {profile?.description || "I craft modern, performant web applications with clean code and stunning user experiences."}
             </p>
 
@@ -244,7 +253,7 @@ const Home = ({ theme }) => {
               </a>
               <a
                 href="#contact"
-                className="inline-flex items-center gap-2 px-7 py-3.5 glass border-neon-primary/45 text-neon-primary font-semibold rounded-lg hover:bg-neon-primary/10 hover:border-neon-primary hover:shadow-[0_0_15px_rgba(var(--color-neon-primary),0.3)] transition-all duration-300"
+                className="inline-flex items-center gap-2 px-7 py-3.5 bg-slate-900/80 border-2 border-neon-primary text-neon-primary font-semibold rounded-lg hover:bg-neon-primary hover:text-white hover:shadow-[0_0_20px_rgba(var(--color-neon-primary),0.5)] hover:translate-y-[-2px] transition-all duration-300"
               >
                 Contact Me
               </a>
@@ -262,28 +271,28 @@ const Home = ({ theme }) => {
       <section id="skills" className="py-24 px-6 relative z-10 border-t border-gray-800/30">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 px-4 animate-fade-in opacity-0">
-            <h2 className="text-3xl md:text-5xl font-black text-white mb-4">
+            <h2 className="text-3xl md:text-5xl font-black text-white mb-6">
               My <span className="gradient-text">Skills</span>
             </h2>
-            <p className="text-gray-500 max-w-xl mx-auto">
-              The technologies and tools I utilize to craft amazing digital experiences.
+            <p className="text-gray-300 font-sans max-w-xl mx-auto mb-10 text-base md:text-lg">
+              Here are the technologies and tools I utilize to craft amazing digital experiences.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto text-left">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl mx-auto text-left">
             {/* Frontend Skills Card */}
-            <div className="glass p-8 rounded-3xl border border-neon-primary/20 group hover:border-neon-primary/50 transition-all shadow-[0_0_20px_rgba(var(--color-neon-primary),0.03)] hover:shadow-[0_0_30px_rgba(var(--color-neon-primary),0.18)] hover:-translate-y-2">
-              <div className="flex items-center gap-4 mb-6 border-b border-gray-800/80 pb-4">
-                <div className="w-12 h-12 rounded-xl bg-neon-primary/10 border border-neon-primary/30 flex items-center justify-center text-neon-primary font-bold text-xl group-hover:bg-neon-primary group-hover:text-white transition-all shadow-inner">
+            <div className="bg-slate-900 p-6 rounded-3xl border border-neon-primary/20 group hover:border-neon-primary/50 transition-all shadow-[0_0_20px_rgba(var(--color-neon-primary),0.03)] hover:shadow-[0_0_30px_rgba(var(--color-neon-primary),0.18)] hover:-translate-y-2 flex flex-col">
+              <div className="flex items-center gap-4 mb-5 border-b border-gray-800/80 pb-4">
+                <div className="w-10 h-10 rounded-xl bg-neon-primary/10 border border-neon-primary/30 flex items-center justify-center text-neon-primary font-bold text-lg group-hover:bg-neon-primary group-hover:text-white transition-all shadow-inner">
                   FE
                 </div>
-                <h3 className="text-2xl font-black text-white tracking-widest uppercase">
+                <h3 className="text-xl font-black text-white tracking-widest uppercase">
                   Frontend
                 </h3>
               </div>
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-2">
                 {profile.frontendSkills?.map((skill, idx) => (
-                  <span key={`fe-${idx}`} className="px-5 py-2.5 rounded-full border border-gray-700/80 bg-black/60 text-gray-300 font-mono text-xs md:text-sm tracking-wide hover:text-white hover:border-neon-primary/80 hover:bg-neon-primary/10 transition-all cursor-default">
+                  <span key={`fe-${idx}`} className="px-3 py-1.5 rounded-full border border-gray-700/80 bg-black/60 text-gray-300 font-mono text-xs tracking-wide hover:text-white hover:border-neon-primary/80 hover:bg-neon-primary/10 transition-all cursor-default">
                     {skill}
                   </span>
                 ))}
@@ -291,18 +300,56 @@ const Home = ({ theme }) => {
             </div>
 
             {/* Backend Skills Card */}
-            <div className="glass p-8 rounded-3xl border border-neon-primary/20 group hover:border-neon-primary/50 transition-all shadow-[0_0_20px_rgba(var(--color-neon-primary),0.03)] hover:shadow-[0_0_30px_rgba(var(--color-neon-primary),0.18)] hover:-translate-y-2">
-              <div className="flex items-center gap-4 mb-6 border-b border-gray-800/80 pb-4">
-                <div className="w-12 h-12 rounded-xl bg-neon-primary/10 border border-neon-primary/30 flex items-center justify-center text-neon-primary font-bold text-xl group-hover:bg-neon-primary group-hover:text-white transition-all shadow-inner">
+            <div className="bg-slate-900 p-6 rounded-3xl border border-neon-primary/20 group hover:border-neon-primary/50 transition-all shadow-[0_0_20px_rgba(var(--color-neon-primary),0.03)] hover:shadow-[0_0_30px_rgba(var(--color-neon-primary),0.18)] hover:-translate-y-2 flex flex-col">
+              <div className="flex items-center gap-4 mb-5 border-b border-gray-800/80 pb-4">
+                <div className="w-10 h-10 rounded-xl bg-neon-primary/10 border border-neon-primary/30 flex items-center justify-center text-neon-primary font-bold text-lg group-hover:bg-neon-primary group-hover:text-white transition-all shadow-inner">
                   BE
                 </div>
-                <h3 className="text-2xl font-black text-white tracking-widest uppercase">
+                <h3 className="text-xl font-black text-white tracking-widest uppercase">
                   Backend
                 </h3>
               </div>
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-2">
                 {profile.backendSkills?.map((skill, idx) => (
-                  <span key={`be-${idx}`} className="px-5 py-2.5 rounded-full border border-gray-700/80 bg-black/60 text-gray-300 font-mono text-xs md:text-sm tracking-wide hover:text-white hover:border-neon-primary/80 hover:bg-neon-primary/10 transition-all cursor-default">
+                  <span key={`be-${idx}`} className="px-3 py-1.5 rounded-full border border-gray-700/80 bg-black/60 text-gray-300 font-mono text-xs tracking-wide hover:text-white hover:border-neon-primary/80 hover:bg-neon-primary/10 transition-all cursor-default">
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+            
+            {/* Database Skills Card */}
+            <div className="bg-slate-900 p-6 rounded-3xl border border-neon-primary/20 group hover:border-neon-primary/50 transition-all shadow-[0_0_20px_rgba(var(--color-neon-primary),0.03)] hover:shadow-[0_0_30px_rgba(var(--color-neon-primary),0.18)] hover:-translate-y-2 flex flex-col">
+              <div className="flex items-center gap-4 mb-5 border-b border-gray-800/80 pb-4">
+                <div className="w-10 h-10 rounded-xl bg-neon-primary/10 border border-neon-primary/30 flex items-center justify-center text-neon-primary font-bold text-lg group-hover:bg-neon-primary group-hover:text-white transition-all shadow-inner">
+                  DB
+                </div>
+                <h3 className="text-xl font-black text-white tracking-widest uppercase">
+                  Database
+                </h3>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {profile.databaseSkills?.map((skill, idx) => (
+                  <span key={`db-${idx}`} className="px-3 py-1.5 rounded-full border border-gray-700/80 bg-black/60 text-gray-300 font-mono text-xs tracking-wide hover:text-white hover:border-neon-primary/80 hover:bg-neon-primary/10 transition-all cursor-default">
+                    {skill}
+                  </span>
+                ))}
+              </div>
+            </div>
+            
+            {/* Tools Skills Card */}
+            <div className="bg-slate-900 p-6 rounded-3xl border border-neon-primary/20 group hover:border-neon-primary/50 transition-all shadow-[0_0_20px_rgba(var(--color-neon-primary),0.03)] hover:shadow-[0_0_30px_rgba(var(--color-neon-primary),0.18)] hover:-translate-y-2 flex flex-col">
+              <div className="flex items-center gap-4 mb-5 border-b border-gray-800/80 pb-4">
+                <div className="w-10 h-10 rounded-xl bg-neon-primary/10 border border-neon-primary/30 flex items-center justify-center text-neon-primary font-bold text-lg group-hover:bg-neon-primary group-hover:text-white transition-all shadow-inner">
+                  TL
+                </div>
+                <h3 className="text-xl font-black text-white tracking-widest uppercase">
+                  Tools
+                </h3>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                {profile.tools?.map((skill, idx) => (
+                  <span key={`tl-${idx}`} className="px-3 py-1.5 rounded-full border border-gray-700/80 bg-black/60 text-gray-300 font-mono text-xs tracking-wide hover:text-white hover:border-neon-primary/80 hover:bg-neon-primary/10 transition-all cursor-default">
                     {skill}
                   </span>
                 ))}
@@ -316,10 +363,10 @@ const Home = ({ theme }) => {
       <section id="projects" className="py-24 px-6 relative z-10">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16 animate-fade-in opacity-0">
-            <h2 className="text-3xl md:text-5xl font-black text-white mb-4">
+            <h2 className="text-3xl md:text-5xl font-black text-white mb-6">
               Featured <span className="gradient-text">Projects</span>
             </h2>
-            <p className="text-gray-500 max-w-xl mx-auto">
+            <p className="text-gray-300 font-sans max-w-xl mx-auto mb-10 text-base md:text-lg">
               A collection of projects that showcase my skills and passion for
               building amazing digital experiences.
             </p>
@@ -334,7 +381,7 @@ const Home = ({ theme }) => {
           ) : (
             <div className="text-center py-20">
               <div className="text-6xl mb-4">🚀</div>
-              <p className="text-gray-500 text-lg">
+              <p className="text-gray-400 font-sans text-lg">
                 Projects are loading soon. Stay tuned!
               </p>
             </div>
@@ -348,8 +395,8 @@ const Home = ({ theme }) => {
           <h2 className="text-3xl md:text-5xl font-black text-white mb-6">
             Let&apos;s <span className="gradient-text">Connect</span>
           </h2>
-          <p className="text-gray-400 mb-10 text-base md:text-lg">
-            Have a project in mind or want to collaborate? Send a message directly to my inbox!
+          <p className="text-gray-300 font-sans mb-10 text-base md:text-lg">
+            Got a project in mind or just want to say hi? Send a message and I&apos;ll get back to you within 24 hours.
           </p>
 
           <ContactForm />
@@ -397,13 +444,21 @@ const Home = ({ theme }) => {
       </section>
 
       {/* ── FOOTER ── */}
-      <footer className="border-t border-gray-800/30 py-8 px-6 relative z-10 glass mt-12 mb-4 mx-4 rounded-3xl overflow-hidden">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
+      <footer className="border-t border-gray-800/30 py-8 px-6 relative z-10 glass mt-12 mb-4 mx-4 rounded-3xl overflow-hidden flex flex-col gap-4">
+        <div className="max-w-7xl w-full mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-gray-400 text-sm font-mono">
             &copy; {new Date().getFullYear()}{" "}
             <span className="text-neon-primary">Naqsh</span>. All rights
             reserved.
           </p>
+          
+          <button 
+            onClick={handleReplayIntro}
+            className="flex items-center gap-2 text-xs font-mono text-gray-500 hover:text-neon-primary transition-colors"
+          >
+            <FaRedo className="text-[10px]" /> Replay Intro
+          </button>
+          
           <p className="text-gray-500 text-xs font-mono">
             Built with <span className="text-neon-primary">React</span> &{" "}
             <span className="text-neon-primary">Three.js</span>

@@ -51,6 +51,7 @@ body {
   color: #f3f4f6;
   overflow-x: hidden;
   transition: background-color 0.5s ease;
+  line-height: 1.7;
 }
 
 h1,
@@ -153,4 +154,30 @@ h6 {
 ::selection {
   background: rgb(var(--color-neon-primary));
   color: #ffffff;
+}
+
+/* Text width limit */
+.max-w-65ch {
+  max-width: 65ch;
+}
+
+/* Line clamp fallback */
+.description-clamp {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Custom cursor — hide native cursor on desktop only */
+html.custom-cursor,
+html.custom-cursor * {
+  cursor: none !important;
+}
+
+@media (hover: none), (pointer: coarse) {
+  html.custom-cursor,
+  html.custom-cursor * {
+    cursor: auto !important;
+  }
 }

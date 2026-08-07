@@ -5,24 +5,41 @@ const Preloader = ({ onComplete }) => {
   const [isFadingOut, setIsFadingOut] = useState(false);
 
   useEffect(() => {
+    // Check if user has seen intro in the last 24 hours
+    const lastSeen = localStorage.getItem("portfolio_intro_seen");
+    if (lastSeen) {
+      const timeSince = new Date().getTime() - parseInt(lastSeen, 10);
+      const hours24 = 24 * 60 * 60 * 1000;
+      if (timeSince < hours24) {
+        // Skip intro entirely
+        onComplete();
+        return;
+      }
+    }
+
     const interval = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
           clearInterval(interval);
+          localStorage.setItem("portfolio_intro_seen", new Date().getTime().toString());
           setTimeout(() => setIsFadingOut(true), 200);
           setTimeout(onComplete, 800);
           return 100;
         }
-        // Smooth non-linear progress acceleration
-        const increment = Math.floor(Math.random() * 3) + 1;
+        // Ensure max 2.5s total time: faster increments
+        const increment = Math.floor(Math.random() * 3) + 2; 
         return Math.min(prev + increment, 100);
       });
-    }, 22);
+    }, 35); // 35ms interval ensures quick boot
 
     return () => clearInterval(interval);
   }, [onComplete]);
 
-  // Dynamic system status status text based on progress stage
+  const handleSkip = () => {
+    setProgress(100);
+  };
+
+  // Dynamic system status text based on progress stage
   const getStatusText = () => {
     if (progress < 25) return "INITIALIZING CORE SYSTEM // V2.0";
     if (progress < 55) return "LOADING HOLOGRAPHIC 3D ENGINE";
@@ -42,17 +59,19 @@ const Preloader = ({ onComplete }) => {
       <div className="absolute w-[500px] h-[500px] bg-neon-primary/15 rounded-full blur-[160px] animate-pulse" />
       <div className="absolute w-[400px] h-[400px] bg-cyan-500/10 rounded-full blur-[140px] animate-pulse delay-700" />
 
+      {/* Skip Button */}
+      <button 
+        onClick={handleSkip}
+        className="absolute top-8 right-8 sm:top-12 sm:right-12 z-[110] text-gray-400 hover:text-white font-mono text-xs uppercase tracking-widest px-4 py-2 rounded-lg border border-gray-800 hover:border-neon-primary bg-black/50 hover:bg-neon-primary/20 transition-all duration-300"
+      >
+        Skip Intro &rarr;
+      </button>
+
       {/* Futuristic Floating HUD Elements */}
       <div className="absolute top-8 left-8 hidden sm:flex flex-col gap-1 font-mono text-[10px] text-gray-500 tracking-widest uppercase">
         <span className="text-neon-primary font-bold">NAQSH OS v3.6</span>
         <span>STATUS: BOOTING</span>
         <span>CORE_TEMP: NORMAL</span>
-      </div>
-
-      <div className="absolute top-8 right-8 hidden sm:flex flex-col items-end gap-1 font-mono text-[10px] text-gray-500 tracking-widest uppercase">
-        <span>MEM_ALLOC: OK</span>
-        <span className="text-cyan-400 font-bold">PORT: 5000 ACTIVE</span>
-        <span>SECURITY: ENCRYPTED</span>
       </div>
 
       {/* Central Holographic Spinner Ring & Counter */}

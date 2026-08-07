@@ -76,8 +76,8 @@ const Navbar = ({ theme, onThemeChange }) => {
       <div
         className={`max-w-6xl mx-auto rounded-2xl transition-all duration-500 border ${
           scrolled
-            ? "glass border-neon-primary/30 shadow-[0_10px_30px_rgba(0,0,0,0.8)] py-2.5 px-4 sm:px-6 bg-slate-950/90 backdrop-blur-xl"
-            : "bg-slate-950/75 backdrop-blur-lg border-white/10 py-3.5 px-4 sm:px-6"
+            ? "glass border-neon-primary/30 shadow-[0_10px_30px_rgba(0,0,0,0.8)] py-2.5 px-4 sm:px-6 bg-slate-950/95 backdrop-blur-xl"
+            : "bg-slate-950/85 backdrop-blur-xl border-white/15 py-3.5 px-4 sm:px-6 shadow-lg"
         } flex items-center justify-between`}
       >
         {/* Logo */}

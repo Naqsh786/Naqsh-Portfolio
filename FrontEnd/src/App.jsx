@@ -2,6 +2,7 @@ import React, { useState, useEffect, Suspense, lazy } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Preloader from "./components/Preloader";
+import GlowCursor from "./components/GlowCursor";
 
 // Lazy load heavy 3D engine and page routes
 const Hero3D = lazy(() => import("./components/Hero3D"));
@@ -28,30 +29,35 @@ function App() {
       {loading ? (
         <Preloader onComplete={() => setLoading(false)} />
       ) : (
-        <div className="min-h-screen bg-transparent animate-fade-in relative">
+        <>
+          {/* Fixed layers must stay OUTSIDE any filtered/animated ancestor,
+              otherwise filter creates a containing block and they scroll with the page */}
+          <GlowCursor />
           <Suspense fallback={null}>
             <Hero3D theme={theme} />
           </Suspense>
           <Navbar theme={theme} onThemeChange={toggleTheme} />
-          <Routes>
-            <Route 
-              path="/" 
-              element={
-                <Suspense fallback={<div className="min-h-screen bg-[#050814]" />}>
-                  <Home theme={theme} />
-                </Suspense>
-              } 
-            />
-            <Route 
-              path="/admin" 
-              element={
-                <Suspense fallback={<div className="min-h-screen bg-[#050814]" />}>
-                  <AdminDashboard theme={theme} />
-                </Suspense>
-              } 
-            />
-          </Routes>
-        </div>
+          <div className="min-h-screen bg-transparent animate-fade-in relative">
+            <Routes>
+              <Route 
+                path="/" 
+                element={
+                  <Suspense fallback={<div className="min-h-screen bg-[#050814]" />}>
+                    <Home theme={theme} />
+                  </Suspense>
+                } 
+              />
+              <Route 
+                path="/admin" 
+                element={
+                  <Suspense fallback={<div className="min-h-screen bg-[#050814]" />}>
+                    <AdminDashboard theme={theme} />
+                  </Suspense>
+                } 
+              />
+            </Routes>
+          </div>
+        </>
       )}
     </Router>
   );
