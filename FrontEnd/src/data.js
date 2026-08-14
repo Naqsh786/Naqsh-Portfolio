@@ -69,8 +69,8 @@ export const projects = [
     title: "Jesko Jets – Luxury Aviation & Private Jet Charter Experience",
     description: "An immersive 3D animation-driven Next.js web application for luxury private jet chartering. Features high-performance canvas image sequence rendering, smooth Lenis scroll dynamics, Framer Motion UI animations, interactive aircraft showcase, and futuristic luxury aesthetic.",
     technologies: ["Next.js", "React.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Lenis Scroll"],
-    imageUrl: "/jesko.png",
-    liveDemo: "https://jesko-jets.vercel.app/",
+    imageUrl: "/jeskojets.png",
+    liveDemo: "https://jesko-jets-sepia.vercel.app/",
     gitFrontend: "https://github.com/Naqsh786/Jesko-Jets",
     gitBackend: "",
   }
