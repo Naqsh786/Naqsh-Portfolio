@@ -5,23 +5,10 @@ const Preloader = ({ onComplete }) => {
   const [isFadingOut, setIsFadingOut] = useState(false);
 
   useEffect(() => {
-    // Check if user has seen intro in the last 24 hours
-    const lastSeen = localStorage.getItem("portfolio_intro_seen");
-    if (lastSeen) {
-      const timeSince = new Date().getTime() - parseInt(lastSeen, 10);
-      const hours24 = 24 * 60 * 60 * 1000;
-      if (timeSince < hours24) {
-        // Skip intro entirely
-        onComplete();
-        return;
-      }
-    }
-
     const interval = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
           clearInterval(interval);
-          localStorage.setItem("portfolio_intro_seen", new Date().getTime().toString());
           setTimeout(() => setIsFadingOut(true), 200);
           setTimeout(onComplete, 800);
           return 100;
@@ -34,6 +21,7 @@ const Preloader = ({ onComplete }) => {
 
     return () => clearInterval(interval);
   }, [onComplete]);
+
 
   const handleSkip = () => {
     setProgress(100);

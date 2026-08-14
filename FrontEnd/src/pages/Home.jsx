@@ -168,7 +168,6 @@ const Home = ({ theme }) => {
 
   const handleReplayIntro = (e) => {
     e.preventDefault();
-    localStorage.removeItem("portfolio_intro_seen");
     window.location.reload();
   };
 
