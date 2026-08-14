@@ -8,6 +8,7 @@ export const profile = {
     "HTML5/CSS3",
     "JavaScript",
     "React.js",
+    "Next.js",
     "Tailwind CSS",
     "React Three Fiber",
     "Redux Toolkit"
@@ -62,5 +63,15 @@ export const projects = [
     liveDemo: "https://gym-managment-system-ebon.vercel.app/",
     gitFrontend: "https://github.com/Naqsh786/Gym-Managment-System/tree/main/frontend",
     gitBackend: "https://github.com/Naqsh786/Gym-Managment-System/tree/main/backend",
+  },
+  {
+    _id: "4",
+    title: "Jesko Jets – Luxury Aviation & Private Jet Charter Experience",
+    description: "An immersive 3D animation-driven Next.js web application for luxury private jet chartering. Features high-performance canvas image sequence rendering, smooth Lenis scroll dynamics, Framer Motion UI animations, interactive aircraft showcase, and futuristic luxury aesthetic.",
+    technologies: ["Next.js", "React.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Lenis Scroll"],
+    imageUrl: "/jesko.png",
+    liveDemo: "https://jesko-jets.vercel.app/",
+    gitFrontend: "https://github.com/Naqsh786/Jesko-Jets",
+    gitBackend: "",
   }
 ];
