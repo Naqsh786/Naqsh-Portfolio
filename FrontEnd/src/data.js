@@ -1,7 +1,7 @@
 export const profile = {
   name: "Naqsh",
   role: "Full-Stack Developer",
-  description: "Specialized in creating modern, responsive, and performance-first web applications powered by clean architecture. Delivering immersive 3D experiences, smooth animations, and intuitive UI/UX that transform ideas into exceptional digital products.",
+  description: "Specialized in creating modern, responsive, and performance-first web applications using the MERN stack (MongoDB, Express, React, Node.js). Delivering immersive 3D experiences, smooth animations, and intuitive UI/UX that transform ideas into exceptional digital products.",
   imageUrl: "/12006.png",
   availableForWork: true,
   frontendSkills: [

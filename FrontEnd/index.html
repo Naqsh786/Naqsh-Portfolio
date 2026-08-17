@@ -5,7 +5,7 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
-    <title>Naqsh | Full-Stack & 3D Web Developer Portfolio</title>
+    <title>Muhammad Naqsh | Full-Stack MERN & React Developer</title>
     
     <!-- Preconnect to external domains -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -22,8 +22,8 @@
     <link rel="preload" as="image" href="/12006.avif" type="image/avif" fetchpriority="high">
     
     <!-- SEO & Metadata -->
-    <meta name="description" content="Muhammad Naqsh - Full-Stack Developer & 3D Web Specialist crafting modern, performant web applications with React, Three.js, Node.js, and Tailwind CSS." />
-    <meta name="keywords" content="Naqsh, portfolio, full-stack developer, MERN stack, React developer, Three.js, WebGL, 3D web development, Node.js, JavaScript" />
+    <meta name="description" content="Muhammad Naqsh - Full-Stack Developer specializing in MERN stack, React, Node.js, MongoDB, and interactive 3D web experiences." />
+    <link rel="manifest" href="/site.webmanifest" />
     <meta name="author" content="Muhammad Naqsh" />
     <meta name="theme-color" content="#030712" />
     <link rel="canonical" href="https://naqsh-portfolio.vercel.app/" />
@@ -46,16 +46,30 @@
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Muhammad Naqsh",
-        "url": "https://naqsh-portfolio.vercel.app/",
-        "image": "https://naqsh-portfolio.vercel.app/12006.avif",
-        "jobTitle": "Full-Stack & 3D Web Developer",
-        "sameAs": [
-          "https://github.com/Naqsh786/",
-          "https://www.linkedin.com/in/muhammad-naqsh-369347425/"
-        ],
-        "knowsAbout": ["React.js", "Node.js", "Express.js", "MongoDB", "Three.js", "Tailwind CSS", "Full-Stack Web Development"]
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "@id": "https://naqsh-portfolio.vercel.app/#website",
+            "url": "https://naqsh-portfolio.vercel.app/",
+            "name": "Naqsh Portfolio",
+            "publisher": {
+              "@id": "https://naqsh-portfolio.vercel.app/#person"
+            }
+          },
+          {
+            "@type": "Person",
+            "@id": "https://naqsh-portfolio.vercel.app/#person",
+            "name": "Muhammad Naqsh",
+            "url": "https://naqsh-portfolio.vercel.app/",
+            "image": "https://naqsh-portfolio.vercel.app/12006.avif",
+            "jobTitle": "Full-Stack MERN & 3D Web Developer",
+            "sameAs": [
+              "https://github.com/Naqsh786/",
+              "https://www.linkedin.com/in/muhammad-naqsh-369347425/"
+            ],
+            "knowsAbout": ["React.js", "Node.js", "Express.js", "MongoDB", "Three.js", "Tailwind CSS", "Full-Stack Web Development"]
+          }
+        ]
       }
     </script>
   </head>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://naqsh-portfolio.vercel.app/sitemap.xml
