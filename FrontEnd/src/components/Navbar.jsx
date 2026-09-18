@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { HiMenuAlt3, HiX } from "react-icons/hi";
 import { FaCode, FaLock } from "react-icons/fa";
-import { FiChevronRight } from "react-icons/fi";
+import { FiChevronRight, FiDownload } from "react-icons/fi";
 
 const Navbar = ({ theme, onThemeChange }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -134,6 +134,26 @@ const Navbar = ({ theme, onThemeChange }) => {
             />
           </div>
 
+          <div className="flex items-center gap-2">
+            <a
+              href="/Naqsh%20Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs font-semibold text-gray-300 hover:text-neon-primary transition-colors hidden sm:block"
+            >
+              View Resume
+            </a>
+            <a
+              href="/Naqsh%20Resume.pdf"
+              download="Naqsh_Resume.pdf"
+              className="p-2 rounded-full border border-white/10 text-gray-400 hover:text-neon-primary hover:border-neon-primary/50 hover:shadow-[0_0_10px_rgba(var(--color-neon-primary),0.3)] transition-all"
+              title="Download Resume"
+              aria-label="Download Resume"
+            >
+              <FiDownload className="text-xs" aria-hidden="true" />
+            </a>
+          </div>
+
           <Link
             to="/admin"
             className={`p-2 rounded-xl bg-slate-950/90 border transition-all ${
@@ -231,6 +251,27 @@ const Navbar = ({ theme, onThemeChange }) => {
                 Sunset
               </button>
             </div>
+          </div>
+
+          {/* Mobile Resume Buttons */}
+          <div className="flex gap-2 mt-1">
+            <a
+              href="/Naqsh%20Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl border border-white/10 text-gray-300 text-xs font-bold uppercase tracking-widest hover:border-neon-primary/40 hover:text-neon-primary transition-all"
+            >
+              View Resume
+            </a>
+            <a
+              href="/Naqsh%20Resume.pdf"
+              download="Naqsh_Resume.pdf"
+              className="flex items-center justify-center p-3 rounded-xl border border-white/10 text-gray-400 hover:text-neon-primary hover:border-neon-primary/50 transition-all"
+              title="Download Resume"
+              aria-label="Download Resume"
+            >
+              <FiDownload className="text-sm" aria-hidden="true" />
+            </a>
           </div>
 
           {/* Mobile Hire Me Button */}
