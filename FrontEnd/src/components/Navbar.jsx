@@ -112,23 +112,23 @@ const Navbar = ({ theme, onThemeChange }) => {
 
         {/* Action Controls (Theme Switcher + Admin + Hire Me) */}
         <div className="hidden md:flex items-center gap-3 sm:gap-4">
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2.5">
             <a
               href="/Naqsh%20Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-white/10 text-xs font-semibold text-gray-300 hover:text-neon-primary hover:border-neon-primary/50 hover:shadow-[0_0_10px_rgba(var(--color-neon-primary),0.3)] transition-all"
+              className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-xl border border-white/10 text-sm font-semibold text-gray-300 hover:text-neon-primary hover:border-neon-primary/50 hover:shadow-[0_0_10px_rgba(var(--color-neon-primary),0.3)] transition-all"
             >
               View Resume
             </a>
             <a
               href="/Naqsh%20Resume.pdf"
               download="Naqsh_Resume.pdf"
-              className="p-2 rounded-full border border-white/10 text-gray-400 hover:text-neon-primary hover:border-neon-primary/50 hover:shadow-[0_0_10px_rgba(var(--color-neon-primary),0.3)] transition-all"
+              className="p-2.5 rounded-full border border-white/10 text-gray-400 hover:text-neon-primary hover:border-neon-primary/50 hover:shadow-[0_0_10px_rgba(var(--color-neon-primary),0.3)] transition-all"
               title="Download Resume"
               aria-label="Download Resume"
             >
-              <FiDownload className="text-xs" aria-hidden="true" />
+              <FiDownload className="text-sm" aria-hidden="true" />
             </a>
           </div>
 
@@ -259,18 +259,18 @@ const Navbar = ({ theme, onThemeChange }) => {
               href="/Naqsh%20Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl border border-white/10 text-gray-300 text-xs font-bold uppercase tracking-widest hover:border-neon-primary/40 hover:text-neon-primary transition-all"
+              className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl border border-white/10 text-gray-300 text-sm font-bold uppercase tracking-widest hover:border-neon-primary/40 hover:text-neon-primary transition-all"
             >
               View Resume
             </a>
             <a
               href="/Naqsh%20Resume.pdf"
               download="Naqsh_Resume.pdf"
-              className="flex items-center justify-center p-3 rounded-xl border border-white/10 text-gray-400 hover:text-neon-primary hover:border-neon-primary/50 transition-all"
+              className="flex items-center justify-center p-3.5 rounded-xl border border-white/10 text-gray-400 hover:text-neon-primary hover:border-neon-primary/50 transition-all"
               title="Download Resume"
               aria-label="Download Resume"
             >
-              <FiDownload className="text-sm" aria-hidden="true" />
+              <FiDownload className="text-base" aria-hidden="true" />
             </a>
           </div>
 
