@@ -117,7 +117,7 @@ const Navbar = ({ theme, onThemeChange }) => {
               href="/Naqsh%20Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-xs font-semibold text-gray-300 hover:text-neon-primary transition-colors hidden sm:block"
+              className="hidden sm:flex items-center gap-1.5 px-3 py-1.5 rounded-xl border border-white/10 text-xs font-semibold text-gray-300 hover:text-neon-primary hover:border-neon-primary/50 hover:shadow-[0_0_10px_rgba(var(--color-neon-primary),0.3)] transition-all"
             >
               View Resume
             </a>
