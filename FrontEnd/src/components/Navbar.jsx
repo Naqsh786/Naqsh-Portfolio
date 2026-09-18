@@ -112,6 +112,26 @@ const Navbar = ({ theme, onThemeChange }) => {
 
         {/* Action Controls (Theme Switcher + Admin + Hire Me) */}
         <div className="hidden md:flex items-center gap-3 sm:gap-4">
+          <div className="flex items-center gap-2">
+            <a
+              href="/Naqsh%20Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs font-semibold text-gray-300 hover:text-neon-primary transition-colors hidden sm:block"
+            >
+              View Resume
+            </a>
+            <a
+              href="/Naqsh%20Resume.pdf"
+              download="Naqsh_Resume.pdf"
+              className="p-2 rounded-full border border-white/10 text-gray-400 hover:text-neon-primary hover:border-neon-primary/50 hover:shadow-[0_0_10px_rgba(var(--color-neon-primary),0.3)] transition-all"
+              title="Download Resume"
+              aria-label="Download Resume"
+            >
+              <FiDownload className="text-xs" aria-hidden="true" />
+            </a>
+          </div>
+
           {/* Dynamic Theme Dots */}
           <div className="flex items-center gap-2 bg-slate-950/90 px-3 py-1.5 rounded-xl border border-white/10 shadow-inner">
             <button 
@@ -132,26 +152,6 @@ const Navbar = ({ theme, onThemeChange }) => {
               title="Sunset Theme"
               aria-label="Switch to Sunset theme"
             />
-          </div>
-
-          <div className="flex items-center gap-2">
-            <a
-              href="/Naqsh%20Resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-xs font-semibold text-gray-300 hover:text-neon-primary transition-colors hidden sm:block"
-            >
-              View Resume
-            </a>
-            <a
-              href="/Naqsh%20Resume.pdf"
-              download="Naqsh_Resume.pdf"
-              className="p-2 rounded-full border border-white/10 text-gray-400 hover:text-neon-primary hover:border-neon-primary/50 hover:shadow-[0_0_10px_rgba(var(--color-neon-primary),0.3)] transition-all"
-              title="Download Resume"
-              aria-label="Download Resume"
-            >
-              <FiDownload className="text-xs" aria-hidden="true" />
-            </a>
           </div>
 
           <Link
