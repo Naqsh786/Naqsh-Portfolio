@@ -1,7 +1,7 @@
 export const profile = {
   name: "Naqsh",
   role: "Full-Stack Developer",
-  description: "Specialized in creating modern, responsive, and performance-first web applications using the MERN stack (MongoDB, Express, React, Node.js). Delivering immersive 3D experiences, smooth animations, and intuitive UI/UX that transform ideas into exceptional digital products.",
+  description: "Specialized in creating modern, responsive, and performance-first web applications using the MERN stack (MongoDB, Express, React, Node.js). Delivering interactive visual experiences, smooth animations, and intuitive UI/UX that transform ideas into exceptional digital products.",
   imageUrl: "/12006.png",
   availableForWork: true,
   frontendSkills: [
@@ -21,7 +21,7 @@ export const profile = {
   ],
   databaseSkills: [
     "MongoDB",
-    "Mongoose",
+    "Supabase",
     "PostgreSQL",
     "Redis"
   ],
@@ -73,5 +73,15 @@ export const projects = [
     liveDemo: "https://jesko-jets-sepia.vercel.app/",
     gitFrontend: "https://github.com/Naqsh786/Jesko-Jets",
     gitBackend: "",
+  },
+  {
+    _id: "5",
+    title: "AgencySpire — Digital Agency Website",
+    description: "A modern, responsive digital agency website built to showcase creative services through a premium dark interface, interactive UI elements, and smooth animations. Designed with a focus on performance, usability, and a polished user experience.",
+    technologies: ["React", "Vite", "JavaScript", "Tailwind CSS", "Node.js", "Express.js"],
+    imageUrl: "/agencyspire.png",
+    liveDemo: "https://agencyspire.vercel.app/",
+    gitFrontend: "https://github.com/Naqsh786/AgencySpire/tree/main/client",
+    gitBackend: "https://github.com/Naqsh786/AgencySpire/tree/main/server",
   }
 ];

@@ -104,19 +104,19 @@ export default function GlowCursor() {
       {/* Soft trailing glow */}
       <div
         ref={glowRef}
-        className="fixed left-0 top-0 w-14 h-14 rounded-full bg-neon-primary/20 blur-lg"
+        className="fixed left-0 top-0 w-14 h-14 rounded-full bg-neon-primary/15 blur-lg"
         style={{ opacity: 0 }}
       />
       {/* Trailing ring */}
       <div
         ref={ringRef}
-        className="fixed left-0 top-0 w-8 h-8 rounded-full border-2 border-neon-primary/70 shadow-[0_0_12px_rgba(var(--color-neon-primary),0.3)]"
+        className="fixed left-0 top-0 w-8 h-8 rounded-full border-2 border-neon-primary/60 shadow-[0_0_12px_rgba(84,53,204,0.25)]"
         style={{ opacity: 0 }}
       />
       {/* Instant core dot */}
       <div
         ref={dotRef}
-        className="fixed left-0 top-0 w-2 h-2 rounded-full bg-neon-primary shadow-[0_0_10px_3px_rgba(var(--color-neon-primary),0.55)]"
+        className="fixed left-0 top-0 w-2 h-2 rounded-full bg-neon-primary shadow-[0_0_10px_3px_rgba(84,53,204,0.4)]"
         style={{ opacity: 0 }}
       />
     </div>

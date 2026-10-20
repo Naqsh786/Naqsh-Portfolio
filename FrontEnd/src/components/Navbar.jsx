@@ -1,14 +1,15 @@
 import { useState, useEffect } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { HiMenuAlt3, HiX } from "react-icons/hi";
 import { FaCode, FaLock } from "react-icons/fa";
 import { FiChevronRight, FiDownload } from "react-icons/fi";
 
-const Navbar = ({ theme, onThemeChange }) => {
+const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
   const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -51,7 +52,8 @@ const Navbar = ({ theme, onThemeChange }) => {
     setIsOpen(false);
     if (link.path === "/") {
       if (location.pathname !== "/") {
-        window.location.href = "/";
+        navigate("/");
+        window.scrollTo({ top: 0, behavior: "smooth" });
       } else {
         window.scrollTo({ top: 0, behavior: "smooth" });
       }
@@ -62,7 +64,11 @@ const Navbar = ({ theme, onThemeChange }) => {
     if (link.path.startsWith("/#")) {
       const id = link.path.replace("/#", "");
       if (location.pathname !== "/") {
-        window.location.href = link.path;
+        navigate("/");
+        setTimeout(() => {
+          const el = document.getElementById(id);
+          if (el) el.scrollIntoView({ behavior: "smooth" });
+        }, 150);
       } else {
         const el = document.getElementById(id);
         if (el) el.scrollIntoView({ behavior: "smooth" });
@@ -76,22 +82,22 @@ const Navbar = ({ theme, onThemeChange }) => {
       <div
         className={`max-w-6xl mx-auto rounded-2xl transition-all duration-500 border ${
           scrolled
-            ? "glass border-neon-primary/30 shadow-[0_10px_30px_rgba(0,0,0,0.8)] py-2.5 px-4 sm:px-6 bg-slate-950/95 backdrop-blur-xl"
-            : "bg-slate-950/85 backdrop-blur-xl border-white/15 py-3.5 px-4 sm:px-6 shadow-lg"
+            ? "glass border-surface/40 shadow-[0_10px_30px_rgba(0,0,0,0.8)] py-2.5 px-4 sm:px-6 bg-[#00020B]/95 backdrop-blur-xl"
+            : "bg-[#00020B]/85 backdrop-blur-xl border-surface/25 py-3.5 px-4 sm:px-6 shadow-lg"
         } flex items-center justify-between`}
       >
         {/* Logo */}
         <Link to="/" className="flex items-center gap-3 group">
-          <div className="w-9 h-9 rounded-xl bg-neon-primary/15 border border-neon-primary/40 flex items-center justify-center group-hover:bg-neon-primary group-hover:text-white transition-all duration-300 shadow-[0_0_15px_rgba(var(--color-neon-primary),0.2)]">
+          <div className="w-9 h-9 rounded-xl bg-neon-primary/15 border border-neon-primary/40 flex items-center justify-center group-hover:bg-neon-primary group-hover:text-white transition-all duration-300 shadow-[0_0_15px_rgba(var(--color-accent-rgb),0.15)]">
             <FaCode className="text-neon-primary group-hover:text-white text-base transition-colors" />
           </div>
-          <span className="text-lg sm:text-xl font-bold tracking-tight text-white font-sans">
-            Naqsh<span className="text-neon-secondary">.</span>
+          <span className="text-lg sm:text-xl font-bold tracking-tight text-text-primary font-sans">
+            Naqsh<span className="text-neon-primary">.</span>
           </span>
         </Link>
 
         {/* Desktop Links - Active Pill & Hover Indicator */}
-        <div className="hidden md:flex items-center gap-1.5 bg-slate-950/90 p-1.5 rounded-full border border-white/10 shadow-inner">
+        <div className="hidden md:flex items-center gap-1.5 bg-[#00020B]/90 p-1.5 rounded-full border border-surface/25 shadow-inner">
           {navLinks.map((link) => {
             const isActive = activeSection === link.id;
             return (
@@ -100,8 +106,8 @@ const Navbar = ({ theme, onThemeChange }) => {
                 onClick={() => handleNavClick(link)}
                 className={`px-5 py-2 rounded-full text-xs font-mono font-medium uppercase tracking-wider transition-all duration-300 ${
                   isActive
-                    ? "bg-neon-primary text-white shadow-[0_0_15px_rgba(var(--color-neon-primary),0.6)] border border-neon-primary/50 font-bold scale-[1.02]"
-                    : "text-gray-400 hover:text-white hover:bg-neon-primary/15 hover:border hover:border-neon-primary/30"
+                    ? "bg-neon-primary text-white shadow-[0_0_15px_rgba(var(--color-accent-rgb),0.5)] border border-neon-primary/50 font-bold scale-[1.02]"
+                    : "text-muted hover:text-text-primary hover:bg-neon-primary/10 hover:border hover:border-neon-primary/25"
                 }`}
               >
                 {link.name}
@@ -110,21 +116,21 @@ const Navbar = ({ theme, onThemeChange }) => {
           })}
         </div>
 
-        {/* Action Controls (Theme Switcher + Admin + Hire Me) */}
+        {/* Action Controls (Admin + Resume + Hire Me) */}
         <div className="hidden md:flex items-center gap-3 sm:gap-4">
           <div className="flex items-center gap-2.5">
             <a
               href="/Naqsh%20Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-xl border border-white/10 text-sm font-semibold text-gray-300 hover:text-neon-primary hover:border-neon-primary/50 hover:shadow-[0_0_10px_rgba(var(--color-neon-primary),0.3)] transition-all"
+              className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-xl border border-surface/40 text-sm font-semibold text-muted hover:text-neon-primary hover:border-neon-primary/50 hover:shadow-[0_0_10px_rgba(var(--color-accent-rgb),0.2)] transition-all"
             >
               View Resume
             </a>
             <a
               href="/Naqsh%20Resume.pdf"
               download="Naqsh_Resume.pdf"
-              className="p-2.5 rounded-full border border-white/10 text-gray-400 hover:text-neon-primary hover:border-neon-primary/50 hover:shadow-[0_0_10px_rgba(var(--color-neon-primary),0.3)] transition-all"
+              className="p-2.5 rounded-full border border-surface/40 text-muted hover:text-neon-primary hover:border-neon-primary/50 hover:shadow-[0_0_10px_rgba(var(--color-accent-rgb),0.2)] transition-all"
               title="Download Resume"
               aria-label="Download Resume"
             >
@@ -132,34 +138,12 @@ const Navbar = ({ theme, onThemeChange }) => {
             </a>
           </div>
 
-          {/* Dynamic Theme Dots */}
-          <div className="flex items-center gap-2 bg-slate-950/90 px-3 py-1.5 rounded-xl border border-white/10 shadow-inner">
-            <button 
-              onClick={() => onThemeChange("cyberpunk")} 
-              className={`w-3.5 h-3.5 rounded-full bg-purple-500 border border-purple-400 transition-all duration-300 ${theme === 'cyberpunk' ? 'ring-2 ring-white scale-110 shadow-[0_0_10px_#8b5cf6]' : 'opacity-50 hover:opacity-100'}`}
-              title="Cyberpunk Theme"
-              aria-label="Switch to Cyberpunk theme"
-            />
-            <button 
-              onClick={() => onThemeChange("matrix")} 
-              className={`w-3.5 h-3.5 rounded-full bg-emerald-500 border border-emerald-400 transition-all duration-300 ${theme === 'matrix' ? 'ring-2 ring-white scale-110 shadow-[0_0_10px_#10b981]' : 'opacity-50 hover:opacity-100'}`}
-              title="Matrix Theme"
-              aria-label="Switch to Matrix theme"
-            />
-            <button 
-              onClick={() => onThemeChange("sunset")} 
-              className={`w-3.5 h-3.5 rounded-full bg-orange-500 border border-orange-400 transition-all duration-300 ${theme === 'sunset' ? 'ring-2 ring-white scale-110 shadow-[0_0_10px_#f97316]' : 'opacity-50 hover:opacity-100'}`}
-              title="Sunset Theme"
-              aria-label="Switch to Sunset theme"
-            />
-          </div>
-
           <Link
             to="/admin"
-            className={`p-2 rounded-xl bg-slate-950/90 border transition-all ${
+            className={`p-2 rounded-xl bg-[#00020B]/90 border transition-all ${
               location.pathname === "/admin"
-                ? "border-neon-primary text-neon-primary shadow-[0_0_12px_rgba(var(--color-neon-primary),0.4)]"
-                : "border-white/10 text-gray-400 hover:text-neon-primary hover:border-neon-primary/40"
+                ? "border-neon-primary text-neon-primary shadow-[0_0_12px_rgba(var(--color-accent-rgb),0.3)]"
+                : "border-surface/40 text-muted hover:text-neon-primary hover:border-neon-primary/40"
             }`}
             title="Admin Dashboard"
             aria-label="Admin Dashboard"
@@ -169,7 +153,7 @@ const Navbar = ({ theme, onThemeChange }) => {
 
           <button
             onClick={() => handleNavClick({ id: "contact", path: "/#contact" })}
-            className="px-4 sm:px-5 py-2 rounded-xl bg-gradient-to-r from-neon-primary to-neon-secondary text-white text-xs font-bold uppercase tracking-wider hover:opacity-95 transition-all shadow-[0_0_20px_rgba(var(--color-neon-primary),0.35)] hover:scale-105"
+            className="px-4 sm:px-5 py-2 rounded-xl bg-gradient-to-r from-neon-primary to-deep-indigo text-white text-xs font-bold uppercase tracking-wider hover:opacity-95 transition-all shadow-[0_0_20px_rgba(var(--color-accent-rgb),0.25)] hover:scale-105"
           >
             Hire Me
           </button>
@@ -179,10 +163,10 @@ const Navbar = ({ theme, onThemeChange }) => {
         <div className="md:hidden flex items-center gap-2">
           <Link
             to="/admin"
-            className={`p-2 rounded-xl bg-slate-950/90 border transition-all ${
+            className={`p-2 rounded-xl bg-[#00020B]/90 border transition-all ${
               location.pathname === "/admin"
-                ? "border-neon-primary text-neon-primary shadow-[0_0_12px_rgba(var(--color-neon-primary),0.4)]"
-                : "border-white/10 text-gray-400 hover:text-neon-primary hover:border-neon-primary/40"
+                ? "border-neon-primary text-neon-primary shadow-[0_0_12px_rgba(var(--color-accent-rgb),0.3)]"
+                : "border-surface/40 text-muted hover:text-neon-primary hover:border-neon-primary/40"
             }`}
             title="Admin Dashboard"
             aria-label="Admin Dashboard"
@@ -206,7 +190,7 @@ const Navbar = ({ theme, onThemeChange }) => {
           isOpen ? "max-h-[35rem] opacity-100 mt-2" : "max-h-0 opacity-0"
         }`}
       >
-        <div className="max-w-6xl mx-auto glass rounded-2xl border border-neon-primary/30 p-4 shadow-2xl flex flex-col gap-2 bg-slate-950/95 backdrop-blur-xl">
+        <div className="max-w-6xl mx-auto glass rounded-2xl border border-neon-primary/25 p-4 shadow-2xl flex flex-col gap-2 bg-[#00020B]/95 backdrop-blur-xl">
           {navLinks.map((link) => {
             const isActive = activeSection === link.id;
             return (
@@ -215,8 +199,8 @@ const Navbar = ({ theme, onThemeChange }) => {
                 onClick={() => handleNavClick(link)}
                 className={`flex items-center justify-between px-4 py-3 rounded-xl text-xs sm:text-sm font-mono uppercase tracking-widest transition-all ${
                   isActive
-                    ? "bg-neon-primary/20 text-white border border-neon-primary/40 font-bold"
-                    : "text-gray-300 hover:bg-neon-primary/10 hover:text-white"
+                    ? "bg-neon-primary/15 text-white border border-neon-primary/35 font-bold"
+                    : "text-muted hover:bg-neon-primary/8 hover:text-text-primary"
                 }`}
               >
                 <span>{link.name}</span>
@@ -225,48 +209,20 @@ const Navbar = ({ theme, onThemeChange }) => {
             );
           })}
 
-          {/* Mobile Theme Selector */}
-          <div className="flex items-center justify-between px-4 py-3 border-t border-neon-primary/20 mt-2 pt-3">
-            <span className="text-xs font-mono text-gray-400 uppercase tracking-widest">Theme</span>
-            <div className="flex items-center gap-2">
-              <button 
-                onClick={() => onThemeChange("cyberpunk")} 
-                className={`px-3 py-1 rounded-md text-[10px] font-mono font-bold uppercase transition-all ${theme === 'cyberpunk' ? 'bg-purple-600/30 text-purple-300 border border-purple-500/50' : 'text-gray-400 border border-transparent'}`}
-                aria-label="Switch to Cyberpunk theme"
-              >
-                Cyber
-              </button>
-              <button 
-                onClick={() => onThemeChange("matrix")} 
-                className={`px-3 py-1 rounded-md text-[10px] font-mono font-bold uppercase transition-all ${theme === 'matrix' ? 'bg-emerald-600/30 text-emerald-300 border border-emerald-500/50' : 'text-gray-400 border border-transparent'}`}
-                aria-label="Switch to Matrix theme"
-              >
-                Matrix
-              </button>
-              <button 
-                onClick={() => onThemeChange("sunset")} 
-                className={`px-3 py-1 rounded-md text-[10px] font-mono font-bold uppercase transition-all ${theme === 'sunset' ? 'bg-orange-600/30 text-orange-300 border border-orange-500/50' : 'text-gray-400 border border-transparent'}`}
-                aria-label="Switch to Sunset theme"
-              >
-                Sunset
-              </button>
-            </div>
-          </div>
-
           {/* Mobile Resume Buttons */}
-          <div className="flex gap-2 mt-1">
+          <div className="flex gap-2 mt-3 pt-3 border-t border-surface/30">
             <a
               href="/Naqsh%20Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl border border-white/10 text-gray-300 text-sm font-bold uppercase tracking-widest hover:border-neon-primary/40 hover:text-neon-primary transition-all"
+              className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl border border-surface/40 text-muted text-sm font-bold uppercase tracking-widest hover:border-neon-primary/40 hover:text-neon-primary transition-all"
             >
               View Resume
             </a>
             <a
               href="/Naqsh%20Resume.pdf"
               download="Naqsh_Resume.pdf"
-              className="flex items-center justify-center p-3.5 rounded-xl border border-white/10 text-gray-400 hover:text-neon-primary hover:border-neon-primary/50 transition-all"
+              className="flex items-center justify-center p-3.5 rounded-xl border border-surface/40 text-muted hover:text-neon-primary hover:border-neon-primary/50 transition-all"
               title="Download Resume"
               aria-label="Download Resume"
             >
@@ -277,7 +233,7 @@ const Navbar = ({ theme, onThemeChange }) => {
           {/* Mobile Hire Me Button */}
           <button
             onClick={() => handleNavClick({ id: "contact", path: "/#contact" })}
-            className="w-full py-3 mt-1 rounded-xl bg-gradient-to-r from-neon-primary to-neon-secondary text-white text-xs font-bold uppercase tracking-widest hover:opacity-95 transition-all shadow-[0_0_20px_rgba(var(--color-neon-primary),0.35)] active:scale-95"
+            className="w-full py-3 mt-1 rounded-xl bg-gradient-to-r from-neon-primary to-deep-indigo text-white text-xs font-bold uppercase tracking-widest hover:opacity-95 transition-all shadow-[0_0_20px_rgba(var(--color-accent-rgb),0.25)] active:scale-95"
           >
             Hire Me
           </button>

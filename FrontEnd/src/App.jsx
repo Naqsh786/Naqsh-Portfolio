@@ -1,64 +1,60 @@
-import React, { useState, useEffect, Suspense, lazy } from "react";
+import React, { useState, Suspense, lazy } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
-import Preloader from "./components/Preloader";
-import GlowCursor from "./components/GlowCursor";
+import WeightSweepPreloader from "@/components/ui/weight-sweep-preloader";
+import CursorDotTrail from "./components/CursorDotTrail";
 
-// Lazy load heavy 3D engine and page routes
-const Hero3D = lazy(() => import("./components/Hero3D"));
+// Lazy load page routes
 const Home = lazy(() => import("./pages/Home"));
 const AdminDashboard = lazy(() => import("./pages/AdminDashboard"));
 
 function App() {
   const [loading, setLoading] = useState(true);
-  const [theme, setTheme] = useState(() => {
-    return localStorage.getItem("portfolio-theme") || "cyberpunk";
-  });
 
-  useEffect(() => {
-    document.documentElement.setAttribute("data-theme", theme);
-  }, [theme]);
-
-  const toggleTheme = (newTheme) => {
-    setTheme(newTheme);
-    localStorage.setItem("portfolio-theme", newTheme);
-  };
+  // Support replay intro from footer or navigation
+  React.useEffect(() => {
+    const handleReplay = () => {
+      window.scrollTo({ top: 0, behavior: "instant" });
+      setLoading(true);
+    };
+    window.addEventListener("replay-intro", handleReplay);
+    return () => window.removeEventListener("replay-intro", handleReplay);
+  }, []);
 
   return (
     <Router>
-      {loading ? (
-        <Preloader onComplete={() => setLoading(false)} />
-      ) : (
-        <>
-          {/* Fixed layers must stay OUTSIDE any filtered/animated ancestor,
-              otherwise filter creates a containing block and they scroll with the page */}
-          <GlowCursor />
-          <Suspense fallback={null}>
-            <Hero3D theme={theme} />
-          </Suspense>
-          <Navbar theme={theme} onThemeChange={toggleTheme} />
-          <div className="min-h-screen bg-transparent animate-fade-in relative">
-            <Routes>
-              <Route 
-                path="/" 
-                element={
-                  <Suspense fallback={<div className="min-h-screen bg-[#050814]" />}>
-                    <Home theme={theme} />
-                  </Suspense>
-                } 
-              />
-              <Route 
-                path="/admin" 
-                element={
-                  <Suspense fallback={<div className="min-h-screen bg-[#050814]" />}>
-                    <AdminDashboard theme={theme} />
-                  </Suspense>
-                } 
-              />
-            </Routes>
+      <div className="min-h-screen bg-[#00020B] text-text-primary relative selection:bg-neon-primary selection:text-white">
+        {loading && (
+          <div className="fixed inset-0 z-[9999]">
+            <WeightSweepPreloader 
+              durationMs={2200}
+              onComplete={() => setLoading(false)} 
+            />
           </div>
-        </>
-      )}
+        )}
+        <CursorDotTrail />
+        <Navbar />
+        <div className="min-h-screen bg-transparent relative">
+          <Routes>
+            <Route 
+              path="/" 
+              element={
+                <Suspense fallback={<div className="min-h-screen bg-[#00020B]" />}>
+                  <Home />
+                </Suspense>
+              } 
+            />
+            <Route 
+              path="/admin" 
+              element={
+                <Suspense fallback={<div className="min-h-screen bg-[#00020B]" />}>
+                  <AdminDashboard />
+                </Suspense>
+              } 
+            />
+          </Routes>
+        </div>
+      </div>
     </Router>
   );
 }
