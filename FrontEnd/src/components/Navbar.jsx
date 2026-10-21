@@ -23,10 +23,13 @@ const Navbar = () => {
       const scrollPos = window.scrollY + 220;
       const skillsEl = document.getElementById("skills");
       const projectsEl = document.getElementById("projects");
+      const servicesEl = document.getElementById("services");
       const contactEl = document.getElementById("contact");
 
       if (contactEl && scrollPos >= contactEl.offsetTop) {
         setActiveSection("contact");
+      } else if (servicesEl && scrollPos >= servicesEl.offsetTop) {
+        setActiveSection("services");
       } else if (projectsEl && scrollPos >= projectsEl.offsetTop) {
         setActiveSection("projects");
       } else if (skillsEl && scrollPos >= skillsEl.offsetTop) {
@@ -45,6 +48,7 @@ const Navbar = () => {
     { id: "home", name: "Home", path: "/" },
     { id: "skills", name: "Skills", path: "/#skills" },
     { id: "projects", name: "Projects", path: "/#projects" },
+    { id: "services", name: "Services", path: "/#services" },
     { id: "contact", name: "Contact", path: "/#contact" },
   ];
 

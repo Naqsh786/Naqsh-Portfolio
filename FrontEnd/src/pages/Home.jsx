@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import GridTrails from "../components/GridTrails";
 import MotionTiles from "@/components/ui/motion-tiles";
 import RidgelineTerrain from "../components/RidgelineTerrain";
+import ServicesSection from "../components/ServicesSection";
 import FooterField from "../components/FooterField";
 import {
   FaLinkedin,
@@ -30,6 +31,21 @@ const ContactForm = () => {
   });
   const [loading, setLoading] = useState(false);
   const [status, setStatus] = useState(null);
+
+  // Listen for service inquiry triggers from ServicesSection
+  useEffect(() => {
+    const handleSelectService = (e) => {
+      const serviceTitle = e.detail?.serviceTitle;
+      if (serviceTitle) {
+        setFormData((prev) => ({
+          ...prev,
+          subject: `Project Inquiry: ${serviceTitle}`
+        }));
+      }
+    };
+    window.addEventListener("select-service", handleSelectService);
+    return () => window.removeEventListener("select-service", handleSelectService);
+  }, []);
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -507,6 +523,9 @@ const Home = () => {
 
         <MotionTiles projects={projects} />
       </section>
+
+      {/* ── SERVICES & SOLUTIONS SECTION ── */}
+      <ServicesSection />
 
       {/* ── CONTACT SECTION with Ridgeline Terrain Background ── */}
       <section id="contact" className="py-20 md:py-28 px-4 sm:px-6 relative z-10 border-t border-surface/20 scroll-mt-20 overflow-hidden">

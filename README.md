@@ -7,7 +7,7 @@
 [![TailwindCSS](https://img.shields.io/badge/TailwindCSS-v3.x-38B2AC?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
 [![Vite](https://img.shields.io/badge/Vite-Bundler-646CFF?style=for-the-badge&logo=vite&logoColor=white)](https://vitejs.dev/)
 
-A state-of-the-art **Full-Stack MERN Portfolio** featuring interactive **3D WebGL graphics**, a **Futuristic Sci-Fi HUD Preloader**, custom **Theme Switching Engine**, and an encrypted **Admin Portal** for managing real-time contact inquiries.
+A state-of-the-art **Full-Stack MERN Portfolio** featuring interactive **3D WebGL graphics**, a **Futuristic Sci-Fi HUD Preloader**, custom **Theme Switching Engine**, a premium **Services Showcase**, interactive **Cursor Dot Trail**, **Ridgeline Terrain** contact background, a physics-based **Interactive Footer**, and an encrypted **Admin Portal** for managing real-time contact inquiries.
 
 ---
 
@@ -21,6 +21,24 @@ A state-of-the-art **Full-Stack MERN Portfolio** featuring interactive **3D WebG
 ### ⚡ Futuristic Sci-Fi HUD Preloader
 * High-tech interactive boot animation counting from `0%` to `100%`.
 * Dual-direction spinning SVG rings, live system telemetry text, and smooth page explosion transition.
+
+### 🎯 Services Showcase
+* **4 premium service cards** in a 2×2 responsive grid: Full-Stack Web Applications, Interactive UI/UX & 3D Experiences, Backend APIs & Cloud Architecture, and Performance, SEO & Modernization.
+* Each card features neon ambient glows, tech stack badges, key deliverables checklists, and a direct **"Inquire Now"** CTA that pre-populates the contact form subject and smooth-scrolls to contact.
+* **Execution Framework strip** — a 4-step process overview ("How Ideas Become Production Reality") showcasing the development workflow from Discovery to Launch.
+
+### 🖱️ Cursor Dot Trail
+* Custom animated cursor with glowing dot trail effect that follows mouse movement.
+* Smooth interpolation and fade-out for a polished, premium feel.
+
+### 🏔️ Ridgeline Terrain Contact Background
+* Animated ridgeline mountain terrain rendered on HTML Canvas behind the contact form.
+* Creates a dynamic, living backdrop that elevates the contact section's visual impact.
+
+### 🦶 Interactive Physics Footer
+* Gravity-based interactive footer with draggable skill badges.
+* Built with Matter.js physics engine — badges react to mouse interaction with realistic physics.
+* Includes quick navigation links, back-to-top, and a "Replay Intro" button.
 
 ### 🔒 Secured Admin Dashboard
 * Password-protected authentication powered by **JWT (JSON Web Tokens)**.
@@ -44,9 +62,10 @@ A state-of-the-art **Full-Stack MERN Portfolio** featuring interactive **3D WebG
 
 | Category | Technology |
 | :--- | :--- |
-| **Frontend** | React 18, Vite, Three.js, React Three Fiber, React Three Drei, TailwindCSS, React Icons, React Router DOM |
+| **Frontend** | React 18, Vite, Three.js, React Three Fiber, React Three Drei, TailwindCSS, Framer Motion, React Icons, React Router DOM |
 | **Backend** | Node.js, Express.js, MongoDB, Mongoose, JSONWebToken, CORS, Dotenv, Nodemon |
 | **Styling** | Custom Glassmorphism, TailwindCSS, CSS Variables, Neon Glow Effects |
+| **Physics** | Matter.js (Footer), Canvas API (Ridgeline Terrain, Cursor Trail) |
 | **Version Control** | Git & GitHub |
 
 ---
@@ -57,38 +76,57 @@ A state-of-the-art **Full-Stack MERN Portfolio** featuring interactive **3D WebG
 Naqsh-Portfolio/
 ├── Backend/
 │   ├── config/
-│   │   └── db.js                 # MongoDB Mongoose Connection
+│   │   └── db.js                     # MongoDB Mongoose Connection
 │   ├── controllers/
-│   │   ├── adminController.js    # Admin Auth & Message Management
-│   │   └── contactController.js  # Contact Form Inquiries
+│   │   ├── adminController.js        # Admin Auth & Message Management
+│   │   └── contactController.js      # Contact Form Inquiries
 │   ├── middleware/
-│   │   └── authMiddleware.js     # JWT Bearer Token Verification
+│   │   └── authMiddleware.js         # JWT Bearer Token Verification
 │   ├── models/
-│   │   └── Message.js            # Mongoose Message Schema
+│   │   └── Message.js                # Mongoose Message Schema
 │   ├── routes/
-│   │   ├── adminRoutes.js        # Admin API Routes
-│   ├── .env.example              # Environment Variables Template
-│   ├── app.js                    # Express App Setup
-│   ├── server.js                 # Server Entry Point
+│   │   ├── adminRoutes.js            # Admin API Routes
+│   ├── .env.example                  # Environment Variables Template
+│   ├── app.js                        # Express App Setup
+│   ├── server.js                     # Server Entry Point
 │   └── package.json
 │
 ├── FrontEnd/
 │   ├── src/
 │   │   ├── components/
-│   │   │   ├── Hero3D.jsx        # 3D Canvas Background
-│   │   │   ├── Navbar.jsx        # Sticky Glass Navbar & Scroll Tracker
-│   │   │   ├── Preloader.jsx     # Sci-Fi HUD Boot Screen
-│   │   │   └── ProjectCard.jsx   # Project Showcase Card
+│   │   │   ├── CursorDotTrail.jsx    # Animated Cursor Dot Trail Effect
+│   │   │   ├── FooterField.jsx       # Physics-Based Interactive Footer
+│   │   │   ├── GlowCursor.jsx        # Glow Cursor Effect
+│   │   │   ├── GridTrails.jsx        # Grid Trail Animations
+│   │   │   ├── Navbar.jsx            # Sticky Glass Navbar & Scroll Spy
+│   │   │   ├── RidgelineTerrain.jsx  # Animated Mountain Canvas Background
+│   │   │   ├── ServicesSection.jsx   # Premium 4-Card Services Showcase
+│   │   │   └── Starfield.jsx         # Starfield Background Effect
 │   │   ├── pages/
-│   │   │   ├── Home.jsx          # Hero, Skills, Projects, Contact
-│   │   │   └── AdminDashboard.jsx# Admin Management Portal
-│   │   ├── App.jsx               # Main App & Router
-│   │   └── main.jsx
+│   │   │   ├── Home.jsx              # Hero, Skills, Projects, Services, Contact
+│   │   │   └── AdminDashboard.jsx    # Admin Management Portal
+│   │   ├── data.js                   # Profile & Project Data
+│   │   ├── App.jsx                   # Main App & Router
+│   │   ├── index.css                 # Global Styles & Theme Variables
+│   │   └── main.jsx                  # App Entry Point
 │   ├── index.html
 │   └── package.json
 │
 └── README.md
 ```
+
+---
+
+## 📋 Sections Overview
+
+| Section | Description |
+| :--- | :--- |
+| **Hero** | Full-screen intro with 3D canvas, profile portrait, animated tagline, and CTA buttons |
+| **Skills** | Animated skill badges with proficiency indicators |
+| **Projects** | Responsive project showcase grid with live demo & GitHub links + "View More on GitHub" button |
+| **Services** | 4 premium service cards with deliverables, tech stacks, inquiry CTAs, and execution framework |
+| **Contact** | Glassmorphic contact form with Ridgeline Terrain background and service pre-population |
+| **Footer** | Physics-based interactive footer with draggable badges, quick links, and replay intro |
 
 ---
 
@@ -165,6 +203,6 @@ Distributed under the **MIT License**. See `LICENSE` for more information.
 
 ---
 
-<p center>
+<p align="center">
   Designed & Developed with ❤️ by <b>Naqsh</b>
 </p>

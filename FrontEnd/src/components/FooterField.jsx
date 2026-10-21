@@ -372,6 +372,14 @@ export default function FooterField({ onReplayIntro }) {
               </li>
               <li>
                 <a
+                  href="#services"
+                  className="hover:text-white hover:translate-x-1 transition-all inline-block"
+                >
+                  Services & Solutions
+                </a>
+              </li>
+              <li>
+                <a
                   href="#contact"
                   className="hover:text-white hover:translate-x-1 transition-all inline-block"
                 >
