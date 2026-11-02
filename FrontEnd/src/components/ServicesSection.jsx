@@ -1,122 +1,148 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
-  FaLaptopCode,
-  FaServer,
-  FaRocket,
-  FaCheckCircle,
-  FaArrowRight,
-  FaCogs,
-  FaLayerGroup,
-  FaShieldAlt,
-  FaBolt
-} from "react-icons/fa";
-import { HiSparkles } from "react-icons/hi";
-import { FiLayers, FiCpu, FiCheck, FiArrowUpRight } from "react-icons/fi";
+  FiCode,
+  FiLayout,
+  FiServer,
+  FiZap,
+  FiCheck,
+  FiArrowRight
+} from "react-icons/fi";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import MilestoneProcessScroll from "./MilestoneProcessScroll";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const services = [
   {
     id: "full-stack",
     number: "01",
-    tag: "END-TO-END ENGINEERING",
+    tag: "FULL-STACK",
     title: "Full-Stack Web Applications",
-    subtitle: "Turnkey MERN & Next.js production platforms",
+    subtitle: "Production-ready platforms with React, Next.js & Node.js",
     description:
-      "Architecting scalable, production-grade web systems from the ground up. Combining lightning-fast React and Next.js frontends with robust Node.js backend APIs, resilient databases, and real-time state synchronization.",
-    icon: FaLaptopCode,
-    glowColor: "rgba(84, 53, 204, 0.45)",
-    borderColor: "group-hover:border-neon-primary/70",
+      "Developing full-stack web applications with modular frontend components, secure Node.js REST APIs, resilient database schemas, and predictable state management.",
+    icon: FiCode,
+    glowColor: "rgba(84, 53, 204, 0.2)",
+    borderColor: "group-hover:border-neon-primary/60",
     deliverables: [
-      "Custom MERN & Next.js (SSR / SSG) Systems",
-      "Real-Time WebSockets & Live Dashboards",
-      "Secure Role-Based Auth (JWT, OAuth, OTP)",
-      "High-Traffic State Management (Redux / Zustand)"
+      "Custom React & Next.js Applications",
+      "Secure Authentication (JWT, OAuth)",
+      "Real-time Data Updates & Dashboards",
+      "Predictable State Architecture (Redux)"
     ],
-    techStack: ["React.js", "Next.js", "Node.js", "Express.js", "MongoDB", "Redux"]
+    techStack: ["React.js", "Next.js", "TypeScript", "Node.js", "Express.js", "MongoDB"]
   },
   {
     id: "ui-ux",
     number: "02",
-    tag: "CREATIVE ENGINEERING",
-    title: "Interactive UI/UX & 3D Experiences",
-    subtitle: "Engaging, high-converting digital interfaces",
+    tag: "FRONTEND & MOTION",
+    title: "Frontend & Interactive Interfaces",
+    subtitle: "Fluid user interactions and responsive layouts",
     description:
-      "Transforming static screens into living, sensory web experiences. Leveraging 3D canvas visuals, 60fps physics animations, sleek glassmorphism, and pixel-perfect responsiveness that keep visitors captivated.",
-    icon: HiSparkles,
-    glowColor: "rgba(124, 92, 231, 0.45)",
-    borderColor: "group-hover:border-[#7c5ce7]/70",
+      "Creating intuitive, accessible web interfaces with smooth micro-interactions, responsive styling, and interactive 3D canvas visuals using Three.js and Framer Motion.",
+    icon: FiLayout,
+    glowColor: "rgba(124, 92, 231, 0.2)",
+    borderColor: "group-hover:border-[#7c5ce7]/60",
     deliverables: [
-      "Immersive 3D Canvas & Three.js Experiences",
-      "Smooth Lenis Inertial Scroll & GSAP Dynamics",
-      "Bespoke Glassmorphism & Cyber Aesthetics",
-      "Figma to Pixel-Perfect High-Fidelity Code"
+      "Responsive & Mobile-First Layouts",
+      "Smooth Scroll & Micro-Animations",
+      "3D Canvas & WebGL Integration",
+      "Figma to Pixel-Perfect Code"
     ],
-    techStack: ["Three.js", "Framer Motion", "Tailwind CSS", "Canvas", "Lenis"]
+    techStack: ["React", "TypeScript", "Tailwind CSS", "Framer Motion", "Three.js"]
   },
   {
     id: "backend-cloud",
     number: "03",
-    tag: "RESILIENT INFRASTRUCTURE",
-    title: "Backend APIs & Cloud Architecture",
-    subtitle: "High-throughput, secure microservices & data layers",
+    tag: "BACKEND & APIS",
+    title: "Backend APIs & Data Architecture",
+    subtitle: "Robust server runtimes, data models & third-party integrations",
     description:
-      "Engineering rock-solid server architectures, automated business workflows, and payment pipelines. Built for speed, maximum uptime, strict security compliance, and effortless horizontal scalability.",
-    icon: FaServer,
-    glowColor: "rgba(16, 185, 129, 0.35)",
-    borderColor: "group-hover:border-emerald-500/60",
+      "Engineering RESTful API endpoints, structured database schemas with MongoDB and PostgreSQL, role-based authorization, and payment processing pipelines.",
+    icon: FiServer,
+    glowColor: "rgba(16, 185, 129, 0.18)",
+    borderColor: "group-hover:border-emerald-500/50",
     deliverables: [
-      "RESTful & Microservices Architecture",
-      "Stripe Payments & Webhook Automations",
-      "Database Schema Design & Query Optimization",
-      "Cloud Media Storage (Cloudinary, AWS S3)"
+      "RESTful API Design & Input Validation",
+      "Stripe Payment & Webhook Integration",
+      "Database Schema & Query Tuning",
+      "Cloud Asset Pipelines (Cloudinary)"
     ],
     techStack: ["Node.js", "Express.js", "MongoDB", "PostgreSQL", "Stripe API", "Redis"]
   },
   {
     id: "performance-seo",
     number: "04",
-    tag: "OPTIMIZATION & SCALE",
-    title: "Performance, SEO & Modernization",
-    subtitle: "Sub-second speed, 95+ Lighthouse & code refactoring",
+    tag: "PERFORMANCE",
+    title: "Performance & Code Optimization",
+    subtitle: "Fast load times, SEO best practices & code refactoring",
     description:
-      "Supercharging existing web apps to achieve benchmark performance and search supremacy. Eradicating layout shifts, cutting bundle sizes, implementing rich SEO metadata, and migrating legacy codebases.",
-    icon: FaRocket,
-    glowColor: "rgba(236, 72, 153, 0.35)",
-    borderColor: "group-hover:border-pink-500/60",
+      "Auditing and optimizing existing web applications to improve Core Web Vitals, minimize bundle sizes, implement proper meta tags, and migrate codebases to modern TypeScript standards.",
+    icon: FiZap,
+    glowColor: "rgba(236, 72, 153, 0.18)",
+    borderColor: "group-hover:border-pink-500/50",
     deliverables: [
-      "95+ Google Lighthouse & Core Web Vitals Audit",
-      "Automated CI/CD & Docker Containerization",
-      "Technical SEO, Semantic Markup & OpenGraph",
-      "Legacy Code Refactoring to Modern React & TypeScript"
+      "Core Web Vitals & Lighthouse Tuning",
+      "Bundle Size & Image Optimization",
+      "Semantic SEO & OpenGraph Structure",
+      "TypeScript & React Modernization"
     ],
-    techStack: ["Lighthouse", "Docker", "Vercel", "TypeScript", "SEO", "Vite"]
+    techStack: ["Lighthouse", "TypeScript", "Vite", "Next.js", "Docker", "Vercel"]
   }
 ];
 
-const processSteps = [
-  {
-    step: "01",
-    title: "Discovery & Blueprint",
-    desc: "Understanding product goals, user personas, technical specs, and mapping system architecture."
-  },
-  {
-    step: "02",
-    title: "UI/UX & Interactive Prototype",
-    desc: "Translating wireframes into polished interactive components with modern styling and responsive layouts."
-  },
-  {
-    step: "03",
-    title: "Full-Stack Development",
-    desc: "Clean, modular code writing with secure APIs, database integration, state management, and tests."
-  },
-  {
-    step: "04",
-    title: "Quality Audit & Launch",
-    desc: "Cross-browser testing, SEO check, performance tuning, and zero-downtime production deployment."
-  }
-];
 
 export default function ServicesSection() {
   const [hoveredCard, setHoveredCard] = useState(null);
+  const sectionRef = useRef(null);
+  const headerRef = useRef(null);
+  const cardsRef = useRef([]);
+
+  useEffect(() => {
+    const ctx = gsap.context(() => {
+      if (headerRef.current) {
+        gsap.fromTo(
+          headerRef.current,
+          { y: 35, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            ease: "power2.out",
+            scrollTrigger: {
+              trigger: headerRef.current,
+              start: "top 90%",
+              end: "top 70%",
+              scrub: 0.8,
+            },
+          }
+        );
+      }
+
+      if (cardsRef.current.length > 0) {
+        cardsRef.current.forEach((card) => {
+          if (!card) return;
+          gsap.fromTo(
+            card,
+            { y: 40, opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: card,
+                start: "top 92%",
+                end: "top 72%",
+                scrub: 0.8,
+              },
+            }
+          );
+        });
+      }
+    }, sectionRef);
+
+    return () => ctx.revert();
+  }, []);
 
   const handleInquire = (serviceTitle) => {
     // Notify contact form to pre-populate subject
@@ -136,21 +162,22 @@ export default function ServicesSection() {
   return (
     <section
       id="services"
+      ref={sectionRef}
       className="py-16 md:py-24 px-4 sm:px-6 lg:px-8 relative z-10 scroll-mt-20 overflow-hidden"
     >
-      {/* Ambient background glows */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-neon-primary/10 rounded-full blur-[140px] pointer-events-none" />
-      <div className="absolute bottom-1/4 right-10 w-[400px] h-[300px] bg-[#7c5ce7]/8 rounded-full blur-[120px] pointer-events-none" />
+      {/* Ambient background glows - softened */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[250px] bg-neon-primary/[0.04] rounded-full blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-1/4 right-10 w-[350px] h-[200px] bg-[#7c5ce7]/[0.03] rounded-full blur-[90px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto w-full relative z-10">
         {/* Section Header */}
-        <div className="max-w-3xl mx-auto text-center mb-14 md:mb-18">
+        <div ref={headerRef} className="max-w-3xl mx-auto text-center mb-14 md:mb-18">
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-text-primary tracking-tight">
-            What I Can  <span className="gradient-text">Build For You</span>
+            Services & <span className="gradient-text">Solutions</span>
           </h2>
           <p className="text-muted font-sans text-sm sm:text-base md:text-lg mt-4 leading-relaxed">
-            I turn ideas into production-ready web applications — engineered for performance, built with clean code, and designed to scale.
+            Production-ready web applications, responsive frontend architecture, and resilient API backends built to scale.
           </p>
         </div>
 
@@ -163,23 +190,24 @@ export default function ServicesSection() {
             return (
               <div
                 key={srv.id}
+                ref={(el) => (cardsRef.current[idx] = el)}
                 onMouseEnter={() => setHoveredCard(srv.id)}
                 onMouseLeave={() => setHoveredCard(null)}
-                className={`group relative rounded-3xl p-6 sm:p-8 bg-gradient-to-br from-[#0D0D1A]/95 via-[#00020B]/90 to-[#100354]/30 border border-surface/50 ${srv.borderColor} transition-all duration-500 shadow-[0_0_25px_rgba(84,53,204,0.06)] hover:shadow-[0_0_50px_rgba(84,53,204,0.22)] hover:-translate-y-1.5 flex flex-col justify-between overflow-hidden`}
+                className={`group relative rounded-3xl p-6 sm:p-8 bg-gradient-to-br from-[#0D0D1A]/95 via-[#00020B]/90 to-[#100354]/30 border border-surface/50 ${srv.borderColor} transition-all duration-500 shadow-[0_4px_20px_rgba(0,0,0,0.5)] hover:shadow-[0_12px_35px_rgba(84,53,204,0.18)] hover:-translate-y-1.5 flex flex-col justify-between overflow-hidden`}
               >
                 {/* Top Glowing Indicator Line */}
                 <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-neon-primary to-transparent opacity-40 group-hover:opacity-100 transition-opacity duration-500" />
 
                 {/* Ambient Reactive Glow Blob */}
                 <div
-                  className="absolute -top-20 -right-20 w-52 h-52 rounded-full blur-3xl pointer-events-none transition-all duration-700 opacity-50 group-hover:opacity-100 group-hover:scale-125"
+                  className="absolute -top-20 -right-20 w-52 h-52 rounded-full blur-3xl pointer-events-none transition-all duration-700 opacity-20 group-hover:opacity-40 group-hover:scale-110"
                   style={{ background: srv.glowColor }}
                 />
 
                 <div>
                   {/* Top Header Row: Icon + Badge + Number */}
                   <div className="flex items-start justify-between gap-4 mb-5">
-                    <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-2xl bg-[#00020B] border border-neon-primary/30 flex items-center justify-center text-neon-primary text-xl sm:text-2xl shadow-[0_0_15px_rgba(84,53,204,0.15)] group-hover:border-neon-primary group-hover:scale-105 group-hover:shadow-[0_0_25px_rgba(84,53,204,0.45)] transition-all duration-300 flex-shrink-0">
+                    <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-2xl bg-[#00020B] border border-neon-primary/30 flex items-center justify-center text-neon-primary text-xl sm:text-2xl shadow-[0_0_15px_rgba(84,53,204,0.15)] group-hover:border-neon-primary group-hover:scale-105 group-hover:shadow-[0_0_20px_rgba(84,53,204,0.3)] transition-all duration-300 flex-shrink-0">
                       <Icon />
                     </div>
 
@@ -210,13 +238,13 @@ export default function ServicesSection() {
 
                   {/* Key Deliverables Checklist */}
                   <div className="mb-6 pt-4 border-t border-surface/30">
-                    <p className="text-[11px] font-mono text-text-primary uppercase tracking-wider font-semibold mb-3 flex items-center gap-1.5">
-                      <FiCpu className="text-neon-primary" /> Key Capabilities & Deliverables
+                    <p className="text-[11px] font-mono text-muted uppercase tracking-wider font-semibold mb-3">
+                      Key Capabilities & Deliverables
                     </p>
                     <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-muted">
                       {srv.deliverables.map((item, dIdx) => (
                         <li key={dIdx} className="flex items-start gap-2">
-                          <FaCheckCircle className="text-neon-primary text-[11px] mt-0.5 flex-shrink-0" />
+                          <FiCheck className="text-neon-primary text-xs mt-0.5 flex-shrink-0" />
                           <span className="leading-snug">{item}</span>
                         </li>
                       ))}
@@ -248,7 +276,7 @@ export default function ServicesSection() {
                     className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-neon-primary/10 hover:bg-neon-primary text-neon-primary hover:text-white border border-neon-primary/30 hover:border-neon-primary text-xs font-mono font-semibold transition-all duration-300 shadow-[0_0_15px_rgba(84,53,204,0.1)] hover:shadow-[0_0_20px_rgba(84,53,204,0.4)] active:scale-95 group/btn"
                   >
                     <span>Inquire Now</span>
-                    <FaArrowRight className="text-[10px] group-hover/btn:translate-x-1 transition-transform" />
+                    <FiArrowRight className="text-xs group-hover/btn:translate-x-1 transition-transform" />
                   </button>
                 </div>
               </div>
@@ -256,45 +284,8 @@ export default function ServicesSection() {
           })}
         </div>
 
-        {/* ── Process / How I Work Strip ── */}
-        <div className="rounded-3xl p-6 sm:p-8 md:p-10 bg-[#0D0D1A]/70 border border-surface/40 backdrop-blur-md relative overflow-hidden">
-          <div className="absolute top-0 right-0 w-80 h-80 bg-neon-primary/5 rounded-full blur-3xl pointer-events-none" />
-
-          <div className="text-center md:text-left md:flex md:items-center md:justify-between pb-6 mb-6 border-b border-surface/30">
-            <div>
-              <span className="text-xs font-mono font-bold text-neon-primary uppercase tracking-widest">
-                EXECUTION FRAMEWORK
-              </span>
-              <h4 className="text-xl sm:text-2xl font-bold text-white tracking-tight mt-1">
-                How Ideas Become Production Reality
-              </h4>
-            </div>
-            <p className="text-muted text-xs sm:text-sm font-sans max-w-md mt-2 md:mt-0 leading-relaxed">
-              A transparent, agile development workflow designed for predictability, quality assurance, and swift delivery.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {processSteps.map((step, idx) => (
-              <div key={idx} className="relative group flex flex-col justify-between">
-                <div>
-                  <div className="flex items-center gap-3 mb-2.5">
-                    <span className="text-2xl font-black font-mono text-neon-primary/40 group-hover:text-neon-primary transition-colors">
-                      {step.step}
-                    </span>
-                    <span className="h-px flex-1 bg-surface/40 group-hover:bg-neon-primary/40 transition-colors" />
-                  </div>
-                  <h5 className="text-sm font-bold text-white mb-1.5 group-hover:text-[#c4b5fd] transition-colors">
-                    {step.title}
-                  </h5>
-                  <p className="text-xs text-muted leading-relaxed">
-                    {step.desc}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
+        {/* ── Interactive Milestone Process Scroll (Center Rail & Alternating Cards) ── */}
+        <MilestoneProcessScroll />
       </div>
     </section>
   );

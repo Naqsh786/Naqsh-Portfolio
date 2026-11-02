@@ -1,5 +1,5 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { FaArrowUp, FaRedo, FaGithub, FaLinkedin, FaEnvelope, FaCode } from "react-icons/fa";
+import { FiArrowUp, FiRotateCcw, FiGithub, FiLinkedin, FiMail, FiCode } from "react-icons/fi";
 
 // Constants from Framer FooterField specification
 const PUSH = 12000; // px/s² at pointer center
@@ -328,15 +328,15 @@ export default function FooterField({ onReplayIntro }) {
           {/* Brand Info */}
           <div className="md:col-span-5 flex flex-col items-start gap-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-neon-primary to-[#7c5ce7] flex items-center justify-center text-white shadow-[0_0_20px_rgba(84,53,204,0.5)]">
-                <FaCode className="text-lg" />
+              <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-neon-primary to-[#7c5ce7] flex items-center justify-center text-white shadow-md shadow-neon-primary/30">
+                <FiCode className="text-lg" />
               </div>
               <span className="text-2xl font-bold font-mono tracking-tight text-white">
                 Naqsh<span className="text-neon-primary">.</span>
               </span>
             </div>
             <p className="text-muted text-sm leading-relaxed max-w-sm">
-              Full-Stack MERN & React Developer building state-of-the-art interactive web experiences, scalable architectures, and refined interfaces.
+              Full-Stack Developer building scalable web applications, clean API architectures, and responsive user interfaces with React, Next.js, and Node.js.
             </p>
           </div>
 
@@ -359,7 +359,7 @@ export default function FooterField({ onReplayIntro }) {
                   href="#skills"
                   className="hover:text-white hover:translate-x-1 transition-all inline-block"
                 >
-                  Skills & Tools
+                  Skills & Technologies
                 </a>
               </li>
               <li>
@@ -402,7 +402,7 @@ export default function FooterField({ onReplayIntro }) {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 hover:text-white hover:translate-x-1 transition-all"
                 >
-                  <FaGithub className="text-neon-primary" /> GitHub
+                  <FiGithub className="text-neon-primary" /> GitHub
                 </a>
               </li>
               <li>
@@ -412,7 +412,7 @@ export default function FooterField({ onReplayIntro }) {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-2 hover:text-white hover:translate-x-1 transition-all"
                 >
-                  <FaLinkedin className="text-neon-primary" /> LinkedIn
+                  <FiLinkedin className="text-neon-primary" /> LinkedIn
                 </a>
               </li>
               <li>
@@ -420,7 +420,7 @@ export default function FooterField({ onReplayIntro }) {
                   href="mailto:naqshcc916@gmail.com"
                   className="inline-flex items-center gap-2 hover:text-white hover:translate-x-1 transition-all"
                 >
-                  <FaEnvelope className="text-neon-primary" /> naqshcc916@gmail.com
+                  <FiMail className="text-neon-primary" /> naqshcc916@gmail.com
                 </a>
               </li>
             </ul>
@@ -470,10 +470,10 @@ export default function FooterField({ onReplayIntro }) {
               onClick={handleReplayClick}
               type="button"
               id="replay-intro-btn"
-              className="group inline-flex items-center gap-2 px-4 py-2 rounded-full border border-neon-primary/30 bg-[#00020B]/80 hover:bg-neon-primary/10 hover:border-neon-primary text-[#F4F4F5] hover:text-white transition-all duration-300 shadow-[0_0_15px_rgba(84,53,204,0.15)] hover:shadow-[0_0_25px_rgba(84,53,204,0.4)] active:scale-95"
+              className="group inline-flex items-center gap-2 px-4 py-2 rounded-full border border-neon-primary/30 bg-[#00020B]/80 hover:bg-neon-primary/10 hover:border-neon-primary text-[#F4F4F5] hover:text-white transition-all duration-300 shadow-sm hover:shadow-neon-primary/20 active:scale-95"
               title="Replay introductory animation"
             >
-              <FaRedo className="text-[11px] text-neon-primary group-hover:rotate-180 transition-transform duration-500" />
+              <FiRotateCcw className="text-xs text-neon-primary group-hover:rotate-180 transition-transform duration-500" />
               <span className="tracking-wide">Replay Intro</span>
             </button>
 
@@ -486,7 +486,7 @@ export default function FooterField({ onReplayIntro }) {
               title="Back to top"
             >
               <span className="tracking-wide">Back to Top</span>
-              <FaArrowUp className="text-[10px] text-neon-primary group-hover:-translate-y-0.5 transition-transform duration-300" />
+              <FiArrowUp className="text-xs text-neon-primary group-hover:-translate-y-0.5 transition-transform duration-300" />
             </button>
           </div>
         </div>

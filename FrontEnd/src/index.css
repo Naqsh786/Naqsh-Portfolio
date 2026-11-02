@@ -60,14 +60,14 @@ h6 {
 }
 
 .glow-border:hover {
-  border-color: var(--color-purple-primary);
-  box-shadow: 0 0 25px rgba(var(--color-accent-rgb), 0.3), inset 0 0 15px rgba(var(--color-accent-rgb), 0.06);
-  transform: translateY(-4px);
+  border-color: rgba(var(--color-accent-rgb), 0.6);
+  box-shadow: 0 8px 24px rgba(var(--color-accent-rgb), 0.16);
+  transform: translateY(-3px);
 }
 
-/* Text glow effect — subtle, not neon-heavy */
+/* Text glow effect — crisp and elegant */
 .text-glow {
-  text-shadow: 0 0 30px rgba(var(--color-accent-rgb), 0.35), 0 0 60px rgba(var(--color-indigo-rgb), 0.2);
+  text-shadow: 0 0 24px rgba(var(--color-accent-rgb), 0.22);
 }
 
 /* Gradient text */

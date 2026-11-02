@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback } from "react";
 import { 
   FaLock, 
   FaEnvelope, 
@@ -36,13 +36,6 @@ export default function AdminDashboard() {
     setTimeout(() => setNotification(""), 3500);
   };
 
-  // Check login on token change
-  useEffect(() => {
-    if (token) {
-      fetchData(token);
-    }
-  }, [token]);
-
   const handleLogin = async (e) => {
     e.preventDefault();
     if (!password) {
@@ -77,15 +70,15 @@ export default function AdminDashboard() {
     }
   };
 
-  const handleLogout = () => {
+  const handleLogout = useCallback(() => {
     localStorage.removeItem("portfolio_admin_token");
     setToken("");
     setIsAuthenticated(false);
     setMessages([]);
     showToast("Logged out successfully.");
-  };
+  }, []);
 
-  const fetchData = async (authToken = token) => {
+  const fetchData = useCallback(async (authToken = token) => {
     setLoadingData(true);
     try {
       const res = await fetch(`${API_BASE}/admin/messages`, {
@@ -108,7 +101,14 @@ export default function AdminDashboard() {
     } finally {
       setLoadingData(false);
     }
-  };
+  }, [token, handleLogout]);
+
+  // Check login on token change
+  useEffect(() => {
+    if (token) {
+      fetchData(token);
+    }
+  }, [token, fetchData]);
 
   const toggleReadStatus = async (id) => {
     try {

@@ -1,15 +1,16 @@
 export const profile = {
   name: "Naqsh",
   role: "Full-Stack Developer",
-  description: "Specialized in creating modern, responsive, and performance-first web applications using the MERN stack (MongoDB, Express, React, Node.js). Delivering interactive visual experiences, smooth animations, and intuitive UI/UX that transform ideas into exceptional digital products.",
+  description: "Full-stack developer building fast, reliable web applications with React, Next.js, TypeScript, and Node.js. Focused on scalable backend systems, clean API design, and interactive UI experiences.",
   imageUrl: "/12006.png",
   availableForWork: true,
   frontendSkills: [
-    "HTML5/CSS3",
+    "TypeScript",
     "JavaScript",
     "React.js",
     "Next.js",
     "Tailwind CSS",
+    "HTML5/CSS3",
     "React Three Fiber",
     "Redux Toolkit"
   ],
@@ -21,8 +22,8 @@ export const profile = {
   ],
   databaseSkills: [
     "MongoDB",
-    "Supabase",
     "PostgreSQL",
+    "Supabase",
     "Redis"
   ],
   tools: [
@@ -36,8 +37,8 @@ export const profile = {
 export const projects = [
   {
     _id: "1",
-    title: "Majestic Events – Full-Stack Event Planning & Booking Platform",
-    description: "A full-stack event planning platform to explore and book premium events — Weddings, Birthdays, Mehendi, and Valima. Includes an admin panel with category & slide management, real-time chat, user management, and review moderation, with secure Google & OTP authentication and a serverless backend.",
+    title: "Majestic Events – Full-Stack Event Booking Platform",
+    description: "Full-stack event booking platform with dedicated client and admin workflows. Features Google OAuth and OTP verification, real-time customer-organizer chat, package customization, dynamic slide management, and Cloudinary media pipelines.",
     technologies: ["React.js", "Vite", "Redux Toolkit", "Node.js", "Express.js", "MongoDB", "JWT Auth", "Cloudinary"],
     imageUrl: "/events.png",
     liveDemo: "https://event-managment-f.vercel.app/",
@@ -46,8 +47,8 @@ export const projects = [
   },
   {
     _id: "2",
-    title: "Sona Hotel – Luxury Hotel Management & Booking System",
-    description: "A hotel management and room booking system with role-based dashboards (Admin, Staff, Guest), real-time booking, interactive room filters, Stripe checkout, food ordering inventory, and dynamic business charts — optimized for serverless hosting with Cloudinary asset management.",
+    title: "Sona Hotel – Hotel Management & Room Reservation System",
+    description: "Hotel reservation and inventory management system with role-based access for Admins, Staff, and Guests. Includes live room filtering, Stripe checkout integration, food ordering POS module, dynamic revenue charts, and Cloudinary asset optimization.",
     technologies: ["React.js", "Redux Toolkit", "Node.js", "Express.js", "MongoDB", "Stripe API", "Cloudinary"],
     imageUrl: "/hotel.png",
     liveDemo: "https://hotel-managment-system-wheat.vercel.app/",
@@ -56,8 +57,8 @@ export const projects = [
   },
   {
     _id: "3",
-    title: "AURA FIT – Premium Gym Management & Class Booking Platform",
-    description: "A fitness management platform where members register, book classes with live capacity tracking, buy memberships via Stripe, track BMI, and manage profiles. Admins control subscriptions, class scheduling, trainers, bookings, inquiries, and newsletters — with a glassmorphism UI, Framer Motion & GSAP animations, and a 3D hero.",
+    title: "AURA FIT – Fitness Management & Class Booking Platform",
+    description: "Gym management system with membership subscriptions via Stripe, real-time class booking with capacity limits, and member BMI tracking. Features an admin dashboard for trainer schedules, booking inquiries, and interactive 3D canvas visuals with Framer Motion and GSAP.",
     technologies: ["React.js", "Node.js", "Express.js", "MongoDB", "Stripe API", "JWT Auth", "Cloudinary"],
     imageUrl: "/gym1.png",
     liveDemo: "https://gym-managment-system-ebon.vercel.app/",
@@ -66,8 +67,8 @@ export const projects = [
   },
   {
     _id: "4",
-    title: "Jesko Jets – Luxury Aviation & Private Jet Charter Experience",
-    description: "An immersive 3D animation-driven Next.js web application for luxury private jet chartering. Features high-performance canvas image sequence rendering, smooth Lenis scroll dynamics, Framer Motion UI animations, interactive aircraft showcase, and futuristic luxury aesthetic.",
+    title: "Jesko Jets – Private Jet Charter Experience",
+    description: "Private jet charter web application built with Next.js and TypeScript. Implements 60fps canvas image sequence scrubbing synchronized with Lenis smooth scrolling, interactive aircraft specs inspection, and responsive layout architecture.",
     technologies: ["Next.js", "React.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Lenis Scroll"],
     imageUrl: "/jeskojets.png",
     liveDemo: "https://jesko-jets-sepia.vercel.app/",
@@ -76,8 +77,8 @@ export const projects = [
   },
   {
     _id: "5",
-    title: "AgencySpire — Digital Agency Website",
-    description: "A modern, responsive digital agency website built to showcase creative services through a premium dark interface, interactive UI elements, and smooth animations. Designed with a focus on performance, usability, and a polished user experience.",
+    title: "AgencySpire – Digital Agency Website",
+    description: "Agency presentation and client intake platform with a responsive dark-mode interface. Features structured service showcases, dynamic case study previews, interactive UI micro-animations, and an asynchronous contact inquiry pipeline.",
     technologies: ["React", "Vite", "JavaScript", "Tailwind CSS", "Node.js", "Express.js"],
     imageUrl: "/agencyspire.png",
     liveDemo: "https://agencyspire.vercel.app/",

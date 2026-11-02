@@ -21,14 +21,14 @@ const TICKS = 40;
 const LIFT_MS = 700;
 
 /** Clamp to [0, 1]. */
-export function wspClamp01(v) {
+function wspClamp01(v) {
   return v < 0 ? 0 : v > 1 ? 1 : v;
 }
 
 /**
  * The simulated load at time fraction t ∈ [0, 1], as a percentage.
  */
-export function wspSimulated(t) {
+function wspSimulated(t) {
   const k = wspClamp01(t);
   const ease = k < 0.5 ? 4 * k * k * k : 1 - Math.pow(-2 * k + 2, 3) / 2;
   const stall = 0.035 * Math.sin(k * Math.PI * 3) * Math.sin(k * Math.PI);
@@ -36,24 +36,27 @@ export function wspSimulated(t) {
 }
 
 /** The weight drawn at a given percentage, between the lightest and heaviest. */
-export function wspWeight(pct, lo, hi) {
+function wspWeight(pct, lo, hi) {
   const a = Math.max(1, Math.min(1000, lo));
   const b = Math.max(1, Math.min(1000, hi));
   return Math.round(a + (b - a) * wspClamp01(pct / 100));
 }
 
 /** Tracking in em for a weight: hairlines sit open, black sits tight. */
-export function wspTracking(weight) {
+function wspTracking(weight) {
   return -0.02 - 0.06 * wspClamp01((weight - 100) / 800);
 }
 
 /** How many of the rail's ticks are lit at a percentage. */
-export function wspTicks(pct, total) {
-  return Math.round(wspClamp01(pct / 100) * total);
+function wspTicks(pct, total) {
+  return Math.round(wspTicksClamp(pct / 100) * total);
+}
+function wspTicksClamp(v) {
+  return v < 0 ? 0 : v > 1 ? 1 : v;
 }
 
 /** Zero-padded three-digit count. */
-export function wspPad(pct) {
+function wspPad(pct) {
   const n = Math.max(0, Math.min(100, Math.floor(pct)));
   return (n < 10 ? "00" : n < 100 ? "0" : "") + n;
 }

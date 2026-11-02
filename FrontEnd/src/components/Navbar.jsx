@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { HiMenuAlt3, HiX } from "react-icons/hi";
-import { FaCode, FaLock } from "react-icons/fa";
-import { FiChevronRight, FiDownload } from "react-icons/fi";
+import { FiCode, FiLock, FiMenu, FiX, FiChevronRight, FiDownload } from "react-icons/fi";
+import { ShinyButton } from "./ui/ShinyButton";
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -93,7 +92,7 @@ const Navbar = () => {
         {/* Logo */}
         <Link to="/" className="flex items-center gap-3 group">
           <div className="w-9 h-9 rounded-xl bg-neon-primary/15 border border-neon-primary/40 flex items-center justify-center group-hover:bg-neon-primary group-hover:text-white transition-all duration-300 shadow-[0_0_15px_rgba(var(--color-accent-rgb),0.15)]">
-            <FaCode className="text-neon-primary group-hover:text-white text-base transition-colors" />
+            <FiCode className="text-neon-primary group-hover:text-white text-base transition-colors" />
           </div>
           <span className="text-lg sm:text-xl font-bold tracking-tight text-text-primary font-sans">
             Naqsh<span className="text-neon-primary">.</span>
@@ -152,15 +151,14 @@ const Navbar = () => {
             title="Admin Dashboard"
             aria-label="Admin Dashboard"
           >
-            <FaLock className="text-xs" aria-hidden="true" />
+            <FiLock className="text-xs" aria-hidden="true" />
           </Link>
 
-          <button
+          <ShinyButton
             onClick={() => handleNavClick({ id: "contact", path: "/#contact" })}
-            className="px-4 sm:px-5 py-2 rounded-xl bg-gradient-to-r from-neon-primary to-deep-indigo text-white text-xs font-bold uppercase tracking-wider hover:opacity-95 transition-all shadow-[0_0_20px_rgba(var(--color-accent-rgb),0.25)] hover:scale-105"
           >
             Hire Me
-          </button>
+          </ShinyButton>
         </div>
 
         {/* Mobile Toggle & Quick Actions */}
@@ -175,7 +173,7 @@ const Navbar = () => {
             title="Admin Dashboard"
             aria-label="Admin Dashboard"
           >
-            <FaLock className="text-xs" aria-hidden="true" />
+            <FiLock className="text-xs" aria-hidden="true" />
           </Link>
           <button
             onClick={() => setIsOpen(!isOpen)}
@@ -183,7 +181,7 @@ const Navbar = () => {
             aria-label={isOpen ? "Close navigation menu" : "Open navigation menu"}
             aria-expanded={isOpen}
           >
-            {isOpen ? <HiX aria-hidden="true" /> : <HiMenuAlt3 aria-hidden="true" />}
+            {isOpen ? <FiX aria-hidden="true" /> : <FiMenu aria-hidden="true" />}
           </button>
         </div>
       </div>
@@ -235,12 +233,12 @@ const Navbar = () => {
           </div>
 
           {/* Mobile Hire Me Button */}
-          <button
+          <ShinyButton
             onClick={() => handleNavClick({ id: "contact", path: "/#contact" })}
-            className="w-full py-3 mt-1 rounded-xl bg-gradient-to-r from-neon-primary to-deep-indigo text-white text-xs font-bold uppercase tracking-widest hover:opacity-95 transition-all shadow-[0_0_20px_rgba(var(--color-accent-rgb),0.25)] active:scale-95"
+            className="w-full mt-1"
           >
             Hire Me
-          </button>
+          </ShinyButton>
         </div>
       </div>
     </nav>
