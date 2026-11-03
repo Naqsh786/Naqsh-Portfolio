@@ -7,10 +7,15 @@ const authMiddleware = (req, res, next) => {
   }
 
   const token = authHeader.split(" ")[1];
-  const JWT_SECRET = process.env.JWT_SECRET || "supersecretkey_naqsh_portfolio_2026";
+  const JWT_SECRET = process.env.JWT_SECRET;
+
+  if (!JWT_SECRET || !JWT_SECRET.trim()) {
+    console.error("System Error: JWT_SECRET environment variable is missing.");
+    return res.status(500).json({ success: false, message: "Server configuration error" });
+  }
 
   try {
-    const decoded = jwt.verify(token, JWT_SECRET);
+    const decoded = jwt.verify(token, JWT_SECRET.trim());
     req.admin = decoded;
     next();
   } catch (error) {

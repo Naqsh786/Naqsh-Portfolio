@@ -5,23 +5,32 @@ const { getMemoryMessages, setMemoryMessages } = require("./contactController");
 
 // Admin Login
 const adminLogin = (req, res) => {
-  const { password } = req.body;
-  const rawTarget = process.env.ADMIN_PASSWORD || "admin123";
-  // Clean surrounding quotes or whitespace if present in .env
-  const targetPassword = rawTarget.replace(/^["']|["']$/g, "").trim();
-  const JWT_SECRET = process.env.JWT_SECRET || "supersecretkey_naqsh_portfolio_2026";
+  const rawTarget = process.env.ADMIN_PASSWORD;
+  const JWT_SECRET = process.env.JWT_SECRET;
 
-  if (!password) {
-    return res.status(400).json({ success: false, message: "Password is required" });
+  if (!rawTarget || !JWT_SECRET || !rawTarget.trim() || !JWT_SECRET.trim()) {
+    console.error("System Error: ADMIN_PASSWORD or JWT_SECRET environment variables are missing.");
+    return res.status(500).json({
+      success: false,
+      message: "Server configuration error"
+    });
   }
 
+  const { password } = req.body;
+  if (!password) {
+    return res.status(400).json({
+      success: false,
+      message: "Password is required"
+    });
+  }
+
+  // Clean surrounding quotes or whitespace if present in .env
+  const targetPassword = rawTarget.replace(/^["']|["']$/g, "").trim();
   const cleanInput = String(password).trim();
   const isMatch = cleanInput === targetPassword;
 
-  console.log(`🔑 Login attempt: Received "${cleanInput}" | Target in .env: "${targetPassword}" | Match: ${isMatch}`);
-
   if (isMatch) {
-    const token = jwt.sign({ role: "admin" }, JWT_SECRET, { expiresIn: "24h" });
+    const token = jwt.sign({ role: "admin" }, JWT_SECRET.trim(), { expiresIn: "24h" });
     return res.json({
       success: true,
       message: "Login successful",
