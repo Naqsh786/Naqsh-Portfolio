@@ -250,16 +250,16 @@ const Home = () => {
       if (skillsHeaderRef.current) {
         gsap.fromTo(
           skillsHeaderRef.current,
-          { y: 24, opacity: 0 },
+          { y: 20, opacity: 0 },
           {
             y: 0,
             opacity: 1,
+            duration: 0.35,
             ease: "power2.out",
             scrollTrigger: {
               trigger: skillsHeaderRef.current,
-              start: "top 96%",
-              end: "top 82%",
-              scrub: 0.3,
+              start: "top 95%",
+              toggleActions: "play reverse play reverse",
             },
           }
         );
@@ -270,17 +270,17 @@ const Home = () => {
         const isEven = idx % 2 === 0;
         gsap.fromTo(
           card,
-          { x: isEven ? -25 : 25, opacity: 0, scale: 0.98 },
+          { x: isEven ? -20 : 20, opacity: 0, scale: 0.98 },
           {
             x: 0,
             opacity: 1,
             scale: 1,
+            duration: 0.35,
             ease: "power2.out",
             scrollTrigger: {
               trigger: card,
               start: "top 95%",
-              end: "top 80%",
-              scrub: 0.3,
+              toggleActions: "play reverse play reverse",
             },
           }
         );
@@ -290,16 +290,16 @@ const Home = () => {
       if (projectsHeaderRef.current) {
         gsap.fromTo(
           projectsHeaderRef.current,
-          { y: 24, opacity: 0 },
+          { y: 20, opacity: 0 },
           {
             y: 0,
             opacity: 1,
+            duration: 0.35,
             ease: "power2.out",
             scrollTrigger: {
               trigger: projectsHeaderRef.current,
-              start: "top 96%",
-              end: "top 82%",
-              scrub: 0.3,
+              start: "top 95%",
+              toggleActions: "play reverse play reverse",
             },
           }
         );
@@ -308,16 +308,16 @@ const Home = () => {
       if (projectsWrapperRef.current) {
         gsap.fromTo(
           projectsWrapperRef.current,
-          { y: 25, opacity: 0 },
+          { y: 20, opacity: 0 },
           {
             y: 0,
             opacity: 1,
+            duration: 0.35,
             ease: "power2.out",
             scrollTrigger: {
               trigger: projectsWrapperRef.current,
               start: "top 95%",
-              end: "top 82%",
-              scrub: 0.3,
+              toggleActions: "play reverse play reverse",
             },
           }
         );
@@ -327,16 +327,16 @@ const Home = () => {
       if (contactHeaderRef.current) {
         gsap.fromTo(
           contactHeaderRef.current,
-          { y: 24, opacity: 0 },
+          { y: 20, opacity: 0 },
           {
             y: 0,
             opacity: 1,
+            duration: 0.35,
             ease: "power2.out",
             scrollTrigger: {
               trigger: contactHeaderRef.current,
-              start: "top 96%",
-              end: "top 82%",
-              scrub: 0.3,
+              start: "top 95%",
+              toggleActions: "play reverse play reverse",
             },
           }
         );
@@ -345,17 +345,17 @@ const Home = () => {
       if (contactFormWrapperRef.current) {
         gsap.fromTo(
           contactFormWrapperRef.current,
-          { y: 24, opacity: 0, scale: 0.99 },
+          { y: 20, opacity: 0, scale: 0.99 },
           {
             y: 0,
             opacity: 1,
             scale: 1,
+            duration: 0.35,
             ease: "power2.out",
             scrollTrigger: {
               trigger: contactFormWrapperRef.current,
               start: "top 95%",
-              end: "top 80%",
-              scrub: 0.3,
+              toggleActions: "play reverse play reverse",
             },
           }
         );
@@ -364,24 +364,41 @@ const Home = () => {
       if (contactSocialsRef.current) {
         gsap.fromTo(
           contactSocialsRef.current.children,
-          { y: 18, opacity: 0 },
+          { y: 15, opacity: 0 },
           {
             y: 0,
             opacity: 1,
-            stagger: 0.05,
+            stagger: 0.04,
+            duration: 0.35,
             ease: "power2.out",
             scrollTrigger: {
               trigger: contactSocialsRef.current,
-              start: "top 96%",
-              end: "top 84%",
-              scrub: 0.3,
+              start: "top 95%",
+              toggleActions: "play reverse play reverse",
             },
           }
         );
       }
     });
 
+    // Refresh ScrollTrigger to sync accurate element positions once fonts and images settle
+    const refreshTimer = setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 400);
+
+    const handleRefresh = () => {
+      ScrollTrigger.refresh();
+    };
+    window.addEventListener("load", handleRefresh);
+    window.addEventListener("resize", handleRefresh);
+    if (document.fonts) {
+      document.fonts.ready.then(() => ScrollTrigger.refresh());
+    }
+
     return () => {
+      clearTimeout(refreshTimer);
+      window.removeEventListener("load", handleRefresh);
+      window.removeEventListener("resize", handleRefresh);
       ctx.revert();
     };
   }, []);
@@ -665,7 +682,7 @@ const Home = () => {
       <ServicesSection />
 
       {/* ── CONTACT SECTION with Ridgeline Terrain Background ── */}
-      <section id="contact" className="py-20 md:py-28 px-4 sm:px-6 relative z-10 border-t border-surface/20 scroll-mt-20 overflow-hidden">
+      <section id="contact" className="py-14 sm:py-20 md:py-24 px-4 sm:px-6 relative z-10 border-t border-surface/20 scroll-mt-20 overflow-hidden">
         {/* Background: Ridgeline WebGL Terrain Flyover (Framer Component) */}
         <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
           <RidgelineTerrain
@@ -691,7 +708,7 @@ const Home = () => {
             <h2 className="text-3xl md:text-5xl lg:text-6xl font-black text-text-primary tracking-tight mb-4">
               Get In <span className="gradient-text">Touch</span>
             </h2>
-            <p className="text-muted font-sans mb-10 text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
+            <p className="text-muted font-sans mb-7 sm:mb-9 text-sm md:text-base max-w-2xl mx-auto leading-relaxed">
               Have an open role, project inquiry, or technical question? Send a message and I&apos;ll get back to you shortly.
             </p>
           </div>

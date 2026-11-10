@@ -104,16 +104,16 @@ export default function ServicesSection() {
       if (headerRef.current) {
         gsap.fromTo(
           headerRef.current,
-          { y: 24, opacity: 0 },
+          { y: 20, opacity: 0 },
           {
             y: 0,
             opacity: 1,
+            duration: 0.35,
             ease: "power2.out",
             scrollTrigger: {
               trigger: headerRef.current,
-              start: "top 96%",
-              end: "top 82%",
-              scrub: 0.3,
+              start: "top 95%",
+              toggleActions: "play reverse play reverse",
             },
           }
         );
@@ -124,16 +124,16 @@ export default function ServicesSection() {
           if (!card) return;
           gsap.fromTo(
             card,
-            { y: 24, opacity: 0 },
+            { y: 20, opacity: 0 },
             {
               y: 0,
               opacity: 1,
+              duration: 0.35,
               ease: "power2.out",
               scrollTrigger: {
                 trigger: card,
                 start: "top 95%",
-                end: "top 80%",
-                scrub: 0.3,
+                toggleActions: "play reverse play reverse",
               },
             }
           );

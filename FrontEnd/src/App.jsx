@@ -1,5 +1,6 @@
 import React, { useState, Suspense, lazy } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Navbar from "./components/Navbar";
 import BackToTop from "./components/BackToTop";
 import WeightSweepPreloader from "@/components/ui/weight-sweep-preloader";
@@ -11,6 +12,16 @@ const AdminDashboard = lazy(() => import("./pages/AdminDashboard"));
 
 function App() {
   const [loading, setLoading] = useState(true);
+
+  // Refresh ScrollTrigger measurements once preloader finishes and DOM is settled
+  React.useEffect(() => {
+    if (!loading) {
+      const timer = setTimeout(() => {
+        ScrollTrigger.refresh();
+      }, 150);
+      return () => clearTimeout(timer);
+    }
+  }, [loading]);
 
   // Support replay intro from footer or navigation
   React.useEffect(() => {
