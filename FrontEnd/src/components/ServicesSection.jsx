@@ -104,16 +104,16 @@ export default function ServicesSection() {
       if (headerRef.current) {
         gsap.fromTo(
           headerRef.current,
-          { y: 35, opacity: 0 },
+          { y: 24, opacity: 0 },
           {
             y: 0,
             opacity: 1,
             ease: "power2.out",
             scrollTrigger: {
               trigger: headerRef.current,
-              start: "top 90%",
-              end: "top 70%",
-              scrub: 0.8,
+              start: "top 96%",
+              end: "top 82%",
+              scrub: 0.3,
             },
           }
         );
@@ -124,16 +124,16 @@ export default function ServicesSection() {
           if (!card) return;
           gsap.fromTo(
             card,
-            { y: 40, opacity: 0 },
+            { y: 24, opacity: 0 },
             {
               y: 0,
               opacity: 1,
               ease: "power2.out",
               scrollTrigger: {
                 trigger: card,
-                start: "top 92%",
-                end: "top 72%",
-                scrub: 0.8,
+                start: "top 95%",
+                end: "top 80%",
+                scrub: 0.3,
               },
             }
           );
@@ -182,7 +182,7 @@ export default function ServicesSection() {
         </div>
 
         {/* 2x2 Services Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 lg:gap-8 mb-16">
           {services.map((srv, idx) => {
             const Icon = srv.icon;
             const isHovered = hoveredCard === srv.id;
@@ -193,7 +193,7 @@ export default function ServicesSection() {
                 ref={(el) => (cardsRef.current[idx] = el)}
                 onMouseEnter={() => setHoveredCard(srv.id)}
                 onMouseLeave={() => setHoveredCard(null)}
-                className={`group relative rounded-3xl p-6 sm:p-8 bg-gradient-to-br from-[#0D0D1A]/95 via-[#00020B]/90 to-[#100354]/30 border border-surface/50 ${srv.borderColor} transition-all duration-500 shadow-[0_4px_20px_rgba(0,0,0,0.5)] hover:shadow-[0_12px_35px_rgba(84,53,204,0.18)] hover:-translate-y-1.5 flex flex-col justify-between overflow-hidden`}
+                className={`group relative rounded-xl p-5 sm:p-7 md:p-8 bg-gradient-to-br from-[#0D0D1A]/95 via-[#00020B]/90 to-[#100354]/30 border border-surface/50 ${srv.borderColor} transition-all duration-500 shadow-[0_8px_32px_rgba(0,0,0,0.6)] hover:shadow-[0_16px_40px_rgba(0,0,0,0.85)] hover:-translate-y-1.5 flex flex-col justify-between overflow-hidden`}
               >
                 {/* Top Glowing Indicator Line */}
                 <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-neon-primary to-transparent opacity-40 group-hover:opacity-100 transition-opacity duration-500" />
@@ -206,17 +206,17 @@ export default function ServicesSection() {
 
                 <div>
                   {/* Top Header Row: Icon + Badge + Number */}
-                  <div className="flex items-start justify-between gap-4 mb-5">
-                    <div className="w-13 h-13 sm:w-14 sm:h-14 rounded-2xl bg-[#00020B] border border-neon-primary/30 flex items-center justify-center text-neon-primary text-xl sm:text-2xl shadow-[0_0_15px_rgba(84,53,204,0.15)] group-hover:border-neon-primary group-hover:scale-105 group-hover:shadow-[0_0_20px_rgba(84,53,204,0.3)] transition-all duration-300 flex-shrink-0">
+                  <div className="flex items-start justify-between gap-3 sm:gap-4 mb-5">
+                    <div className="w-11 h-11 sm:w-12 sm:h-12 md:w-13 md:h-13 rounded-lg bg-[#00020B] border border-neon-primary/30 flex items-center justify-center text-neon-primary text-lg sm:text-xl md:text-2xl shadow-[0_2px_12px_rgba(0,0,0,0.5)] group-hover:border-neon-primary group-hover:scale-105 group-hover:shadow-[0_4px_16px_rgba(84,53,204,0.3)] transition-all duration-300 flex-shrink-0">
                       <Icon />
                     </div>
 
                     <div className="text-right">
-                      <span className="text-xs font-mono font-bold text-muted/60 group-hover:text-neon-primary transition-colors">
+                      <span className="text-[11px] sm:text-xs font-mono font-bold text-muted/60 group-hover:text-neon-primary transition-colors">
                         {srv.number} // SERVICE
                       </span>
                       <div className="mt-1">
-                        <span className="px-2.5 py-0.5 rounded-full bg-neon-primary/10 border border-neon-primary/25 text-[10px] font-mono text-neon-primary uppercase tracking-wider">
+                        <span className="px-2 py-0.5 rounded-md bg-neon-primary/10 border border-neon-primary/25 text-[10px] font-mono text-neon-primary uppercase tracking-wider">
                           {srv.tag}
                         </span>
                       </div>
@@ -224,20 +224,20 @@ export default function ServicesSection() {
                   </div>
 
                   {/* Title & Subtitle */}
-                  <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-[#c4b5fd] transition-colors tracking-tight mb-1.5">
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-bold text-white group-hover:text-[#c4b5fd] transition-colors tracking-tight mb-1.5 break-words">
                     {srv.title}
                   </h3>
-                  <p className="text-xs font-mono text-neon-primary/90 mb-3.5">
+                  <p className="text-xs font-mono text-neon-primary/90 mb-3.5 leading-normal">
                     {srv.subtitle}
                   </p>
 
                   {/* Description */}
-                  <p className="text-muted text-xs sm:text-sm leading-relaxed mb-6">
+                  <p className="text-muted text-xs sm:text-sm leading-relaxed mb-5 sm:mb-6">
                     {srv.description}
                   </p>
 
                   {/* Key Deliverables Checklist */}
-                  <div className="mb-6 pt-4 border-t border-surface/30">
+                  <div className="mb-5 sm:mb-6 pt-4 border-t border-surface/30">
                     <p className="text-[11px] font-mono text-muted uppercase tracking-wider font-semibold mb-3">
                       Key Capabilities & Deliverables
                     </p>
@@ -245,7 +245,7 @@ export default function ServicesSection() {
                       {srv.deliverables.map((item, dIdx) => (
                         <li key={dIdx} className="flex items-start gap-2">
                           <FiCheck className="text-neon-primary text-xs mt-0.5 flex-shrink-0" />
-                          <span className="leading-snug">{item}</span>
+                          <span className="leading-snug break-words">{item}</span>
                         </li>
                       ))}
                     </ul>
@@ -256,7 +256,7 @@ export default function ServicesSection() {
                     {srv.techStack.map((tech, tIdx) => (
                       <span
                         key={tIdx}
-                        className="px-2.5 py-1 rounded-lg bg-[#00020B]/80 border border-surface/50 text-[11px] font-mono text-text-secondary group-hover:border-neon-primary/40 group-hover:text-white transition-all"
+                        className="px-2 py-0.5 rounded-md bg-[#00020B]/80 border border-surface/50 text-[11px] font-mono text-text-secondary group-hover:border-neon-primary/40 group-hover:text-white transition-all shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]"
                       >
                         {tech}
                       </span>
@@ -265,15 +265,15 @@ export default function ServicesSection() {
                 </div>
 
                 {/* Bottom Card Action: Direct Inquire CTA */}
-                <div className="pt-4 border-t border-surface/30 flex items-center justify-between">
-                  <span className="text-[11px] font-mono text-muted/70">
+                <div className="pt-4 border-t border-surface/30 flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
+                  <span className="text-[11px] font-mono text-muted/70 text-center sm:text-left">
                     Production Ready • Scalable Code
                   </span>
 
                   <button
                     type="button"
                     onClick={() => handleInquire(srv.title)}
-                    className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-neon-primary/10 hover:bg-neon-primary text-neon-primary hover:text-white border border-neon-primary/30 hover:border-neon-primary text-xs font-mono font-semibold transition-all duration-300 shadow-[0_0_15px_rgba(84,53,204,0.1)] hover:shadow-[0_0_20px_rgba(84,53,204,0.4)] active:scale-95 group/btn"
+                    className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 sm:px-3.5 sm:py-2 rounded-lg bg-neon-primary/10 hover:bg-neon-primary text-neon-primary hover:text-white border border-neon-primary/30 hover:border-neon-primary text-xs font-mono font-semibold transition-all duration-300 shadow-[0_2px_10px_rgba(0,0,0,0.5)] hover:shadow-[0_4px_16px_rgba(84,53,204,0.35)] active:translate-y-[1px] group/btn cursor-pointer"
                   >
                     <span>Inquire Now</span>
                     <FiArrowRight className="text-xs group-hover/btn:translate-x-1 transition-transform" />

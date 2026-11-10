@@ -14,7 +14,6 @@ import {
   FiDatabase,
   FiTerminal,
   FiGithub,
-  FiLinkedin,
   FiMail
 } from "react-icons/fi";
 import { profile, projects } from "../data"; // Hardcoded data
@@ -87,24 +86,24 @@ const ContactForm = () => {
   };
 
   return (
-    <div className="relative p-6 sm:p-10 rounded-3xl bg-[#00020B]/90 backdrop-blur-2xl border border-surface/50 hover:border-neon-primary/40 max-w-3xl mx-auto shadow-[0_16px_45px_rgba(0,0,0,0.7)] transition-colors text-left">
+    <div className="relative p-5 sm:p-8 md:p-10 rounded-xl bg-[#00020B]/90 backdrop-blur-2xl border border-surface/50 hover:border-neon-primary/40 max-w-3xl w-full mx-auto shadow-[0_16px_45px_rgba(0,0,0,0.85)] transition-colors text-left">
       {/* Glow Top Accent */}
       <div className="absolute -top-px left-10 right-10 h-px bg-gradient-to-r from-transparent via-neon-primary/60 to-transparent" />
 
       {status && (
         <div
-          className={`mb-6 p-4 rounded-2xl border font-mono text-xs md:text-sm font-semibold flex items-center gap-3 ${status.type === "success"
+          className={`mb-6 p-3.5 sm:p-4 rounded-lg border font-mono text-xs sm:text-sm font-semibold flex items-center gap-3 ${status.type === "success"
             ? "bg-emerald-500/10 border-emerald-500/40 text-emerald-300"
             : "bg-red-500/10 border-red-500/40 text-red-300"
             }`}
         >
-          <span className="w-2 h-2 rounded-full bg-current animate-ping" />
-          <span>{status.text}</span>
+          <span className="w-2 h-2 rounded-full bg-current animate-ping flex-shrink-0" />
+          <span className="break-words">{status.text}</span>
         </div>
       )}
 
-      <form onSubmit={handleSubmit} className="space-y-5">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+      <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
           <div>
             <label htmlFor="contact-name" className="block text-xs font-mono text-muted mb-2 uppercase tracking-wider">
               Your Name *
@@ -118,7 +117,7 @@ const ContactForm = () => {
                 value={formData.name}
                 onChange={handleChange}
                 placeholder="Alex Rivers"
-                className="w-full bg-[#0D0D1A]/90 border border-surface/50 rounded-2xl px-4 py-3.5 text-text-primary text-sm focus:outline-none focus:border-neon-primary focus:ring-2 focus:ring-neon-primary/20 font-sans transition-all placeholder:text-muted/40"
+                className="w-full bg-[#0D0D1A]/90 border border-surface/50 rounded-lg px-3.5 py-2.5 sm:px-4 sm:py-3 text-text-primary text-sm focus:outline-none focus:border-neon-primary focus:ring-1 focus:ring-neon-primary/40 font-sans transition-all placeholder:text-muted/40 shadow-[inset_0_1px_2px_rgba(0,0,0,0.5)]"
               />
             </div>
           </div>
@@ -136,7 +135,7 @@ const ContactForm = () => {
                 value={formData.email}
                 onChange={handleChange}
                 placeholder="alex@example.com"
-                className="w-full bg-[#0D0D1A]/90 border border-surface/50 rounded-2xl px-4 py-3.5 text-text-primary text-sm focus:outline-none focus:border-neon-primary focus:ring-2 focus:ring-neon-primary/20 font-sans transition-all placeholder:text-muted/40"
+                className="w-full bg-[#0D0D1A]/90 border border-surface/50 rounded-lg px-3.5 py-2.5 sm:px-4 sm:py-3 text-text-primary text-sm focus:outline-none focus:border-neon-primary focus:ring-1 focus:ring-neon-primary/40 font-sans transition-all placeholder:text-muted/40 shadow-[inset_0_1px_2px_rgba(0,0,0,0.5)]"
               />
             </div>
           </div>
@@ -154,7 +153,7 @@ const ContactForm = () => {
               value={formData.subject}
               onChange={handleChange}
               placeholder="Full-Stack Project / Collaboration"
-              className="w-full bg-[#0D0D1A]/90 border border-surface/50 rounded-2xl px-4 py-3.5 text-text-primary text-sm focus:outline-none focus:border-neon-primary focus:ring-2 focus:ring-neon-primary/20 font-sans transition-all placeholder:text-muted/40"
+              className="w-full bg-[#0D0D1A]/90 border border-surface/50 rounded-lg px-3.5 py-2.5 sm:px-4 sm:py-3 text-text-primary text-sm focus:outline-none focus:border-neon-primary focus:ring-1 focus:ring-neon-primary/40 font-sans transition-all placeholder:text-muted/40 shadow-[inset_0_1px_2px_rgba(0,0,0,0.5)]"
             />
           </div>
         </div>
@@ -172,7 +171,7 @@ const ContactForm = () => {
               value={formData.message}
               onChange={handleChange}
               placeholder="Tell me about your project scope, timeline, and goals..."
-              className="w-full bg-[#0D0D1A]/90 border border-surface/50 rounded-2xl p-4 text-text-primary text-sm focus:outline-none focus:border-neon-primary focus:ring-2 focus:ring-neon-primary/20 font-sans transition-all resize-none placeholder:text-muted/40 leading-relaxed"
+              className="w-full bg-[#0D0D1A]/90 border border-surface/50 rounded-lg p-3.5 sm:p-4 text-text-primary text-sm focus:outline-none focus:border-neon-primary focus:ring-1 focus:ring-neon-primary/40 font-sans transition-all resize-none placeholder:text-muted/40 leading-relaxed shadow-[inset_0_1px_2px_rgba(0,0,0,0.5)]"
             ></textarea>
           </div>
         </div>
@@ -180,7 +179,7 @@ const ContactForm = () => {
         <button
           type="submit"
           disabled={loading}
-          className="w-full py-4 rounded-2xl bg-gradient-to-r from-neon-primary via-[#6d44e8] to-[#5435CC] text-white font-bold tracking-wide shadow-md shadow-neon-primary/25 hover:shadow-neon-primary/40 hover:scale-[1.01] active:scale-[0.99] transition-all duration-300 disabled:opacity-50 font-mono text-sm flex items-center justify-center gap-2 cursor-pointer"
+          className="w-full py-3.5 rounded-lg bg-gradient-to-r from-neon-primary via-[#6d44e8] to-[#5435CC] text-white font-bold tracking-wide shadow-md shadow-neon-primary/25 hover:shadow-neon-primary/40 hover:scale-[1.01] active:scale-[0.99] active:translate-y-[1px] transition-all duration-300 disabled:opacity-50 font-mono text-sm flex items-center justify-center gap-2 cursor-pointer"
         >
           {loading ? (
             <span className="flex items-center gap-2">
@@ -251,16 +250,16 @@ const Home = () => {
       if (skillsHeaderRef.current) {
         gsap.fromTo(
           skillsHeaderRef.current,
-          { y: 35, opacity: 0 },
+          { y: 24, opacity: 0 },
           {
             y: 0,
             opacity: 1,
             ease: "power2.out",
             scrollTrigger: {
               trigger: skillsHeaderRef.current,
-              start: "top 90%",
-              end: "top 70%",
-              scrub: 0.8,
+              start: "top 96%",
+              end: "top 82%",
+              scrub: 0.3,
             },
           }
         );
@@ -271,7 +270,7 @@ const Home = () => {
         const isEven = idx % 2 === 0;
         gsap.fromTo(
           card,
-          { x: isEven ? -40 : 40, opacity: 0, scale: 0.97 },
+          { x: isEven ? -25 : 25, opacity: 0, scale: 0.98 },
           {
             x: 0,
             opacity: 1,
@@ -279,9 +278,9 @@ const Home = () => {
             ease: "power2.out",
             scrollTrigger: {
               trigger: card,
-              start: "top 90%",
-              end: "top 70%",
-              scrub: 0.8,
+              start: "top 95%",
+              end: "top 80%",
+              scrub: 0.3,
             },
           }
         );
@@ -291,16 +290,16 @@ const Home = () => {
       if (projectsHeaderRef.current) {
         gsap.fromTo(
           projectsHeaderRef.current,
-          { y: 35, opacity: 0 },
+          { y: 24, opacity: 0 },
           {
             y: 0,
             opacity: 1,
             ease: "power2.out",
             scrollTrigger: {
               trigger: projectsHeaderRef.current,
-              start: "top 90%",
-              end: "top 70%",
-              scrub: 0.8,
+              start: "top 96%",
+              end: "top 82%",
+              scrub: 0.3,
             },
           }
         );
@@ -309,16 +308,16 @@ const Home = () => {
       if (projectsWrapperRef.current) {
         gsap.fromTo(
           projectsWrapperRef.current,
-          { y: 40, opacity: 0 },
+          { y: 25, opacity: 0 },
           {
             y: 0,
             opacity: 1,
             ease: "power2.out",
             scrollTrigger: {
               trigger: projectsWrapperRef.current,
-              start: "top 90%",
-              end: "top 72%",
-              scrub: 0.8,
+              start: "top 95%",
+              end: "top 82%",
+              scrub: 0.3,
             },
           }
         );
@@ -328,16 +327,16 @@ const Home = () => {
       if (contactHeaderRef.current) {
         gsap.fromTo(
           contactHeaderRef.current,
-          { y: 35, opacity: 0 },
+          { y: 24, opacity: 0 },
           {
             y: 0,
             opacity: 1,
             ease: "power2.out",
             scrollTrigger: {
               trigger: contactHeaderRef.current,
-              start: "top 92%",
-              end: "top 75%",
-              scrub: 0.8,
+              start: "top 96%",
+              end: "top 82%",
+              scrub: 0.3,
             },
           }
         );
@@ -346,7 +345,7 @@ const Home = () => {
       if (contactFormWrapperRef.current) {
         gsap.fromTo(
           contactFormWrapperRef.current,
-          { y: 40, opacity: 0, scale: 0.98 },
+          { y: 24, opacity: 0, scale: 0.99 },
           {
             y: 0,
             opacity: 1,
@@ -354,9 +353,9 @@ const Home = () => {
             ease: "power2.out",
             scrollTrigger: {
               trigger: contactFormWrapperRef.current,
-              start: "top 92%",
-              end: "top 75%",
-              scrub: 0.8,
+              start: "top 95%",
+              end: "top 80%",
+              scrub: 0.3,
             },
           }
         );
@@ -365,17 +364,17 @@ const Home = () => {
       if (contactSocialsRef.current) {
         gsap.fromTo(
           contactSocialsRef.current.children,
-          { y: 25, opacity: 0 },
+          { y: 18, opacity: 0 },
           {
             y: 0,
             opacity: 1,
-            stagger: 0.08,
+            stagger: 0.05,
             ease: "power2.out",
             scrollTrigger: {
               trigger: contactSocialsRef.current,
-              start: "top 92%",
-              end: "top 78%",
-              scrub: 0.8,
+              start: "top 96%",
+              end: "top 84%",
+              scrub: 0.3,
             },
           }
         );
@@ -458,19 +457,19 @@ const Home = () => {
         <div className="absolute bottom-20 right-10 w-96 h-96 bg-[#100354]/8 rounded-full blur-3xl animate-float pointer-events-none" style={{ animationDelay: "1.5s" }} />
 
         <div className="max-w-7xl mx-auto w-full flex flex-col md:flex-row items-center gap-10 md:gap-12 lg:gap-20 relative z-10">
-          {/* Profile Image Portrait (Enlarged 3:4 Frame with Perfect Fit) */}
+          {/* Profile Image Portrait (Architectural Precision Frame) */}
           <div ref={heroImageRef} className="relative flex-shrink-0 group">
-            {/* Outer Frame (Significantly enlarged 3:4 ratio) */}
-            <div className="w-72 sm:w-80 md:w-96 lg:w-[26rem] xl:w-[28rem] aspect-[3/4] p-3 sm:p-4 rounded-[2.5rem] border border-neon-primary/30 shadow-[0_16px_40px_rgba(0,0,0,0.7)] group-hover:border-neon-primary/70 transition-all duration-500 group-hover:shadow-[0_20px_50px_rgba(84,53,204,0.22)] bg-[#00020B]/40 backdrop-blur-sm">
+            {/* Outer Frame (Engineered 3:4 ratio with clean seamless border) */}
+            <div className="w-72 sm:w-80 md:w-96 lg:w-[26rem] xl:w-[28rem] aspect-[3/4] p-3 sm:p-4 rounded-xl border border-neon-primary/35 shadow-[0_20px_50px_rgba(0,0,0,0.85)] group-hover:border-neon-primary/75 transition-all duration-500 bg-[#00020B]/50 backdrop-blur-sm">
               {/* Inner Image Mask */}
-              <div className="w-full h-full rounded-[2rem] overflow-hidden border border-neon-primary/25 relative group/pic bg-gradient-to-b from-neon-primary/10 via-transparent to-[#00020B]/70 flex items-end justify-center">
+              <div className="w-full h-full rounded-lg overflow-hidden border border-neon-primary/25 relative group/pic bg-gradient-to-b from-neon-primary/10 via-transparent to-[#00020B]/70 flex items-end justify-center">
                 <picture className="w-full h-full">
                   <source srcSet="/12006.avif" type="image/avif" />
                   <source srcSet="/12006.webp" type="image/webp" />
                   <img
                     src="/12006.png"
                     alt={`${profile?.name || "Naqsh"} Profile`}
-                    className="w-full h-full object-cover object-[center_top] filter drop-shadow-[0_16px_32px_rgba(0,2,11,0.7)] group-hover:scale-[1.03] transition-all duration-500"
+                    className="w-full h-full object-cover object-[center_top] filter drop-shadow-[0_16px_32px_rgba(0,2,11,0.7)] group-hover:scale-[1.02] transition-all duration-500"
                     width="432"
                     height="578"
                     fetchPriority="high"
@@ -483,19 +482,19 @@ const Home = () => {
                 <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[#00020B]/60 via-[#00020B]/20 to-transparent pointer-events-none" />
               </div>
             </div>
-            {/* Status indicator */}
-            <div className="absolute bottom-6 right-6 lg:bottom-8 lg:right-8 w-6 h-6 bg-neon-primary rounded-full border-4 border-[#00020B] animate-pulse shadow-[0_0_12px_rgba(84,53,204,0.6)] z-20" title="Available for work" />
+            {/* Status indicator - Precision square badge */}
+            <div className="absolute bottom-5 right-5 lg:bottom-6 lg:right-6 w-4 h-4 bg-neon-primary rounded-sm border-2 border-[#00020B] animate-pulse shadow-[0_2px_10px_rgba(84,53,204,0.7)] z-20" title="Available for work" />
           </div>
 
           {/* Hero Text */}
           <div ref={heroTextRef} className="text-center md:text-left flex-grow">
             {(profile?.availableForWork ?? true) && (
-              <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-[#00020B]/70 border border-neon-primary/15 rounded-full mb-6 shadow-[0_0_15px_rgba(84,53,204,0.08)]">
-                <span className="relative flex h-2.5 w-2.5 ml-1">
+              <div className="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#00020B]/85 border border-neon-primary/25 rounded-md mb-6 shadow-[0_2px_10px_rgba(0,0,0,0.5)]">
+                <span className="relative flex h-2 w-2 ml-0.5">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-neon-primary opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-neon-primary"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-neon-primary"></span>
                 </span>
-                <span className="text-neon-primary text-xs font-mono font-medium uppercase tracking-widest pr-2">
+                <span className="text-neon-primary text-xs font-mono font-medium uppercase tracking-widest pr-1">
                   Open to Opportunities
                 </span>
               </div>
@@ -516,7 +515,7 @@ const Home = () => {
             </div>
 
             <p
-              className="text-muted font-sans max-w-65ch mx-auto md:mx-0 text-lg leading-relaxed mb-8 whitespace-pre-wrap glass p-5 rounded-r-xl rounded-bl-xl border-l-4 border-neon-primary/60"
+              className="text-muted font-sans max-w-65ch mx-auto md:mx-0 text-lg leading-relaxed mb-8 whitespace-pre-wrap glass p-5 rounded-lg border border-surface/30 border-l-2 border-l-neon-primary/70 shadow-[0_4px_20px_rgba(0,0,0,0.5)]"
               style={{ background: "rgba(0, 2, 11, 0.9)" }}
             >
               {profile?.description || "Full-stack developer building fast, reliable web applications with React, Next.js, TypeScript, and Node.js."}
@@ -526,14 +525,14 @@ const Home = () => {
             <div className="flex flex-wrap gap-4 justify-center md:justify-start">
               <a
                 href="#projects"
-                className="group inline-flex items-center gap-3 px-7 py-3.5 bg-neon-primary text-white font-bold rounded-lg shadow-md shadow-neon-primary/20 hover:shadow-neon-primary/40 hover:shadow-lg transition-all duration-300 hover:translate-y-[-2px]"
+                className="group inline-flex items-center gap-3 px-6 py-3 bg-neon-primary text-white font-bold rounded-lg shadow-[0_4px_16px_rgba(84,53,204,0.25)] hover:shadow-[0_8px_24px_rgba(84,53,204,0.4)] transition-all duration-300 hover:-translate-y-[1px] active:translate-y-[1px]"
               >
                 View Projects
                 <FiArrowDown className="text-sm group-hover:translate-y-1 transition-transform duration-300" />
               </a>
               <a
                 href="#contact"
-                className="inline-flex items-center gap-2 px-7 py-3.5 bg-[#00020B]/80 border border-neon-primary/60 text-neon-primary font-semibold rounded-lg hover:bg-neon-primary hover:text-white shadow-md hover:shadow-neon-primary/25 hover:translate-y-[-2px] transition-all duration-300"
+                className="inline-flex items-center gap-2 px-6 py-3 bg-[#00020B]/90 border border-neon-primary/60 text-neon-primary font-semibold rounded-lg hover:bg-neon-primary hover:text-white shadow-[0_4px_16px_rgba(0,0,0,0.5)] hover:shadow-[0_8px_20px_rgba(84,53,204,0.25)] transition-all duration-300 hover:-translate-y-[1px] active:translate-y-[1px]"
               >
                 Contact Me
               </a>
@@ -577,14 +576,14 @@ const Home = () => {
                 <div
                   key={cat.id}
                   ref={(el) => (skillCardsRef.current[idx] = el)}
-                  className="relative group rounded-3xl p-7 md:p-8 bg-gradient-to-br from-[#0D0D1A]/95 via-[#00020B]/90 to-[#100354]/25 border border-surface/50 hover:border-neon-primary/60 shadow-[0_4px_20px_rgba(0,0,0,0.5)] hover:shadow-[0_12px_35px_rgba(84,53,204,0.18)] hover:-translate-y-1.5 flex flex-col justify-between overflow-hidden"
+                  className="relative group rounded-xl p-6 md:p-8 bg-gradient-to-br from-[#0D0D1A]/95 via-[#00020B]/90 to-[#100354]/25 border border-surface/40 hover:border-neon-primary/60 shadow-[0_8px_30px_rgba(0,0,0,0.6)] hover:shadow-[0_16px_36px_rgba(0,0,0,0.85)] hover:-translate-y-1 flex flex-col justify-between overflow-hidden transition-all duration-500"
                 >
                   {/* Top neon indicator highlight bar */}
                   <div className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-transparent via-neon-primary to-transparent opacity-30 group-hover:opacity-100 transition-opacity duration-500" />
 
                   {/* Ambient top-right reactive glow */}
                   <div
-                    className="absolute -top-14 -right-14 w-44 h-44 rounded-full blur-3xl pointer-events-none transition-all duration-700 opacity-25 group-hover:opacity-45 group-hover:scale-110"
+                    className="absolute -top-14 -right-14 w-44 h-44 rounded-full blur-3xl pointer-events-none transition-all duration-700 opacity-20 group-hover:opacity-40 group-hover:scale-110"
                     style={{ background: cat.glowColor }}
                   />
 
@@ -592,12 +591,12 @@ const Home = () => {
                     {/* Header: Icon + Titles + Count Badge */}
                     <div className="flex items-start justify-between gap-4 mb-6">
                       <div className="flex items-center gap-4">
-                        <div className="w-13 h-13 md:w-14 md:h-14 rounded-2xl bg-[#00020B] border border-neon-primary/30 flex items-center justify-center text-neon-primary text-xl md:text-2xl shadow-[0_0_15px_rgba(84,53,204,0.15)] group-hover:border-neon-primary group-hover:scale-105 group-hover:shadow-[0_0_20px_rgba(84,53,204,0.3)] transition-all duration-300 flex-shrink-0">
+                        <div className="w-12 h-12 md:w-13 md:h-13 rounded-lg bg-[#00020B] border border-neon-primary/30 flex items-center justify-center text-neon-primary text-xl md:text-2xl shadow-[0_2px_12px_rgba(0,0,0,0.5)] group-hover:border-neon-primary group-hover:scale-105 group-hover:shadow-[0_4px_16px_rgba(84,53,204,0.3)] transition-all duration-300 flex-shrink-0">
                           <Icon />
                         </div>
                         <div>
                           <div className="flex items-center gap-2 mb-1">
-                            <span className="w-1.5 h-1.5 rounded-full bg-neon-primary animate-pulse" />
+                            <span className="w-1.5 h-1.5 rounded-sm bg-neon-primary animate-pulse" />
                             <span className="text-[10px] md:text-[11px] font-mono text-muted uppercase tracking-widest font-semibold">
                               {cat.badge}
                             </span>
@@ -611,7 +610,7 @@ const Home = () => {
                         </div>
                       </div>
 
-                      <span className="flex-shrink-0 px-3 py-1 rounded-full text-xs font-mono bg-[#00020B]/80 border border-surface/60 text-muted group-hover:border-neon-primary/50 group-hover:text-text-primary transition-all">
+                      <span className="flex-shrink-0 px-2.5 py-1 rounded-md text-xs font-mono bg-[#00020B]/90 border border-surface/50 text-muted group-hover:border-neon-primary/50 group-hover:text-text-primary transition-all shadow-[0_1px_4px_rgba(0,0,0,0.5)]">
                         {cat.count} Skills
                       </span>
                     </div>
@@ -621,7 +620,7 @@ const Home = () => {
                       {cat.skills.map((skill, sIdx) => (
                         <span
                           key={`${cat.id}-${sIdx}`}
-                          className="px-3 py-1.5 rounded-xl bg-[#00020B]/90 border border-surface/50 text-text-primary text-xs md:text-sm font-mono tracking-wide hover:border-neon-primary hover:text-white hover:bg-neon-primary/10 transition-all duration-200 cursor-default"
+                          className="px-2.5 py-1.5 rounded-md bg-[#00020B]/90 border border-surface/40 text-text-primary text-xs md:text-sm font-mono tracking-wide hover:border-neon-primary/60 hover:text-white hover:bg-neon-primary/10 transition-all duration-200 cursor-default shadow-[inset_0_1px_1px_rgba(255,255,255,0.05)]"
                         >
                           {skill}
                         </span>
@@ -702,45 +701,37 @@ const Home = () => {
           </div>
 
           {/* Social Links & Direct Mail Bar */}
-          <div ref={contactSocialsRef} className="flex flex-wrap items-center justify-center gap-4 sm:gap-6 mt-12">
+          <div
+            ref={contactSocialsRef}
+            className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-3 sm:gap-4 mt-10 max-w-xl mx-auto w-full px-2"
+          >
             <a
               href="https://github.com/Naqsh786/"
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-2.5 px-5 py-3 rounded-2xl bg-[#00020B]/80 backdrop-blur-md border border-surface/50 text-muted hover:text-white hover:border-neon-primary/60 hover:shadow-md hover:shadow-neon-primary/20 transition-all duration-300 hover:-translate-y-0.5 font-mono text-xs font-bold"
+              className="group flex-1 inline-flex items-center justify-center gap-2.5 px-4 py-3 rounded-lg bg-gradient-to-r from-[#120F2A]/90 to-[#0A0818]/90 backdrop-blur-md border border-surface/50 text-text-primary hover:text-white hover:border-neon-primary/70 hover:shadow-[0_0_20px_rgba(84,53,204,0.35),0_8px_20px_rgba(0,0,0,0.7)] transition-all duration-300 hover:-translate-y-0.5 active:translate-y-[1px] font-mono text-xs font-semibold shadow-[inset_0_1px_1px_rgba(255,255,255,0.08),0_4px_12px_rgba(0,0,0,0.5)]"
               title="GitHub Profile"
               aria-label="Visit GitHub Profile"
             >
-              <FiGithub className="text-base text-neon-primary group-hover:scale-110 transition-transform" />
+              <FiGithub className="text-base text-neon-primary group-hover:scale-110 group-hover:text-white transition-all flex-shrink-0" />
               <span>GitHub</span>
-            </a>
-            <a
-              href="https://www.linkedin.com/in/muhammad-naqsh-369347425/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group inline-flex items-center gap-2.5 px-5 py-3 rounded-2xl bg-[#00020B]/80 backdrop-blur-md border border-surface/50 text-muted hover:text-white hover:border-neon-primary/60 hover:shadow-md hover:shadow-neon-primary/20 transition-all duration-300 hover:-translate-y-0.5 font-mono text-xs font-bold"
-              title="LinkedIn Profile"
-              aria-label="Visit LinkedIn Profile"
-            >
-              <FiLinkedin className="text-base text-neon-primary group-hover:scale-110 transition-transform" />
-              <span>LinkedIn</span>
             </a>
             <a
               href="https://mail.google.com/mail/?view=cm&fs=1&to=naqshcc916@gmail.com&su=Project%20Inquiry%20-%20Naqsh%20Portfolio"
               onClick={handleEmailClick}
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-2.5 px-5 py-3 rounded-2xl bg-[#00020B]/80 backdrop-blur-md border border-surface/50 text-muted hover:text-white hover:border-neon-primary/60 hover:shadow-md hover:shadow-neon-primary/20 transition-all duration-300 hover:-translate-y-0.5 font-mono text-xs font-bold"
+              className="group flex-1 sm:flex-[1.2] inline-flex items-center justify-center gap-2.5 px-4 py-3 rounded-lg bg-gradient-to-r from-[#120F2A]/90 to-[#0A0818]/90 backdrop-blur-md border border-surface/50 text-text-primary hover:text-white hover:border-neon-primary/70 hover:shadow-[0_0_20px_rgba(84,53,204,0.35),0_8px_20px_rgba(0,0,0,0.7)] transition-all duration-300 hover:-translate-y-0.5 active:translate-y-[1px] font-mono text-xs font-semibold shadow-[inset_0_1px_1px_rgba(255,255,255,0.08),0_4px_12px_rgba(0,0,0,0.5)] min-w-0"
               title="Send Email via Gmail"
               aria-label="Send Email via Gmail"
             >
-              <FiMail className="text-base text-neon-primary group-hover:scale-110 transition-transform" />
-              <span>naqshcc916@gmail.com</span>
+              <FiMail className="text-base text-neon-primary group-hover:scale-110 group-hover:text-white transition-all flex-shrink-0" />
+              <span className="truncate">naqshcc916@gmail.com</span>
             </a>
           </div>
 
           {emailCopied && (
-            <div className="mt-4 inline-block px-4 py-2 rounded-xl bg-neon-primary/10 border border-neon-primary/40 text-neon-primary font-mono text-xs shadow-[0_0_15px_rgba(84,53,204,0.3)] animate-bounce">
+            <div className="mt-4 inline-block px-3.5 py-1.5 rounded-lg bg-neon-primary/10 border border-neon-primary/40 text-neon-primary font-mono text-xs shadow-[0_2px_10px_rgba(84,53,204,0.3)] animate-bounce">
               ✓ Email copied to clipboard! (naqshcc916@gmail.com)
             </div>
           )}

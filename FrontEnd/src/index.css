@@ -170,3 +170,34 @@ html.custom-cursor * {
     perspective: 1000px;
   }
 }
+
+/* ═══════════════════════════════════════════
+   ARCHITECTURAL CRAFT — Precision Geometry
+   ═══════════════════════════════════════════ */
+
+/* Precision 45° Corner Chamfer */
+.tech-chamfer {
+  clip-path: polygon(
+    10px 0%, 100% 0%, 
+    100% calc(100% - 10px), calc(100% - 10px) 100%, 
+    0% 100%, 0% 10px
+  );
+}
+
+/* High-End Chassis Surface with Directional Depth */
+.chassis-surface {
+  position: relative;
+  background: linear-gradient(135deg, rgba(13, 13, 26, 0.96) 0%, rgba(0, 2, 11, 0.92) 100%);
+  border: 1px solid rgba(var(--color-surface-rgb), 0.45);
+  box-shadow: 
+    0 1px 0 0 rgba(255, 255, 255, 0.08) inset,
+    0 8px 30px -6px rgba(0, 0, 0, 0.7);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.chassis-surface:hover {
+  border-color: rgba(var(--color-accent-rgb), 0.55);
+  box-shadow: 
+    0 1px 0 0 rgba(255, 255, 255, 0.14) inset,
+    0 16px 36px -8px rgba(0, 0, 0, 0.8),
+    0 4px 20px -4px rgba(var(--color-accent-rgb), 0.2);
+}

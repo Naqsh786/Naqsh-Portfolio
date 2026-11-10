@@ -1,5 +1,5 @@
 import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
-import { FiArrowUp, FiRotateCcw, FiGithub, FiLinkedin, FiMail, FiCode } from "react-icons/fi";
+import { FiRotateCcw, FiGithub, FiMail, FiCode } from "react-icons/fi";
 
 // Constants from Framer FooterField specification
 const PUSH = 12000; // px/s² at pointer center
@@ -24,12 +24,6 @@ export default function FooterField({ onReplayIntro }) {
   const measureRef = useRef(null);
 
   const [fitFontSize, setFitFontSize] = useState("16vw");
-
-  // Smooth scroll to top helper
-  const scrollToTop = (e) => {
-    e.preventDefault();
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
 
   // Trigger replay intro
   const handleReplayClick = () => {
@@ -328,8 +322,8 @@ export default function FooterField({ onReplayIntro }) {
           {/* Brand Info */}
           <div className="md:col-span-5 flex flex-col items-start gap-4">
             <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-2xl bg-gradient-to-tr from-neon-primary to-[#7c5ce7] flex items-center justify-center text-white shadow-md shadow-neon-primary/30">
-                <FiCode className="text-lg" />
+              <div className="w-9 h-9 rounded-lg bg-gradient-to-tr from-neon-primary to-[#7c5ce7] flex items-center justify-center text-white shadow-md shadow-neon-primary/30">
+                <FiCode className="text-base" />
               </div>
               <span className="text-2xl font-bold font-mono tracking-tight text-white">
                 Naqsh<span className="text-neon-primary">.</span>
@@ -407,16 +401,6 @@ export default function FooterField({ onReplayIntro }) {
               </li>
               <li>
                 <a
-                  href="https://www.linkedin.com/in/muhammad-naqsh-444a86315"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 hover:text-white hover:translate-x-1 transition-all"
-                >
-                  <FiLinkedin className="text-neon-primary" /> LinkedIn
-                </a>
-              </li>
-              <li>
-                <a
                   href="mailto:naqshcc916@gmail.com"
                   className="inline-flex items-center gap-2 hover:text-white hover:translate-x-1 transition-all"
                 >
@@ -470,23 +454,11 @@ export default function FooterField({ onReplayIntro }) {
               onClick={handleReplayClick}
               type="button"
               id="replay-intro-btn"
-              className="group inline-flex items-center gap-2 px-4 py-2 rounded-full border border-neon-primary/30 bg-[#00020B]/80 hover:bg-neon-primary/10 hover:border-neon-primary text-[#F4F4F5] hover:text-white transition-all duration-300 shadow-sm hover:shadow-neon-primary/20 active:scale-95"
+              className="group inline-flex items-center gap-2 px-3.5 py-2 rounded-lg border border-neon-primary/30 bg-[#00020B]/90 hover:bg-neon-primary/10 hover:border-neon-primary text-[#F4F4F5] hover:text-white transition-all duration-300 shadow-[0_2px_8px_rgba(0,0,0,0.5)] hover:shadow-neon-primary/20 active:translate-y-[1px]"
               title="Replay introductory animation"
             >
               <FiRotateCcw className="text-xs text-neon-primary group-hover:rotate-180 transition-transform duration-500" />
               <span className="tracking-wide">Replay Intro</span>
-            </button>
-
-            {/* Back to Top Button (Requested by User) */}
-            <button
-              onClick={scrollToTop}
-              type="button"
-              id="back-to-top-btn"
-              className="group inline-flex items-center gap-2 px-4 py-2 rounded-full border border-surface/30 bg-[#00020B]/80 hover:border-neon-primary/60 text-[#F4F4F5] hover:text-neon-primary transition-all duration-300 active:scale-95"
-              title="Back to top"
-            >
-              <span className="tracking-wide">Back to Top</span>
-              <FiArrowUp className="text-xs text-neon-primary group-hover:-translate-y-0.5 transition-transform duration-300" />
             </button>
           </div>
         </div>

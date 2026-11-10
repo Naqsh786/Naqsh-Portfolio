@@ -94,7 +94,7 @@ export default function MilestoneProcessScroll() {
         }
 
         // Card is visible when inside the active scroll window (reverses when scrolling back out)
-        if (elRect.top < windowHeight * 0.85 && elRect.bottom > 0) {
+        if (elRect.top < windowHeight * 0.92 && elRect.bottom > 0) {
           currentVisible.add(idx);
         }
       });
@@ -168,9 +168,9 @@ export default function MilestoneProcessScroll() {
                 {/* ── Center Milestone Circle Node ── */}
                 <div className="absolute left-6 md:left-1/2 -translate-x-1/2 z-20 flex items-center justify-center">
                   <div
-                    className={`w-9 h-9 sm:w-11 sm:h-11 rounded-full border-2 transition-all duration-500 flex items-center justify-center font-mono text-xs sm:text-sm font-bold bg-[#00020B] ${
+                    className={`w-8 h-8 sm:w-10 sm:h-10 rounded-md border-2 transition-all duration-500 flex items-center justify-center font-mono text-xs sm:text-sm font-bold bg-[#00020B] ${
                       isStepActive
-                        ? "border-neon-primary text-white shadow-[0_0_14px_rgba(84,53,204,0.45)] scale-105"
+                        ? "border-neon-primary text-white shadow-[0_2px_12px_rgba(84,53,204,0.5)] scale-105"
                         : "border-surface/60 text-muted/50 scale-95"
                     }`}
                   >
@@ -189,21 +189,21 @@ export default function MilestoneProcessScroll() {
                     {!isRight ? (
                       /* Step 2 & Step 4: Card on LEFT side (animates from left) */
                       <div
-                        className={`w-full rounded-2xl p-5 sm:p-7 bg-[#00020B]/90 border transition-all duration-700 ${
+                        className={`w-full rounded-xl p-5 sm:p-7 bg-[#00020B]/90 border transition-all duration-700 ${
                           isVisible
                             ? "translate-x-0 opacity-100"
                             : "md:-translate-x-10 opacity-0"
                         } ${
                           isCurrent
-                            ? "border-neon-primary/70 shadow-[0_8px_30px_rgba(84,53,204,0.12)]"
-                            : "border-surface/40 hover:border-surface/80"
+                            ? "border-neon-primary/70 shadow-[0_8px_30px_rgba(0,0,0,0.8)]"
+                            : "border-surface/40 hover:border-surface/80 shadow-[0_4px_20px_rgba(0,0,0,0.6)]"
                         }`}
                       >
                         <div className="flex items-center justify-between gap-3 mb-3">
                           <span className="text-[11px] font-mono font-semibold text-neon-primary tracking-wider uppercase">
                             {item.phase}
                           </span>
-                          <span className="px-2.5 py-0.5 rounded-full bg-white/[0.04] border border-surface/40 text-[10px] font-mono text-muted">
+                          <span className="px-2 py-0.5 rounded-sm bg-white/[0.04] border border-surface/40 text-[10px] font-mono text-muted">
                             {item.tag}
                           </span>
                         </div>
@@ -220,9 +220,9 @@ export default function MilestoneProcessScroll() {
                           {item.deliverables.map((del, dIdx) => (
                             <span
                               key={dIdx}
-                              className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/[0.03] border border-surface/30 text-[10px] sm:text-[11px] font-mono text-text-secondary"
+                              className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white/[0.03] border border-surface/30 text-[10px] sm:text-[11px] font-mono text-text-secondary"
                             >
-                              <span className="w-1 h-1 rounded-full bg-neon-primary" />
+                              <span className="w-1 h-1 rounded-sm bg-neon-primary" />
                               {del}
                             </span>
                           ))}
@@ -256,21 +256,21 @@ export default function MilestoneProcessScroll() {
                     {isRight ? (
                       /* Step 1 & Step 3: Card on RIGHT side (animates from right) */
                       <div
-                        className={`w-full rounded-2xl p-5 sm:p-7 bg-[#00020B]/90 border transition-all duration-700 ${
+                        className={`w-full rounded-xl p-5 sm:p-7 bg-[#00020B]/90 border transition-all duration-700 ${
                           isVisible
                             ? "translate-x-0 opacity-100"
                             : "md:translate-x-10 opacity-0"
                         } ${
                           isCurrent
-                            ? "border-neon-primary/70 shadow-[0_8px_30px_rgba(84,53,204,0.12)]"
-                            : "border-surface/40 hover:border-surface/80"
+                            ? "border-neon-primary/70 shadow-[0_8px_30px_rgba(0,0,0,0.8)]"
+                            : "border-surface/40 hover:border-surface/80 shadow-[0_4px_20px_rgba(0,0,0,0.6)]"
                         }`}
                       >
                         <div className="flex items-center justify-between gap-3 mb-3">
                           <span className="text-[11px] font-mono font-semibold text-neon-primary tracking-wider uppercase">
                             {item.phase}
                           </span>
-                          <span className="px-2.5 py-0.5 rounded-full bg-white/[0.04] border border-surface/40 text-[10px] font-mono text-muted">
+                          <span className="px-2 py-0.5 rounded-sm bg-white/[0.04] border border-surface/40 text-[10px] font-mono text-muted">
                             {item.tag}
                           </span>
                         </div>
@@ -287,9 +287,9 @@ export default function MilestoneProcessScroll() {
                           {item.deliverables.map((del, dIdx) => (
                             <span
                               key={dIdx}
-                              className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg bg-white/[0.03] border border-surface/30 text-[10px] sm:text-[11px] font-mono text-text-secondary"
+                              className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-white/[0.03] border border-surface/30 text-[10px] sm:text-[11px] font-mono text-text-secondary"
                             >
-                              <span className="w-1 h-1 rounded-full bg-neon-primary" />
+                              <span className="w-1 h-1 rounded-sm bg-neon-primary" />
                               {del}
                             </span>
                           ))}

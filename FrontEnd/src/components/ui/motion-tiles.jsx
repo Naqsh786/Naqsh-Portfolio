@@ -98,12 +98,12 @@ export default function MotionTiles({ projects = [] }) {
               return (
                 <div
                   key={proj._id || idx}
-                  className={`rounded-2xl transition-all duration-300 border overflow-hidden ${
+                  className={`rounded-lg transition-all duration-300 border overflow-hidden ${
                     isExpanded
-                      ? "bg-[#00020B]/90 border-neon-primary shadow-[0_0_30px_rgba(84,53,204,0.35)]"
+                      ? "bg-[#00020B]/90 border-neon-primary shadow-[0_8px_28px_rgba(0,0,0,0.85)]"
                       : isSelected
-                      ? "bg-[#00020B]/75 border-neon-primary/60 shadow-[0_0_15px_rgba(84,53,204,0.2)]"
-                      : "bg-[#00020B]/50 border-surface/40 hover:border-neon-primary/40 hover:bg-[#00020B]/80 hover:shadow-[0_0_15px_rgba(84,53,204,0.15)]"
+                      ? "bg-[#00020B]/75 border-neon-primary/60 shadow-[0_4px_16px_rgba(0,0,0,0.6)]"
+                      : "bg-[#00020B]/50 border-surface/40 hover:border-neon-primary/40 hover:bg-[#00020B]/80 hover:shadow-[0_4px_16px_rgba(0,0,0,0.5)]"
                   }`}
                 >
                   {/* Clickable Header Row */}
@@ -126,7 +126,7 @@ export default function MotionTiles({ projects = [] }) {
                       <div className="min-w-0 flex-1">
                         <div className="flex items-center gap-2 mb-0.5">
                           <span
-                            className={`text-[10px] sm:text-xs font-mono px-2 py-0.5 rounded-md transition-colors truncate max-w-[220px] ${
+                            className={`text-[10px] sm:text-xs font-mono px-2 py-0.5 rounded-sm transition-colors truncate max-w-[220px] ${
                               isSelected
                                 ? "bg-neon-primary/20 text-[#c4b5fd] border border-neon-primary/30"
                                 : "bg-surface/30 text-muted/80 border border-surface/20"
@@ -147,9 +147,9 @@ export default function MotionTiles({ projects = [] }) {
 
                     {/* Chevron Indicator */}
                     <div
-                      className={`w-8 h-8 rounded-xl flex items-center justify-center shrink-0 border transition-all duration-300 ${
+                      className={`w-7 h-7 rounded-md flex items-center justify-center shrink-0 border transition-all duration-300 ${
                         isExpanded
-                          ? "bg-neon-primary text-white border-neon-primary shadow-[0_0_12px_rgba(84,53,204,0.6)] rotate-180"
+                          ? "bg-neon-primary text-white border-neon-primary shadow-[0_2px_8px_rgba(84,53,204,0.5)] rotate-180"
                           : isSelected
                           ? "bg-neon-primary/20 text-neon-primary border-neon-primary/40"
                           : "bg-surface/30 text-muted border-surface/30"
@@ -168,7 +168,7 @@ export default function MotionTiles({ projects = [] }) {
                     }`}
                   >
                     {/* Mobile In-Accordion Visual Showcase Preview (< lg) */}
-                    <div className="block lg:hidden rounded-2xl overflow-hidden border border-neon-primary/40 relative aspect-[16/10] bg-[#00020B] shadow-[0_12px_28px_rgba(84,53,204,0.3)] group/mobimg">
+                    <div className="block lg:hidden rounded-lg overflow-hidden border border-neon-primary/40 relative aspect-[16/10] bg-[#00020B] shadow-[0_12px_28px_rgba(0,0,0,0.8)] group/mobimg">
                       <img
                         src={proj.imageUrl}
                         alt={proj.title}
@@ -179,7 +179,7 @@ export default function MotionTiles({ projects = [] }) {
                       
                       {/* Top Badge Overlay */}
                       <div className="absolute top-2.5 left-2.5 right-2.5 flex items-center justify-between">
-                        <span className="px-2.5 py-0.5 rounded-lg bg-[#00020B]/85 backdrop-blur-md border border-surface/50 text-[10px] font-mono font-bold text-white">
+                        <span className="px-2.5 py-0.5 rounded-md bg-[#00020B]/85 backdrop-blur-md border border-surface/50 text-[10px] font-mono font-bold text-white">
                           0{idx + 1} // {shortTitle}
                         </span>
                         <button
@@ -188,7 +188,7 @@ export default function MotionTiles({ projects = [] }) {
                             e.stopPropagation();
                             setLightboxImage(proj);
                           }}
-                          className="p-1.5 rounded-lg bg-neon-primary text-white shadow-[0_0_10px_rgba(84,53,204,0.5)] active:scale-90 transition-transform"
+                          className="p-1.5 rounded-md bg-neon-primary text-white shadow-[0_2px_8px_rgba(84,53,204,0.5)] active:scale-90 transition-transform"
                           aria-label="Expand screenshot"
                           title="View full image"
                         >
@@ -201,7 +201,7 @@ export default function MotionTiles({ projects = [] }) {
                         <span className="text-[10px] font-mono text-neon-primary font-bold uppercase tracking-wider truncate max-w-[200px]">
                           {proj.technologies?.slice(0, 3).join(" • ")}
                         </span>
-                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-neon-primary/90 text-white text-[9px] font-mono font-bold shadow-sm">
+                        <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-sm bg-neon-primary/90 text-white text-[9px] font-mono font-bold shadow-sm">
                           <span className="w-1 h-1 rounded-full bg-white animate-pulse" />
                           ACTIVE
                         </span>
@@ -229,7 +229,7 @@ export default function MotionTiles({ projects = [] }) {
                           {proj.technologies.map((tech, tIdx) => (
                             <span
                               key={tIdx}
-                              className="px-2.5 py-1 rounded-lg bg-surface/35 border border-surface/50 text-text-primary text-[11px] font-mono hover:border-neon-primary/50 transition-colors"
+                              className="px-2 py-0.5 rounded-md bg-surface/35 border border-surface/50 text-text-primary text-[11px] font-mono hover:border-neon-primary/50 transition-colors"
                             >
                               {tech}
                             </span>
@@ -245,7 +245,7 @@ export default function MotionTiles({ projects = [] }) {
                           href={proj.liveDemo}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-neon-primary text-white text-xs font-bold shadow-[0_0_15px_rgba(84,53,204,0.45)] hover:bg-white hover:text-neon-primary transition-all duration-200 active:scale-[0.98] min-h-[42px]"
+                          className="inline-flex items-center justify-center gap-2 px-3 py-2.5 rounded-lg bg-neon-primary text-white text-xs font-bold shadow-[0_4px_14px_rgba(84,53,204,0.3)] hover:bg-white hover:text-neon-primary transition-all duration-200 active:scale-[0.98] min-h-[40px]"
                         >
                           <FiExternalLink className="text-sm" />
                           <span>Live Demo</span>
@@ -257,7 +257,7 @@ export default function MotionTiles({ projects = [] }) {
                           href={proj.gitFrontend}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-[#0D0D1A] border border-neon-primary/40 text-muted hover:text-white hover:border-neon-primary hover:bg-neon-primary/10 text-xs font-bold transition-all duration-200 active:scale-[0.98] min-h-[42px]"
+                          className="inline-flex items-center justify-center gap-2 px-3 py-2.5 rounded-lg bg-[#0D0D1A] border border-neon-primary/40 text-muted hover:text-white hover:border-neon-primary hover:bg-neon-primary/10 text-xs font-bold transition-all duration-200 active:scale-[0.98] min-h-[40px]"
                         >
                           <FiGithub className="text-sm" />
                           <span>Frontend</span>
@@ -269,7 +269,7 @@ export default function MotionTiles({ projects = [] }) {
                           href={proj.gitBackend}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="inline-flex items-center justify-center gap-2 px-3 py-2.5 rounded-xl bg-[#0D0D1A] border border-[#7c5ce7]/40 text-muted hover:text-white hover:border-[#7c5ce7] hover:bg-[#7c5ce7]/10 text-xs font-bold transition-all duration-200 active:scale-[0.98] min-h-[42px]"
+                          className="inline-flex items-center justify-center gap-2 px-3 py-2.5 rounded-lg bg-[#0D0D1A] border border-[#7c5ce7]/40 text-muted hover:text-white hover:border-[#7c5ce7] hover:bg-[#7c5ce7]/10 text-xs font-bold transition-all duration-200 active:scale-[0.98] min-h-[40px]"
                         >
                           <FiGithub className="text-sm" />
                           <span>Backend</span>
@@ -329,10 +329,10 @@ export default function MotionTiles({ projects = [] }) {
                     <div
                       key={proj._id || idx}
                       onClick={() => handleCardClick(idx)}
-                      className={`absolute inset-0 rounded-3xl overflow-hidden cursor-pointer transition-all duration-500 ease-out group ${
+                      className={`absolute inset-0 rounded-xl overflow-hidden cursor-pointer transition-all duration-500 ease-out group ${
                         isActive
-                          ? "ring-2 ring-neon-primary shadow-[0_30px_70px_-15px_rgba(84,53,204,0.65),0_0_45px_rgba(84,53,204,0.35)]"
-                          : "border border-surface/50 hover:border-neon-primary/60 hover:shadow-[0_15px_35px_rgba(84,53,204,0.25)]"
+                          ? "ring-2 ring-neon-primary shadow-[0_25px_60px_-15px_rgba(0,0,0,0.9),0_0_30px_rgba(84,53,204,0.3)]"
+                          : "border border-surface/50 hover:border-neon-primary/60 hover:shadow-[0_12px_28px_rgba(0,0,0,0.7)]"
                       }`}
                       style={{
                         transformStyle: "preserve-3d",
@@ -354,7 +354,7 @@ export default function MotionTiles({ projects = [] }) {
                       
                       {/* Top Bar on Card */}
                       <div className="absolute top-4 left-4 right-4 flex items-center justify-between z-20">
-                        <span className="px-3 py-1 rounded-xl bg-[#00020B]/85 backdrop-blur-md border border-surface/60 text-xs font-mono font-bold text-white shadow-md">
+                        <span className="px-2.5 py-1 rounded-md bg-[#00020B]/90 backdrop-blur-md border border-surface/60 text-xs font-mono font-bold text-white shadow-md">
                           0{idx + 1} // {proj.title.split("–")[0].trim()}
                         </span>
 
@@ -365,14 +365,14 @@ export default function MotionTiles({ projects = [] }) {
                               e.stopPropagation();
                               setLightboxImage(proj);
                             }}
-                            className="p-2 rounded-xl bg-neon-primary/90 hover:bg-white hover:text-neon-primary text-white backdrop-blur-md shadow-[0_0_15px_rgba(84,53,204,0.6)] transition-all"
+                            className="p-1.5 rounded-md bg-neon-primary/90 hover:bg-white hover:text-neon-primary text-white backdrop-blur-md shadow-[0_2px_10px_rgba(84,53,204,0.5)] transition-all"
                             title="Expand Screenshot"
                             aria-label="Expand image"
                           >
                             <FiMaximize2 className="text-sm" />
                           </button>
                         ) : (
-                          <span className="px-2.5 py-1 rounded-lg bg-[#00020B]/80 text-[11px] font-mono text-muted border border-surface/40">
+                          <span className="px-2.5 py-1 rounded-md bg-[#00020B]/80 text-[11px] font-mono text-muted border border-surface/40">
                             Click to View
                           </span>
                         )}
@@ -390,7 +390,7 @@ export default function MotionTiles({ projects = [] }) {
                         </div>
 
                         {isActive && (
-                          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-xl bg-neon-primary text-white text-xs font-mono font-bold shadow-[0_0_15px_rgba(84,53,204,0.5)] shrink-0">
+                          <span className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-md bg-neon-primary text-white text-xs font-mono font-bold shadow-[0_2px_10px_rgba(84,53,204,0.4)] shrink-0">
                             <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
                             ACTIVE
                           </span>
@@ -419,10 +419,10 @@ export default function MotionTiles({ projects = [] }) {
             target="_blank"
             rel="noopener noreferrer"
             id="view-more-github-btn"
-            className="group relative inline-flex items-center gap-3 px-6 sm:px-8 py-3.5 sm:py-4 rounded-2xl bg-gradient-to-r from-[#00020B] via-[#0D0D1A] to-[#00020B] border-2 border-neon-primary/40 hover:border-neon-primary text-white font-mono text-xs sm:text-sm font-bold tracking-wide shadow-[0_0_25px_rgba(84,53,204,0.25)] hover:shadow-[0_0_45px_rgba(84,53,204,0.55)] hover:-translate-y-0.5 active:translate-y-0 active:scale-95 transition-all duration-300"
+            className="group relative inline-flex items-center gap-3 px-6 sm:px-8 py-3.5 sm:py-4 rounded-lg bg-gradient-to-r from-[#00020B] via-[#0D0D1A] to-[#00020B] border border-neon-primary/40 hover:border-neon-primary text-white font-mono text-xs sm:text-sm font-bold tracking-wide shadow-[0_4px_20px_rgba(0,0,0,0.6)] hover:shadow-[0_8px_30px_rgba(84,53,204,0.35)] hover:-translate-y-0.5 active:translate-y-0 active:scale-95 transition-all duration-300"
           >
             {/* Ambient inner reactive glow */}
-            <div className="absolute inset-0 rounded-2xl bg-neon-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+            <div className="absolute inset-0 rounded-lg bg-neon-primary/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
             
             <FiGithub className="text-base sm:text-lg text-neon-primary group-hover:scale-110 group-hover:rotate-6 transition-all duration-300" />
             <span className="relative z-10 font-semibold text-text-primary group-hover:text-white">
@@ -445,7 +445,7 @@ export default function MotionTiles({ projects = [] }) {
         >
           <div
             onClick={(e) => e.stopPropagation()}
-            className="relative max-w-5xl w-full max-h-[90vh] rounded-3xl overflow-hidden bg-[#00020B] border border-neon-primary/60 shadow-[0_0_60px_rgba(84,53,204,0.5)] flex flex-col"
+            className="relative max-w-5xl w-full max-h-[90vh] rounded-xl overflow-hidden bg-[#00020B] border border-neon-primary/60 shadow-[0_20px_60px_rgba(0,0,0,0.9)] flex flex-col"
           >
             {/* Lightbox Header */}
             <div className="p-4 sm:p-5 flex items-center justify-between border-b border-surface/40 bg-[#00020B]/90">
@@ -460,7 +460,7 @@ export default function MotionTiles({ projects = [] }) {
 
               <button
                 onClick={() => setLightboxImage(null)}
-                className="w-10 h-10 rounded-full bg-[#0D0D1A] border border-surface/60 flex items-center justify-center text-muted hover:text-white hover:border-neon-primary transition-all"
+                className="w-9 h-9 rounded-md bg-[#0D0D1A] border border-surface/60 flex items-center justify-center text-muted hover:text-white hover:border-neon-primary transition-all"
                 aria-label="Close lightbox"
               >
                 <FiX className="text-lg" />
@@ -472,7 +472,7 @@ export default function MotionTiles({ projects = [] }) {
               <img
                 src={lightboxImage.imageUrl}
                 alt={lightboxImage.title}
-                className="w-full h-auto rounded-2xl object-contain mx-auto"
+                className="w-full h-auto rounded-lg object-contain mx-auto"
               />
             </div>
 
@@ -483,7 +483,7 @@ export default function MotionTiles({ projects = [] }) {
                   href={lightboxImage.liveDemo}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-neon-primary text-white text-xs sm:text-sm font-bold shadow-[0_0_15px_rgba(84,53,204,0.4)] hover:bg-white hover:text-neon-primary transition-all"
+                  className="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-neon-primary text-white text-xs sm:text-sm font-bold shadow-[0_4px_14px_rgba(84,53,204,0.3)] hover:bg-white hover:text-neon-primary transition-all"
                 >
                   <FiExternalLink className="text-sm" />
                   <span>Open Live Demo</span>

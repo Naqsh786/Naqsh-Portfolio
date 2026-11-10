@@ -171,9 +171,9 @@ export default function AdminDashboard() {
   if (!isAuthenticated) {
     return (
       <div className="min-h-screen pt-24 pb-16 px-4 sm:px-6 flex items-center justify-center relative z-10">
-        <div className="w-full max-w-md glass rounded-3xl p-6 sm:p-8 border border-neon-primary/25 shadow-[0_0_50px_rgba(84,53,204,0.15)]">
+        <div className="w-full max-w-md glass rounded-xl p-6 sm:p-8 border border-neon-primary/25 shadow-[0_16px_45px_rgba(0,0,0,0.85)]">
           <div className="text-center mb-8">
-            <div className="w-16 h-16 rounded-2xl bg-neon-primary/8 border border-neon-primary/30 mx-auto flex items-center justify-center text-neon-primary text-3xl mb-4 shadow-[0_0_20px_rgba(84,53,204,0.2)]">
+            <div className="w-14 h-14 rounded-lg bg-neon-primary/8 border border-neon-primary/30 mx-auto flex items-center justify-center text-neon-primary text-2xl mb-4 shadow-[0_2px_12px_rgba(0,0,0,0.5)]">
               <FaShieldAlt />
             </div>
             <h1 className="text-2xl sm:text-3xl font-bold font-mono tracking-tight text-text-primary mb-2">
@@ -185,7 +185,7 @@ export default function AdminDashboard() {
           </div>
 
           {loginError && (
-            <div className="mb-6 p-3.5 sm:p-4 rounded-xl bg-red-500/10 border border-red-500/40 text-red-300 text-xs sm:text-sm font-mono text-center break-words">
+            <div className="mb-6 p-3.5 sm:p-4 rounded-lg bg-red-500/10 border border-red-500/40 text-red-300 text-xs sm:text-sm font-mono text-center break-words">
               {loginError}
             </div>
           )}
@@ -202,13 +202,13 @@ export default function AdminDashboard() {
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="Enter admin password..."
                   autoComplete="new-password"
-                  className="w-full bg-[#00020B]/80 border border-surface/50 rounded-xl px-4 py-3.5 pl-11 pr-12 text-text-primary placeholder-surface focus:outline-none focus:border-neon-primary focus:ring-1 focus:ring-neon-primary font-mono text-sm transition-all"
+                  className="w-full bg-[#00020B]/80 border border-surface/50 rounded-lg px-4 py-3 pl-11 pr-12 text-text-primary placeholder-surface focus:outline-none focus:border-neon-primary focus:ring-1 focus:ring-neon-primary font-mono text-sm transition-all shadow-[inset_0_1px_2px_rgba(0,0,0,0.5)]"
                 />
-                <FaLock className="absolute left-4 top-4 text-surface" />
+                <FaLock className="absolute left-4 top-3.5 text-surface" />
                 <button
                   type="button"
                   onClick={() => setShowPassword((prev) => !prev)}
-                  className="absolute right-4 top-3.5 text-muted hover:text-text-primary transition-colors p-1"
+                  className="absolute right-4 top-3 text-muted hover:text-text-primary transition-colors p-1"
                   title={showPassword ? "Hide Password" : "Show Password"}
                 >
                   {showPassword ? <FaEyeSlash className="text-base" /> : <FaEye className="text-base" />}
@@ -219,7 +219,7 @@ export default function AdminDashboard() {
             <button
               type="submit"
               disabled={loadingLogin}
-              className="w-full py-3.5 sm:py-4 rounded-xl bg-neon-primary text-white font-bold tracking-wide shadow-[0_0_20px_rgba(84,53,204,0.3)] hover:shadow-[0_0_30px_rgba(84,53,204,0.5)] hover:scale-[1.01] active:scale-[0.99] transition-all duration-300 disabled:opacity-50 font-mono text-sm"
+              className="w-full py-3.5 rounded-lg bg-neon-primary text-white font-bold tracking-wide shadow-[0_4px_14px_rgba(84,53,204,0.3)] hover:shadow-[0_8px_20px_rgba(84,53,204,0.5)] active:translate-y-[1px] transition-all duration-300 disabled:opacity-50 font-mono text-sm"
             >
               {loadingLogin ? "Authenticating..." : "Unlock Dashboard"}
             </button>
@@ -234,19 +234,19 @@ export default function AdminDashboard() {
     <div className="min-h-screen pt-24 sm:pt-28 pb-16 px-4 sm:px-6 md:px-8 max-w-7xl mx-auto relative z-10">
       {/* Toast Notification */}
       {notification && (
-        <div className="fixed top-20 sm:top-24 left-1/2 -translate-x-1/2 sm:left-auto sm:right-6 sm:translate-x-0 z-50 max-w-[90vw] px-4 py-2.5 rounded-xl bg-neon-primary text-white font-mono text-xs font-bold shadow-[0_0_25px_rgba(84,53,204,0.5)] animate-bounce text-center">
+        <div className="fixed top-20 sm:top-24 left-1/2 -translate-x-1/2 sm:left-auto sm:right-6 sm:translate-x-0 z-50 max-w-[90vw] px-4 py-2.5 rounded-lg bg-neon-primary text-white font-mono text-xs font-bold shadow-[0_4px_16px_rgba(0,0,0,0.85)] animate-bounce text-center">
           {notification}
         </div>
       )}
 
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 sm:mb-8 glass p-5 sm:p-6 rounded-3xl border border-neon-primary/15">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6 sm:mb-8 glass p-5 sm:p-6 rounded-xl border border-neon-primary/15">
         <div>
           <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
             <h1 className="text-xl sm:text-2xl md:text-3xl font-mono font-bold text-text-primary">
               Admin Dashboard
             </h1>
-            <span className="px-2.5 py-0.5 sm:px-3 sm:py-1 text-[10px] sm:text-xs font-mono font-bold rounded-full bg-neon-primary/15 text-neon-primary border border-neon-primary/30">
+            <span className="px-2.5 py-0.5 sm:px-3 sm:py-1 text-[10px] sm:text-xs font-mono font-bold rounded-md bg-neon-primary/15 text-neon-primary border border-neon-primary/30">
               Authenticated
             </span>
           </div>
@@ -259,7 +259,7 @@ export default function AdminDashboard() {
           <button
             onClick={() => fetchData()}
             disabled={loadingData}
-            className="p-2.5 sm:p-3 rounded-xl bg-[#0D0D1A] border border-surface/40 text-muted hover:text-text-primary hover:border-neon-primary/50 transition-all"
+            className="p-2.5 sm:p-3 rounded-lg bg-[#0D0D1A] border border-surface/40 text-muted hover:text-text-primary hover:border-neon-primary/50 transition-all active:translate-y-[1px]"
             title="Refresh Messages"
           >
             <FaSync className={loadingData ? "animate-spin text-neon-primary" : ""} />
@@ -267,7 +267,7 @@ export default function AdminDashboard() {
 
           <button
             onClick={handleLogout}
-            className="flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-red-500/15 border border-red-500/30 text-red-300 hover:bg-red-500 hover:text-white font-mono text-xs font-bold transition-all duration-300"
+            className="flex items-center gap-2 px-4 sm:px-5 py-2 sm:py-2.5 rounded-lg bg-red-500/15 border border-red-500/30 text-red-300 hover:bg-red-500 hover:text-white font-mono text-xs font-bold transition-all duration-300 active:translate-y-[1px]"
           >
             <FaSignOutAlt />
             Logout
@@ -277,8 +277,8 @@ export default function AdminDashboard() {
 
       {/* Bento Stats Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-6 sm:mb-8">
-        <div className="glass p-5 sm:p-6 rounded-2xl border border-neon-primary/15 flex items-center gap-4">
-          <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-neon-primary/8 border border-neon-primary/25 flex items-center justify-center text-neon-primary text-xl sm:text-2xl shrink-0">
+        <div className="glass p-5 sm:p-6 rounded-xl border border-neon-primary/15 flex items-center gap-4">
+          <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-lg bg-neon-primary/8 border border-neon-primary/25 flex items-center justify-center text-neon-primary text-xl sm:text-2xl shrink-0">
             <FaEnvelope />
           </div>
           <div>
@@ -287,8 +287,8 @@ export default function AdminDashboard() {
           </div>
         </div>
 
-        <div className="glass p-5 sm:p-6 rounded-2xl border border-amber-500/20 flex items-center gap-4">
-          <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 text-xl sm:text-2xl shrink-0">
+        <div className="glass p-5 sm:p-6 rounded-xl border border-amber-500/20 flex items-center gap-4">
+          <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-lg bg-amber-500/10 border border-amber-500/30 flex items-center justify-center text-amber-400 text-xl sm:text-2xl shrink-0">
             <FaEnvelopeOpen />
           </div>
           <div>
@@ -297,8 +297,8 @@ export default function AdminDashboard() {
           </div>
         </div>
 
-        <div className="glass p-5 sm:p-6 rounded-2xl border border-emerald-500/20 flex items-center gap-4">
-          <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-xl sm:text-2xl shrink-0">
+        <div className="glass p-5 sm:p-6 rounded-xl border border-emerald-500/20 flex items-center gap-4">
+          <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-lg bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 text-xl sm:text-2xl shrink-0">
             <FaCheckCircle />
           </div>
           <div>
@@ -317,7 +317,7 @@ export default function AdminDashboard() {
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             placeholder="Search by name, email, or content..."
-            className="w-full bg-[#00020B]/80 border border-surface/50 rounded-xl px-4 py-2.5 pl-10 text-xs text-text-primary placeholder-surface focus:outline-none focus:border-neon-primary transition-colors"
+            className="w-full bg-[#00020B]/80 border border-surface/50 rounded-lg px-4 py-2.5 pl-10 text-xs text-text-primary placeholder-surface focus:outline-none focus:border-neon-primary transition-colors shadow-[inset_0_1px_2px_rgba(0,0,0,0.5)]"
           />
           <FaSearch className="absolute left-3.5 top-3 text-surface text-xs" />
         </div>
@@ -362,7 +362,7 @@ export default function AdminDashboard() {
 
       {/* Messages List */}
       {filteredMessages.length === 0 ? (
-        <div className="glass p-8 sm:p-12 rounded-3xl text-center border border-surface/40">
+        <div className="glass p-8 sm:p-12 rounded-xl text-center border border-surface/40">
           <FaEnvelopeOpen className="text-4xl text-surface mx-auto mb-3" />
           <h3 className="text-base sm:text-lg font-mono font-bold text-muted">No Messages Found</h3>
           <p className="text-surface text-xs mt-1">
@@ -374,10 +374,10 @@ export default function AdminDashboard() {
           {filteredMessages.map((msg) => (
             <div
               key={msg._id}
-              className={`glass p-5 sm:p-6 rounded-2xl border transition-all duration-300 ${
+              className={`glass p-5 sm:p-6 rounded-xl border transition-all duration-300 ${
                 !msg.read
-                  ? "border-neon-primary/40 shadow-[0_0_20px_rgba(84,53,204,0.08)] bg-[#0D0D1A]/80"
-                  : "border-surface/30 opacity-90"
+                  ? "border-neon-primary/40 shadow-[0_8px_24px_rgba(0,0,0,0.7)] bg-[#0D0D1A]/80"
+                  : "border-surface/30 opacity-90 shadow-[0_4px_16px_rgba(0,0,0,0.5)]"
               }`}
             >
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-3">
@@ -388,11 +388,11 @@ export default function AdminDashboard() {
                       {msg.name}
                     </span>
                     {!msg.read ? (
-                      <span className="px-2 py-0.5 text-[9px] sm:text-[10px] font-mono font-bold rounded-full bg-amber-500/20 text-amber-300 border border-amber-500/40 animate-pulse">
+                      <span className="px-2 py-0.5 text-[9px] sm:text-[10px] font-mono font-bold rounded-md bg-amber-500/20 text-amber-300 border border-amber-500/40 animate-pulse">
                         NEW UNREAD
                       </span>
                     ) : (
-                      <span className="px-2 py-0.5 text-[9px] sm:text-[10px] font-mono rounded-full bg-surface/30 text-muted">
+                      <span className="px-2 py-0.5 text-[9px] sm:text-[10px] font-mono rounded-md bg-surface/30 text-muted">
                         Read
                       </span>
                     )}
@@ -440,7 +440,7 @@ export default function AdminDashboard() {
               </div>
 
               {/* Body */}
-              <div className="p-3.5 sm:p-4 rounded-xl bg-[#00020B]/60 border border-surface/30 text-muted text-xs sm:text-sm leading-relaxed whitespace-pre-wrap font-sans break-words overflow-x-auto">
+              <div className="p-3.5 sm:p-4 rounded-lg bg-[#00020B]/60 border border-surface/30 text-muted text-xs sm:text-sm leading-relaxed whitespace-pre-wrap font-sans break-words overflow-x-auto">
                 {msg.message}
               </div>
             </div>

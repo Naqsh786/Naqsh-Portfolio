@@ -83,15 +83,15 @@ const Navbar = () => {
   return (
     <nav className="fixed top-0 left-0 w-full z-50 pt-3 px-3 sm:pt-4 sm:px-6 transition-all duration-300">
       <div
-        className={`max-w-6xl mx-auto rounded-2xl transition-all duration-500 border ${
+        className={`max-w-6xl mx-auto rounded-xl transition-all duration-500 border ${
           scrolled
-            ? "glass border-surface/40 shadow-[0_10px_30px_rgba(0,0,0,0.8)] py-2.5 px-4 sm:px-6 bg-[#00020B]/95 backdrop-blur-xl"
-            : "bg-[#00020B]/85 backdrop-blur-xl border-surface/25 py-3.5 px-4 sm:px-6 shadow-lg"
+            ? "glass border-surface/40 shadow-[0_12px_32px_rgba(0,0,0,0.85)] py-2.5 px-4 sm:px-6 bg-[#00020B]/95 backdrop-blur-xl border-t-white/15"
+            : "bg-[#00020B]/90 backdrop-blur-xl border-surface/30 py-3.5 px-4 sm:px-6 shadow-[0_8px_24px_rgba(0,0,0,0.6)] border-t-white/10"
         } flex items-center justify-between`}
       >
         {/* Logo */}
         <Link to="/" className="flex items-center gap-3 group">
-          <div className="w-9 h-9 rounded-xl bg-neon-primary/15 border border-neon-primary/40 flex items-center justify-center group-hover:bg-neon-primary group-hover:text-white transition-all duration-300 shadow-[0_0_15px_rgba(var(--color-accent-rgb),0.15)]">
+          <div className="w-9 h-9 rounded-lg bg-neon-primary/15 border border-neon-primary/40 flex items-center justify-center group-hover:bg-neon-primary group-hover:text-white transition-all duration-300 shadow-[0_2px_10px_rgba(var(--color-accent-rgb),0.2)]">
             <FiCode className="text-neon-primary group-hover:text-white text-base transition-colors" />
           </div>
           <span className="text-lg sm:text-xl font-bold tracking-tight text-text-primary font-sans">
@@ -99,18 +99,18 @@ const Navbar = () => {
           </span>
         </Link>
 
-        {/* Desktop Links - Active Pill & Hover Indicator */}
-        <div className="hidden md:flex items-center gap-1.5 bg-[#00020B]/90 p-1.5 rounded-full border border-surface/25 shadow-inner">
+        {/* Desktop Links - Engineered Segmented Controller */}
+        <div className="hidden md:flex items-center gap-1 bg-[#00020B]/90 p-1 rounded-lg border border-surface/30 shadow-[inset_0_1px_2px_rgba(0,0,0,0.6)]">
           {navLinks.map((link) => {
             const isActive = activeSection === link.id;
             return (
               <button
                 key={link.id}
                 onClick={() => handleNavClick(link)}
-                className={`px-5 py-2 rounded-full text-xs font-mono font-medium uppercase tracking-wider transition-all duration-300 ${
+                className={`px-4 py-1.5 rounded-md text-xs font-mono font-medium uppercase tracking-wider transition-all duration-300 ${
                   isActive
-                    ? "bg-neon-primary text-white shadow-[0_0_15px_rgba(var(--color-accent-rgb),0.5)] border border-neon-primary/50 font-bold scale-[1.02]"
-                    : "text-muted hover:text-text-primary hover:bg-neon-primary/10 hover:border hover:border-neon-primary/25"
+                    ? "bg-neon-primary text-white shadow-[0_2px_10px_rgba(var(--color-accent-rgb),0.4)] border border-neon-primary/60 font-bold"
+                    : "text-muted hover:text-text-primary hover:bg-neon-primary/10 hover:border hover:border-neon-primary/25 border border-transparent"
                 }`}
               >
                 {link.name}
@@ -121,19 +121,19 @@ const Navbar = () => {
 
         {/* Action Controls (Admin + Resume + Hire Me) */}
         <div className="hidden md:flex items-center gap-3 sm:gap-4">
-          <div className="flex items-center gap-2.5">
+          <div className="flex items-center gap-2">
             <a
               href="/Naqsh%20Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="hidden sm:flex items-center gap-2 px-4 py-2 rounded-xl border border-surface/40 text-sm font-semibold text-muted hover:text-neon-primary hover:border-neon-primary/50 hover:shadow-[0_0_10px_rgba(var(--color-accent-rgb),0.2)] transition-all"
+              className="hidden sm:flex items-center gap-2 px-3.5 py-2 rounded-lg border border-surface/40 text-sm font-semibold text-muted hover:text-neon-primary hover:border-neon-primary/50 hover:shadow-[0_4px_12px_rgba(0,0,0,0.4)] transition-all active:translate-y-[1px]"
             >
               View Resume
             </a>
             <a
               href="/Naqsh%20Resume.pdf"
               download="Naqsh_Resume.pdf"
-              className="p-2.5 rounded-full border border-surface/40 text-muted hover:text-neon-primary hover:border-neon-primary/50 hover:shadow-[0_0_10px_rgba(var(--color-accent-rgb),0.2)] transition-all"
+              className="p-2.5 rounded-lg border border-surface/40 text-muted hover:text-neon-primary hover:border-neon-primary/50 hover:shadow-[0_4px_12px_rgba(0,0,0,0.4)] transition-all active:translate-y-[1px]"
               title="Download Resume"
               aria-label="Download Resume"
             >
@@ -143,9 +143,9 @@ const Navbar = () => {
 
           <Link
             to="/admin"
-            className={`p-2 rounded-xl bg-[#00020B]/90 border transition-all ${
+            className={`p-2.5 rounded-lg bg-[#00020B]/90 border transition-all ${
               location.pathname === "/admin"
-                ? "border-neon-primary text-neon-primary shadow-[0_0_12px_rgba(var(--color-accent-rgb),0.3)]"
+                ? "border-neon-primary text-neon-primary shadow-[0_2px_10px_rgba(var(--color-accent-rgb),0.3)]"
                 : "border-surface/40 text-muted hover:text-neon-primary hover:border-neon-primary/40"
             }`}
             title="Admin Dashboard"
@@ -165,9 +165,9 @@ const Navbar = () => {
         <div className="md:hidden flex items-center gap-2">
           <Link
             to="/admin"
-            className={`p-2 rounded-xl bg-[#00020B]/90 border transition-all ${
+            className={`p-2.5 rounded-lg bg-[#00020B]/90 border transition-all ${
               location.pathname === "/admin"
-                ? "border-neon-primary text-neon-primary shadow-[0_0_12px_rgba(var(--color-accent-rgb),0.3)]"
+                ? "border-neon-primary text-neon-primary shadow-[0_2px_10px_rgba(var(--color-accent-rgb),0.3)]"
                 : "border-surface/40 text-muted hover:text-neon-primary hover:border-neon-primary/40"
             }`}
             title="Admin Dashboard"
@@ -192,17 +192,17 @@ const Navbar = () => {
           isOpen ? "max-h-[35rem] opacity-100 mt-2" : "max-h-0 opacity-0"
         }`}
       >
-        <div className="max-w-6xl mx-auto glass rounded-2xl border border-neon-primary/25 p-4 shadow-2xl flex flex-col gap-2 bg-[#00020B]/95 backdrop-blur-xl">
+        <div className="max-w-6xl mx-auto glass rounded-xl border border-neon-primary/25 p-4 shadow-2xl flex flex-col gap-2 bg-[#00020B]/95 backdrop-blur-xl">
           {navLinks.map((link) => {
             const isActive = activeSection === link.id;
             return (
               <button
                 key={link.id}
                 onClick={() => handleNavClick(link)}
-                className={`flex items-center justify-between px-4 py-3 rounded-xl text-xs sm:text-sm font-mono uppercase tracking-widest transition-all ${
+                className={`flex items-center justify-between px-4 py-3 rounded-lg text-xs sm:text-sm font-mono uppercase tracking-widest transition-all ${
                   isActive
                     ? "bg-neon-primary/15 text-white border border-neon-primary/35 font-bold"
-                    : "text-muted hover:bg-neon-primary/8 hover:text-text-primary"
+                    : "text-muted hover:bg-neon-primary/8 hover:text-text-primary border border-transparent"
                 }`}
               >
                 <span>{link.name}</span>
@@ -217,14 +217,14 @@ const Navbar = () => {
               href="/Naqsh%20Resume.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex-1 flex items-center justify-center gap-2 py-3 rounded-xl border border-surface/40 text-muted text-sm font-bold uppercase tracking-widest hover:border-neon-primary/40 hover:text-neon-primary transition-all"
+              className="flex-1 flex items-center justify-center gap-2 py-3 rounded-lg border border-surface/40 text-muted text-sm font-bold uppercase tracking-widest hover:border-neon-primary/40 hover:text-neon-primary transition-all"
             >
               View Resume
             </a>
             <a
               href="/Naqsh%20Resume.pdf"
               download="Naqsh_Resume.pdf"
-              className="flex items-center justify-center p-3.5 rounded-xl border border-surface/40 text-muted hover:text-neon-primary hover:border-neon-primary/50 transition-all"
+              className="flex items-center justify-center p-3 rounded-lg border border-surface/40 text-muted hover:text-neon-primary hover:border-neon-primary/50 transition-all"
               title="Download Resume"
               aria-label="Download Resume"
             >

@@ -1,6 +1,7 @@
 import React, { useState, Suspense, lazy } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
+import BackToTop from "./components/BackToTop";
 import WeightSweepPreloader from "@/components/ui/weight-sweep-preloader";
 import CursorDotTrail from "./components/CursorDotTrail";
 
@@ -34,6 +35,7 @@ function App() {
         )}
         <CursorDotTrail />
         <Navbar />
+        <BackToTop />
         <div className="min-h-screen bg-transparent relative">
           <Routes>
             <Route 
