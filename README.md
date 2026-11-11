@@ -30,7 +30,7 @@
 
 ## 📌 Overview
 
-This repository houses the personal portfolio and client inquiry management platform for **Muhammad Naqsh**. Engineered with a focus on modern aesthetic craft and structural hierarchy, the user interface features a bespoke **Architectural Obsidian Chassis Design System** with custom chamfer geometries, directional elevation shadows, and vibrant neon violet accents.
+This repository houses the personal portfolio and client inquiry management platform for **Naqsh**. Engineered with a focus on modern aesthetic craft and structural hierarchy, the user interface features a bespoke **Architectural Obsidian Chassis Design System** with custom chamfer geometries, directional elevation shadows, and vibrant neon violet accents.
 
 Backed by a production-ready Express API with MongoDB persistence, the system includes an authenticated admin dashboard, automatic subject pre-fill routing, and strict security rate-limiting.
 
@@ -295,7 +295,7 @@ npm run preview
 
 ## 📬 Author & Contact
 
-**Muhammad Naqsh** — *Full-Stack Engineer*
+**Naqsh** — *Full-Stack Engineer*
 
 * 🌐 **GitHub**: [@Naqsh786](https://github.com/Naqsh786)
 * ✉️ **Email**: [naqshcc916@gmail.com](mailto:naqshcc916@gmail.com)

@@ -445,7 +445,7 @@ export default function FooterField({ onReplayIntro }) {
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-6 text-xs text-muted font-mono">
           <p className="order-2 sm:order-1 text-center sm:text-left">
             &copy; {new Date().getFullYear()}{" "}
-            <span className="text-neon-primary font-semibold">Muhammad Naqsh</span>. All rights reserved.
+            <span className="text-neon-primary font-semibold">Naqsh</span>. All rights reserved.
           </p>
 
           <div className="order-1 sm:order-2 flex flex-wrap items-center justify-center gap-4 sm:gap-6">
