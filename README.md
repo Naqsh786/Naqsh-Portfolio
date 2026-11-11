@@ -30,7 +30,7 @@
 
 ## 📌 Overview
 
-This repository houses the personal portfolio and client inquiry management platform for **Muhammad Naqsh**. Designed from the ground up to break away from generic, over-rounded AI templates, the user interface features an **Architectural Obsidian Chassis Design System** with custom chamfer geometries, directional elevation shadows, and vibrant neon violet accents.
+This repository houses the personal portfolio and client inquiry management platform for **Muhammad Naqsh**. Engineered with a focus on modern aesthetic craft and structural hierarchy, the user interface features a bespoke **Architectural Obsidian Chassis Design System** with custom chamfer geometries, directional elevation shadows, and vibrant neon violet accents.
 
 Backed by a production-ready Express API with MongoDB persistence, the system includes an authenticated admin dashboard, automatic subject pre-fill routing, and strict security rate-limiting.
 
@@ -47,8 +47,8 @@ Backed by a production-ready Express API with MongoDB persistence, the system in
 * High-precision variable-weight typographic animation (`000%` → `100%`) tracking simulated asset initialization.
 * Hardware-accelerated lift transition revealing the UI with smooth cubic-bezier easing.
 
-### 3. 📐 Anti-Vibe-Code Architectural UI
-* **Precision Chassis Surfaces**: Replaced generic stadium pills and oversaturated zero-offset glow halos with precision corner radii (`rounded-xl`, `rounded-lg`, `rounded-md`), directional depth elevation (`shadow-[0_8px_30px_rgba(0,0,0,0.6)]`), and crisp white hairline inset highlights (`inset 0 1px 0 rgba(255,255,255,0.08)`).
+### 3. 📐 Architectural Chassis Design System
+* **Precision Chassis Surfaces**: Built with balanced structural hierarchy using tailored corner radii (`rounded-xl`, `rounded-lg`, `rounded-md`), directional depth elevation (`shadow-[0_8px_30px_rgba(0,0,0,0.6)]`), and crisp white hairline inset highlights (`inset 0 1px 0 rgba(255,255,255,0.08)`).
 * **Conic Gradient Shiny Buttons**: Custom `@property --gradient-angle` CSS houdini animated borders paired with architectural button geometry.
 
 ### 4. 🚀 Bidirectional GSAP Scroll Engine (Zero Desync)
