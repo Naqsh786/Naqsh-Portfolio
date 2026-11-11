@@ -202,7 +202,7 @@ Naqsh-Portfolio/
 ### 1. Clone the Repository
 ```bash
 git clone https://github.com/Naqsh786/Naqsh-Portfolio.git
-cd Naqsh-Protfolio
+cd Naqsh-Portfolio
 ```
 
 ### 2. Configure Backend
