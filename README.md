@@ -218,7 +218,7 @@ cd Naqsh-Protfolio
 3. Populate the required environment variables:
    ```env
    PORT=5000
-   MONGO_URI=mongodb+srv://<username>:<password>@cluster.mongodb.net/naqsh_portfolio
+   MONGO_URI=your_mongodb_uri_here
    ADMIN_PASSWORD=your_strong_admin_password_here
    JWT_SECRET=your_super_secret_jwt_key_here
    ```
