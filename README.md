@@ -201,7 +201,7 @@ Naqsh-Portfolio/
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/Naqsh786/Naqsh-Protfolio.git
+git clone https://github.com/Naqsh786/Naqsh-Portfolio.git
 cd Naqsh-Protfolio
 ```
 
