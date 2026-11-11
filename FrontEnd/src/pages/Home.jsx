@@ -250,16 +250,16 @@ const Home = () => {
       if (skillsHeaderRef.current) {
         gsap.fromTo(
           skillsHeaderRef.current,
-          { y: 20, opacity: 0 },
+          { y: 16, opacity: 0 },
           {
             y: 0,
             opacity: 1,
-            duration: 0.35,
+            duration: 0.25,
             ease: "power2.out",
             scrollTrigger: {
               trigger: skillsHeaderRef.current,
               start: "top 95%",
-              toggleActions: "play reverse play reverse",
+              toggleActions: "play none none reverse",
             },
           }
         );
@@ -270,17 +270,17 @@ const Home = () => {
         const isEven = idx % 2 === 0;
         gsap.fromTo(
           card,
-          { x: isEven ? -20 : 20, opacity: 0, scale: 0.98 },
+          { x: isEven ? -16 : 16, opacity: 0, scale: 0.98 },
           {
             x: 0,
             opacity: 1,
             scale: 1,
-            duration: 0.35,
+            duration: 0.25,
             ease: "power2.out",
             scrollTrigger: {
               trigger: card,
               start: "top 95%",
-              toggleActions: "play reverse play reverse",
+              toggleActions: "play none none reverse",
             },
           }
         );
@@ -290,16 +290,16 @@ const Home = () => {
       if (projectsHeaderRef.current) {
         gsap.fromTo(
           projectsHeaderRef.current,
-          { y: 20, opacity: 0 },
+          { y: 16, opacity: 0 },
           {
             y: 0,
             opacity: 1,
-            duration: 0.35,
+            duration: 0.25,
             ease: "power2.out",
             scrollTrigger: {
               trigger: projectsHeaderRef.current,
               start: "top 95%",
-              toggleActions: "play reverse play reverse",
+              toggleActions: "play none none reverse",
             },
           }
         );
@@ -308,16 +308,16 @@ const Home = () => {
       if (projectsWrapperRef.current) {
         gsap.fromTo(
           projectsWrapperRef.current,
-          { y: 20, opacity: 0 },
+          { y: 16, opacity: 0 },
           {
             y: 0,
             opacity: 1,
-            duration: 0.35,
+            duration: 0.25,
             ease: "power2.out",
             scrollTrigger: {
               trigger: projectsWrapperRef.current,
               start: "top 95%",
-              toggleActions: "play reverse play reverse",
+              toggleActions: "play none none reverse",
             },
           }
         );
@@ -327,16 +327,16 @@ const Home = () => {
       if (contactHeaderRef.current) {
         gsap.fromTo(
           contactHeaderRef.current,
-          { y: 20, opacity: 0 },
+          { y: 16, opacity: 0 },
           {
             y: 0,
             opacity: 1,
-            duration: 0.35,
+            duration: 0.25,
             ease: "power2.out",
             scrollTrigger: {
               trigger: contactHeaderRef.current,
               start: "top 95%",
-              toggleActions: "play reverse play reverse",
+              toggleActions: "play none none reverse",
             },
           }
         );
@@ -345,17 +345,17 @@ const Home = () => {
       if (contactFormWrapperRef.current) {
         gsap.fromTo(
           contactFormWrapperRef.current,
-          { y: 20, opacity: 0, scale: 0.99 },
+          { y: 16, opacity: 0, scale: 0.99 },
           {
             y: 0,
             opacity: 1,
             scale: 1,
-            duration: 0.35,
+            duration: 0.25,
             ease: "power2.out",
             scrollTrigger: {
               trigger: contactFormWrapperRef.current,
               start: "top 95%",
-              toggleActions: "play reverse play reverse",
+              toggleActions: "play none none reverse",
             },
           }
         );
@@ -364,17 +364,17 @@ const Home = () => {
       if (contactSocialsRef.current) {
         gsap.fromTo(
           contactSocialsRef.current.children,
-          { y: 15, opacity: 0 },
+          { y: 12, opacity: 0 },
           {
             y: 0,
             opacity: 1,
-            stagger: 0.04,
-            duration: 0.35,
+            stagger: 0.03,
+            duration: 0.25,
             ease: "power2.out",
             scrollTrigger: {
-              trigger: contactSocialsRef.current,
-              start: "top 95%",
-              toggleActions: "play reverse play reverse",
+              trigger: contactFormWrapperRef.current || contactSocialsRef.current,
+              start: "top 85%",
+              toggleActions: "play none none reverse",
             },
           }
         );
