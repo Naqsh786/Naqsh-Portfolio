@@ -198,7 +198,7 @@ const ContactForm = () => {
   );
 };
 
-const Home = () => {
+const Home = ({ isPreloaderComplete }) => {
   const [emailCopied, setEmailCopied] = useState(false);
 
   const handleEmailClick = (e) => {
@@ -219,6 +219,8 @@ const Home = () => {
 
   const heroImageRef = useRef(null);
   const heroTextRef = useRef(null);
+  const heroSectionRef = useRef(null);
+  const heroAnimDone = useRef(false);
   const skillsSectionRef = useRef(null);
   const skillsHeaderRef = useRef(null);
   const skillCardsRef = useRef([]);
@@ -230,155 +232,222 @@ const Home = () => {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // 1. Hero Entrance
-      if (heroImageRef.current) {
-        gsap.fromTo(
-          heroImageRef.current,
-          { scale: 0.92, opacity: 0, y: 30 },
-          { scale: 1, opacity: 1, y: 0, duration: 1, ease: "power2.out" }
-        );
-      }
-      if (heroTextRef.current) {
-        gsap.fromTo(
-          heroTextRef.current.children,
-          { y: 30, opacity: 0 },
-          { y: 0, opacity: 1, duration: 0.75, stagger: 0.1, ease: "power2.out", delay: 0.15 }
-        );
-      }
+      const reduced = !window.matchMedia("(prefers-reduced-motion: no-preference)").matches;
 
-      // 2. Skills Section
-      if (skillsHeaderRef.current) {
-        gsap.fromTo(
-          skillsHeaderRef.current,
-          { y: 16, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.25,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: skillsHeaderRef.current,
-              start: "top 95%",
-              toggleActions: "play none none reverse",
-            },
-          }
-        );
-      }
-
-      skillCardsRef.current.forEach((card, idx) => {
-        if (!card) return;
-        const isEven = idx % 2 === 0;
-        gsap.fromTo(
-          card,
-          { x: isEven ? -16 : 16, opacity: 0, scale: 0.98 },
-          {
-            x: 0,
+      if (reduced) {
+        // Reduced motion: skip reveals, ensure hero and key content are visible
+        if (heroSectionRef.current) {
+          gsap.set(heroSectionRef.current, {
             opacity: 1,
             scale: 1,
-            duration: 0.25,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: card,
-              start: "top 95%",
-              toggleActions: "play none none reverse",
-            },
-          }
-        );
-      });
-
-      // 3. Projects Section
-      if (projectsHeaderRef.current) {
-        gsap.fromTo(
-          projectsHeaderRef.current,
-          { y: 16, opacity: 0 },
-          {
             y: 0,
-            opacity: 1,
-            duration: 0.25,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: projectsHeaderRef.current,
-              start: "top 95%",
-              toggleActions: "play none none reverse",
-            },
-          }
-        );
+            clipPath: "none",
+            WebkitClipPath: "none",
+          });
+        }
+        if (heroImageRef.current) {
+          gsap.set(heroImageRef.current, { opacity: 1, filter: "none", scale: 1 });
+        }
+        if (heroTextRef.current) {
+          gsap.set(heroTextRef.current.children, { opacity: 1, y: 0 });
+        }
+        return;
       }
 
-      if (projectsWrapperRef.current) {
-        gsap.fromTo(
-          projectsWrapperRef.current,
-          { y: 16, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.25,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: projectsWrapperRef.current,
-              start: "top 95%",
-              toggleActions: "play none none reverse",
-            },
-          }
-        );
-      }
+      const mm = gsap.matchMedia();
 
-      // 4. Contact Section
-      if (contactHeaderRef.current) {
-        gsap.fromTo(
-          contactHeaderRef.current,
-          { y: 16, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            duration: 0.25,
-            ease: "power2.out",
+      mm.add("(prefers-reduced-motion: no-preference)", () => {
+        // ── Transition 1: Preloader -> Hero (Round Reveal from Bottom to Up + Depth Focus) ──
+        if (isPreloaderComplete && !heroAnimDone.current) {
+          heroAnimDone.current = true;
+
+          // Round clip-path reveal: circle expands from bottom-center upward to reveal the hero
+          if (heroSectionRef.current) {
+            gsap.fromTo(
+              heroSectionRef.current,
+              {
+                clipPath: "circle(0% at 50% 100%)",
+                WebkitClipPath: "circle(0% at 50% 100%)",
+                opacity: 0,
+                scale: 0.94,
+                y: 40,
+              },
+              {
+                clipPath: "circle(150% at 50% 100%)",
+                WebkitClipPath: "circle(150% at 50% 100%)",
+                opacity: 1,
+                scale: 1,
+                y: 0,
+                duration: 1,
+                ease: "power3.out",
+              }
+            );
+          }
+
+          // Hero image: architectural depth focus reveal (blur + scale settle)
+          if (heroImageRef.current) {
+            gsap.fromTo(
+              heroImageRef.current,
+              { filter: "blur(8px)", scale: 1.06 },
+              {
+                filter: "blur(0px)",
+                scale: 1,
+                duration: 0.8,
+                ease: "power3.out",
+                delay: 0.15,
+              }
+            );
+          }
+
+          // Hero text: staggered fade-up from bottom
+          if (heroTextRef.current) {
+            gsap.fromTo(
+              heroTextRef.current.children,
+              { y: 24, opacity: 0 },
+              {
+                y: 0,
+                opacity: 1,
+                duration: 0.7,
+                stagger: 0.1,
+                ease: "power3.out",
+                delay: 0.3,
+              }
+            );
+          }
+        }
+
+        // ── Skills Section (existing micro-animations preserved) ──
+        if (skillsHeaderRef.current) {
+          gsap.fromTo(
+            skillsHeaderRef.current,
+            { y: 16, opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              duration: 0.25,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: skillsHeaderRef.current,
+                start: "top 95%",
+                toggleActions: "play none none reverse",
+              },
+            }
+          );
+        }
+
+        skillCardsRef.current.forEach((card, idx) => {
+          if (!card) return;
+          const isEven = idx % 2 === 0;
+          gsap.fromTo(
+            card,
+            { x: isEven ? -16 : 16, opacity: 0, scale: 0.98 },
+            {
+              x: 0,
+              opacity: 1,
+              scale: 1,
+              duration: 0.25,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: card,
+                start: "top 95%",
+                toggleActions: "play none none reverse",
+              },
+            }
+          );
+        });
+
+        // ── Transition 2: Skills -> Projects (Horizontal Kinetic Shift & Perspective Deck Reveal) ──
+        if (projectsHeaderRef.current) {
+          gsap.fromTo(
+            projectsHeaderRef.current,
+            { x: -24, opacity: 0 },
+            {
+              x: 0,
+              opacity: 1,
+              duration: 0.35,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: projectsHeaderRef.current,
+                start: "top 92%",
+                toggleActions: "play none none reverse",
+              },
+            }
+          );
+        }
+
+        if (projectsWrapperRef.current) {
+          gsap.fromTo(
+            projectsWrapperRef.current,
+            { x: 24, opacity: 0, rotateX: 4, transformPerspective: 600 },
+            {
+              x: 0,
+              opacity: 1,
+              rotateX: 0,
+              duration: 0.35,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: projectsWrapperRef.current,
+                start: "top 92%",
+                toggleActions: "play none none reverse",
+              },
+            }
+          );
+        }
+
+        // ── Transition 3: Process -> Contact (Aperture Expansion & Elevation Lock-In) ──
+        if (contactHeaderRef.current) {
+          gsap.set(contactHeaderRef.current, {
+            clipPath: "inset(0% 12% 0% 12%)",
+          });
+          gsap.to(contactHeaderRef.current, {
+            clipPath: "inset(0% 0% 0% 0%)",
             scrollTrigger: {
               trigger: contactHeaderRef.current,
-              start: "top 95%",
+              start: "top 90%",
               toggleActions: "play none none reverse",
             },
-          }
-        );
-      }
+          });
+        }
 
-      if (contactFormWrapperRef.current) {
-        gsap.fromTo(
-          contactFormWrapperRef.current,
-          { y: 16, opacity: 0, scale: 0.99 },
-          {
-            y: 0,
-            opacity: 1,
-            scale: 1,
-            duration: 0.25,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: contactFormWrapperRef.current,
-              start: "top 95%",
-              toggleActions: "play none none reverse",
-            },
-          }
-        );
-      }
+        if (contactFormWrapperRef.current) {
+          gsap.fromTo(
+            contactFormWrapperRef.current,
+            { scale: 0.96, y: 28, opacity: 0 },
+            {
+              scale: 1,
+              y: 0,
+              opacity: 1,
+              duration: 0.4,
+              ease: "expo.out",
+              scrollTrigger: {
+                trigger: contactFormWrapperRef.current,
+                start: "top 90%",
+                toggleActions: "play none none reverse",
+              },
+            }
+          );
+        }
 
-      if (contactSocialsRef.current) {
-        gsap.fromTo(
-          contactSocialsRef.current.children,
-          { y: 12, opacity: 0 },
-          {
-            y: 0,
-            opacity: 1,
-            stagger: 0.03,
-            duration: 0.25,
-            ease: "power2.out",
-            scrollTrigger: {
-              trigger: contactFormWrapperRef.current || contactSocialsRef.current,
-              start: "top 85%",
-              toggleActions: "play none none reverse",
-            },
-          }
-        );
-      }
+        // ── Contact Socials (existing micro-animation preserved) ──
+        if (contactSocialsRef.current) {
+          gsap.fromTo(
+            contactSocialsRef.current.children,
+            { y: 12, opacity: 0 },
+            {
+              y: 0,
+              opacity: 1,
+              stagger: 0.03,
+              duration: 0.25,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: contactFormWrapperRef.current || contactSocialsRef.current,
+                start: "top 85%",
+                toggleActions: "play none none reverse",
+              },
+            }
+          );
+        }
+      });
     });
 
     // Refresh ScrollTrigger to sync accurate element positions once fonts and images settle
@@ -401,7 +470,7 @@ const Home = () => {
       window.removeEventListener("resize", handleRefresh);
       ctx.revert();
     };
-  }, []);
+  }, [isPreloaderComplete]);
 
   const skillCategories = [
     {
@@ -453,7 +522,15 @@ const Home = () => {
   return (
     <div className="bg-grid min-h-screen relative z-10 bg-[#00020B]/50">
       {/* ── HERO SECTION ── */}
-      <section className="min-h-screen flex items-center justify-center px-6 pt-28 md:pt-0 relative overflow-hidden">
+      <section
+        ref={heroSectionRef}
+        className="min-h-screen flex items-center justify-center px-6 pt-28 md:pt-0 relative overflow-hidden"
+        style={{
+          clipPath: "circle(0% at 50% 100%)",
+          WebkitClipPath: "circle(0% at 50% 100%)",
+          opacity: 0,
+        }}
+      >
         {/* Interactive WebGL Grid Trails Background (from Framer) */}
         <div className="absolute inset-0 z-0">
           <GridTrails

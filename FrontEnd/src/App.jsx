@@ -53,7 +53,7 @@ function App() {
               path="/" 
               element={
                 <Suspense fallback={<div className="min-h-screen bg-[#00020B]" />}>
-                  <Home />
+                  <Home isPreloaderComplete={!loading} />
                 </Suspense>
               } 
             />
